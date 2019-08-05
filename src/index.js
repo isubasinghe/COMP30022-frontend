@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import Amplify from 'aws-amplify';
+import Auth from '@aws-amplify/auth';
 import awsconfig from './aws-exports';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-Amplify.configure(awsconfig);
+Auth.configure(awsconfig);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
