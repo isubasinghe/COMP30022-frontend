@@ -4,12 +4,12 @@ const buildSW = () => {
 
   return workboxBuild
     .generateSW({
-      swDest: "build/sw.js", // this will be created in the build step
-      globDirectory: "build",
+      swDest: 'build/sw.js', // this will be created in the build step
+      globDirectory: 'build',
       globPatterns: [
-        "**/*.{js,css,html,png,svg}"
+        '**/*.{js,css,html,png,svg}'
       ],
-      navigateFallback: "index.html",
+      navigateFallback: 'index.html',
       cleanupOutdatedCaches: true,
       runtimeCaching: [
 
