@@ -7,12 +7,12 @@ const buildSW = () => {
       swDest: "build/sw.js", // this will be created in the build step
       globDirectory: "build",
       globPatterns: [
-        "**/*.{js,css,html,png}"
+        "**/*.{js,css,html,png,svg}"
       ],
       navigateFallback: "index.html",
       cleanupOutdatedCaches: true,
       runtimeCaching: [
-          
+
       ]
     })
     .then(({ count, size, warnings }) => {
