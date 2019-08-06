@@ -1,19 +1,14 @@
-const workboxBuild = require("workbox-build");
+const workboxBuild = require('workbox-build');
 // NOTE: This should be run *AFTER* all your assets are built
 const buildSW = () => {
-
   return workboxBuild
     .generateSW({
       swDest: 'build/sw.js', // this will be created in the build step
       globDirectory: 'build',
-      globPatterns: [
-        '**/*.{js,css,html,png,svg}'
-      ],
+      globPatterns: ['**/*.{js,css,html,png,svg}'],
       navigateFallback: 'index.html',
       cleanupOutdatedCaches: true,
-      runtimeCaching: [
-
-      ]
+      runtimeCaching: []
     })
     .then(({ count, size, warnings }) => {
       // Optionally, log any warnings and details.

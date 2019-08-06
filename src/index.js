@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Auth from '@aws-amplify/auth';
 import awsconfig from './aws-exports';
