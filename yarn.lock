@@ -34,6 +34,16 @@
     amazon-cognito-identity-js "^3.0.15"
     crypto-js "^3.1.9-1"
 
+"@aws-amplify/auth@^1.2.31":
+  version "1.2.31"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/auth/-/auth-1.2.31.tgz#b4c5f975549ae18349ed2ca372e0a2a0ee7f395e"
+  integrity sha512-J7ANZgO4+G14ZBw1XiyVNjI73ObKgm10ZtIMHoTATGwp9LknlwMm18F6vRcJmvB5e8C80CeOzCXVH8pu17ukCA==
+  dependencies:
+    "@aws-amplify/cache" "^1.0.32"
+    "@aws-amplify/core" "^1.1.0"
+    amazon-cognito-identity-js "^3.0.15"
+    crypto-js "^3.1.9-1"
+
 "@aws-amplify/cache@^1.0.31":
   version "1.0.31"
   resolved "https://registry.yarnpkg.com/@aws-amplify/cache/-/cache-1.0.31.tgz#18e6efdf46e8042ee470a7c8f9bf2d611886d94e"
@@ -41,10 +51,25 @@
   dependencies:
     "@aws-amplify/core" "^1.0.31"
 
+"@aws-amplify/cache@^1.0.32":
+  version "1.0.32"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/cache/-/cache-1.0.32.tgz#26600edbeaed3fe50062674d929280268e927815"
+  integrity sha512-l/N3EhfD4LCrkegQGPrwvZz8/uVwHRK06lTlNm0DgFOLvIAsvJTRVlep6lpoSg+ct4YhyTtqBcK/q7HKYZDv3Q==
+  dependencies:
+    "@aws-amplify/core" "^1.1.0"
+
 "@aws-amplify/core@^1.0.31":
   version "1.0.31"
   resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-1.0.31.tgz#efa045422c73596bd58458c3d567c3233493eda1"
   integrity sha512-AimXIzpY7iDVo9je+aidL+Yz2kqr99N89xFRdJBT+ZDyHvcO5phvz1JXjTrDDiB3TsBWvy4rLV02QHNc6Y4oQw==
+  dependencies:
+    aws-sdk "2.474.0"
+    url "^0.11.0"
+
+"@aws-amplify/core@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-1.1.0.tgz#52f23b4ef120749b5af8ff6a65471df60ac7fe33"
+  integrity sha512-71xPm1vH/F436BHIuItkgJ0tqfr//aCFG6uLVCUaeBV4IgblfrxCo9ps9TpIqGjg0lQtwsCU33VLjjm29HHbOg==
   dependencies:
     aws-sdk "2.474.0"
     url "^0.11.0"
