@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Auth } from 'aws-amplify';
+import Auth from '@aws-amplify/auth';
 import LogRocket from 'logrocket';
 import { withAuthenticator } from 'aws-amplify-react';
 import logo from './logo.svg';
