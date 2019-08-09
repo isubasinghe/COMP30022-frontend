@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Auth from '@aws-amplify/auth';
+import * as Sentry from '@sentry/browser';
+import LogRocket from 'logrocket';
+import setupLogRocketReact from 'logrocket-react';
 import awsconfig from './aws-exports';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+Sentry.init({ dsn: 'https://0813d6b162694237800a791622f2b442@sentry.io/1525953' });
+LogRocket.init('ii7gar/comp30022-frontend');
+setupLogRocketReact(LogRocket);
 Auth.configure(awsconfig);
 
 ReactDOM.render(<App />, document.getElementById('root'));
