@@ -1,0 +1,20 @@
+.centreH {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.centerV {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.auth {
+    width: 400px;
+    height: 800px;
+    margin-top: calc(800px -50%);
+    background-color: gainsboro;
+}
