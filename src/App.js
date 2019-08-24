@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
 import LogRocket from 'logrocket';
 import { withAuthenticator } from 'aws-amplify-react';
-import logo from './logo.svg';
+import Home from './pages/Home';
+import MapView from './pages/MapView';
 import './App.css';
 
 function App() {
@@ -19,9 +21,10 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      <BrowserRouter>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/map" component={MapView} />
+      </BrowserRouter>
     </div>
   );
 }
