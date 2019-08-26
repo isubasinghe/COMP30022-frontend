@@ -6,8 +6,6 @@
     "@aws-amplify/auth": "^1.2.31",
     "aws-amplify": "^1.1.36",
     "aws-amplify-react": "^2.3.12",
-    "logrocket": "^1.0.3",
-    "logrocket-react": "^3.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
