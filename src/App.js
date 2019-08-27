@@ -8,17 +8,6 @@ import MapView from './pages/MapView';
 import './App.css';
 
 function App() {
-  useEffect(() => {
-    Auth.currentAuthenticatedUser({
-      bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-    })
-      .then(user => {
-        LogRocket.identify(user.username, {
-          email: user.attributes.email
-        });
-      })
-      .catch(() => {});
-  }, []);
   return (
     <div className="App">
       <BrowserRouter>
@@ -29,8 +18,4 @@ function App() {
   );
 }
 
-export default withAuthenticator(App, {
-  signUpConfig: {
-    hiddenDefaults: ['phone_number']
-  }
-});
+export default withAuthenticator(App, true);
