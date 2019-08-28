@@ -13,17 +13,20 @@ Parameters:
     Type: String
   
   
+  
+  
+  functioncomp30022frontend645e6adfPostConfirmationArn: 
+    Type: String
+    Default: functioncomp30022frontend645e6adfPostConfirmationArn
+  
+  functioncomp30022frontend645e6adfPostConfirmationName: 
+    Type: String
+    Default: functioncomp30022frontend645e6adfPostConfirmationName
+  
+  
+  
 
     
-  identityPoolName:
-    Type: String
-                
-  allowUnauthenticatedIdentities:
-    Type: String
-            
-  openIdLambdaRoleName:
-    Type: String
-              
   resourceNameTruncated:
     Type: String
               
@@ -87,6 +90,9 @@ Parameters:
   userpoolClientSetAttributes:
     Type: String
             
+  openIdLambdaRoleName:
+    Type: String
+              
   resourceName:
     Type: String
               
@@ -103,6 +109,21 @@ Parameters:
     Type: CommaDelimitedList
               
   dependsOn:
+    Type: CommaDelimitedList
+      
+  triggers:
+    Type: String
+                
+  hostedUI:
+    Type: String
+            
+  PostConfirmation:
+    Type: String
+                    
+  parentStack:
+    Type: String
+                
+  permissions:
     Type: CommaDelimitedList
     
 Conditions:
@@ -158,6 +179,18 @@ Resources:
         
       
       
+      LambdaConfig:
+        
+        
+        
+        
+        
+          PostConfirmation: !Ref functioncomp30022frontend645e6adfPostConfirmationArn
+        
+        
+        
+        
+      
       
       AutoVerifiedAttributes: !Ref autoVerifiedAttributes
       
@@ -168,10 +201,10 @@ Resources:
       Policies:
         PasswordPolicy:
           MinimumLength: !Ref passwordPolicyMinLength
-          RequireLowercase: false
-          RequireNumbers: false
-          RequireSymbols: false
-          RequireUppercase: false
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: true
+          RequireUppercase: true
       
       UsernameAttributes: !Ref usernameAttributes
           
@@ -182,12 +215,35 @@ Resources:
         ExternalId: comp30645e6adf_role_external_id
     
   
+    
+    
+  
+    
+  
+  UserPoolPostConfirmationLambdaInvokePermission: 
+    Type: "AWS::Lambda::Permission"
+    DependsOn: UserPool
+    Properties: 
+      Action: "lambda:invokeFunction"
+      Principal: "cognito-idp.amazonaws.com"
+      FunctionName: !Ref functioncomp30022frontend645e6adfPostConfirmationName
+      SourceArn: !GetAtt UserPool.Arn
+    
+  
+   
+    
+  # Updating lambda role with permissions to Cognito
+  
+  
   UserPoolClientWeb:
   # Created provide application access to user pool
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
       ClientName: comp30645e6adf_app_clientWeb
+      
+      ReadAttributes: !Ref userpoolClientReadAttributes
+      WriteAttributes: !Ref userpoolClientWriteAttributes
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -198,6 +254,9 @@ Resources:
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
       ClientName: !Ref userpoolClientName
+      
+      ReadAttributes: !Ref userpoolClientReadAttributes
+      WriteAttributes: !Ref userpoolClientWriteAttributes
       
       GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
@@ -312,50 +371,8 @@ Resources:
 
   
     
-  # BEGIN IDENTITY POOL RESOURCES
-  
- 
-  IdentityPool:
-  # Always created
-    Type: AWS::Cognito::IdentityPool
-    Properties: 
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'comp30022frontend645e6adf_identitypool_645e6adf', !Join ['',['comp30022frontend645e6adf_identitypool_645e6adf', '__', !Ref env]]]
-      
-      CognitoIdentityProviders:
-        - ClientId:  !Ref UserPoolClient
-          ProviderName: !Sub
-            - cognito-idp.${region}.amazonaws.com/${client}
-            - { region: !Ref "AWS::Region",  client: !Ref UserPool}
-        - ClientId:  !Ref UserPoolClientWeb
-          ProviderName: !Sub
-            - cognito-idp.${region}.amazonaws.com/${client}
-            - { region: !Ref "AWS::Region",  client: !Ref UserPool}
-            
-      AllowUnauthenticatedIdentities: !Ref allowUnauthenticatedIdentities
-       
-       
-    DependsOn: UserPoolClientInputs 
-    
-  
-  IdentityPoolRoleMap:
-  # Created to map Auth and Unauth roles to the identity pool
-  # Depends on Identity Pool for ID ref
-    Type: AWS::Cognito::IdentityPoolRoleAttachment
-    Properties: 
-      IdentityPoolId: !Ref IdentityPool
-      Roles:
-          unauthenticated: !Ref unauthRoleArn
-          authenticated: !Ref authRoleArn
-    DependsOn: IdentityPool
-  
 
 Outputs :
-  
-  IdentityPoolId:
-    Value: !Ref 'IdentityPool'
-    Description:  Id for the identity pool
-  IdentityPoolName:
-    Value: !GetAtt IdentityPool.Name 
   
   
   
