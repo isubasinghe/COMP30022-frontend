@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { withAuthenticator } from 'aws-amplify-react';
 import Auth from '@aws-amplify/auth';
+import LogRocket from 'logrocket';
 import Home from './pages/Home';
 import MapView from './pages/MapView';
 import './App.css';
@@ -11,8 +12,18 @@ function App() {
     Auth.currentAuthenticatedUser({
       bypassCache: false
     })
-      .then(user => {})
-      .catch(err => {});
+      .then(user => {
+        LogRocket.identify({
+          name: user.attributes.name,
+          email: user.attributes.email,
+          userID: user.username
+        });
+      })
+      .catch(() => {
+        LogRocket.identify({
+          name: 'Anonymous'
+        });
+      });
   }, []);
   return (
     <div className="App">
