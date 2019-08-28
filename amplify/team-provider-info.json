@@ -13,6 +13,9 @@
         "categories": {
             "auth": {
                 "comp30022frontend645e6adf": {}
+            },
+            "function": {
+                "comp30022frontend645e6adfPostConfirmation": {}
             }
         }
     }

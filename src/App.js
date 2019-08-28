@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Auth from '@aws-amplify/auth';
-import LogRocket from 'logrocket';
 import { withAuthenticator } from 'aws-amplify-react';
+import Auth from '@aws-amplify/auth';
 import Home from './pages/Home';
 import MapView from './pages/MapView';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    Auth.currentAuthenticatedUser({
+      bypassCache: false
+    })
+      .then(user => {})
+      .catch(err => {});
+  }, []);
   return (
     <div className="App">
       <BrowserRouter>
@@ -18,4 +24,13 @@ function App() {
   );
 }
 
-export default withAuthenticator(App, true);
+export default withAuthenticator(App, {
+  signUpConfig: {
+    hiddenDefaults: ['phone_number', 'email'],
+    signUpFields: [
+      { label: 'Name', key: 'name', required: true, type: 'string', displayOrder: 1 },
+      { label: 'Username', key: 'username', required: true, displayOrder: 2, type: 'string' },
+      { label: 'Password', key: 'password', required: true, displayOrder: 3, type: 'password' }
+    ]
+  }
+});
