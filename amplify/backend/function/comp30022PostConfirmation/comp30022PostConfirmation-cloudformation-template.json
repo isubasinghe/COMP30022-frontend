@@ -102,7 +102,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "comp30022-frontend-prod-20190829170649-deployment",
-					"S3Key": "amplify-builds/comp30022PostConfirmation-77675036472b45343250-build.zip"
+					"S3Key": "amplify-builds/comp30022PostConfirmation-586c33395336636f697a-build.zip"
 				}
 			}
 		},
