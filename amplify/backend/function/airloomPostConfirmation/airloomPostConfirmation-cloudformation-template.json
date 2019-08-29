@@ -61,12 +61,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"comp30022PostConfirmation",
+						"airloomPostConfirmation",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"comp30022PostConfirmation",
+									"airloomPostConfirmation",
 									"-",
 									{
 										"Ref": "env"
@@ -101,8 +101,8 @@
 				"Runtime": "nodejs8.10",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "comp30022-frontend-prod-20190829170649-deployment",
-					"S3Key": "amplify-builds/comp30022PostConfirmation-51666f425a654a5a4453-build.zip"
+					"S3Bucket": "comp30022-frontend-prod-20190829193114-deployment",
+					"S3Key": "amplify-builds/airloomPostConfirmation-39305356655576627543-build.zip"
 				}
 			}
 		},
@@ -112,12 +112,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"comp30022PostConfirmation",
+						"airloomPostConfirmation",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"comp30022PostConfirmation",
+									"airloomPostConfirmation",
 									"-",
 									{
 										"Ref": "env"

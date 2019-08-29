@@ -5,14 +5,21 @@
 			"providerPlugin": "awscloudformation"
 		}
 	},
+	"function": {
+		"airloomPostConfirmation": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
+	},
 	"auth": {
-		"comp30022": {
+		"airloom": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [
 				{
 					"category": "function",
-					"resourceName": "comp30022PostConfirmation",
+					"resourceName": "airloomPostConfirmation",
 					"triggerProvider": "Cognito",
 					"attributes": [
 						"Arn",
@@ -20,13 +27,6 @@
 					]
 				}
 			]
-		}
-	},
-	"function": {
-		"comp30022PostConfirmation": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true
 		}
 	}
 }

@@ -1,6 +1,6 @@
 {
-    "resourceNameTruncated": "comp308439ad84",
-    "userPoolName": "comp30022_frontend8439ad84_userpool_8439ad84",
+    "resourceNameTruncated": "airlooc5434bb7",
+    "userPoolName": "comp30022_frontendc5434bb7_userpool_c5434bb7",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -23,7 +23,7 @@
     "requiredAttributes": [
         "name"
     ],
-    "userpoolClientName": "comp308439ad84_app_client",
+    "userpoolClientName": "airlooc5434bb7_app_client",
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
@@ -66,12 +66,12 @@
         "email_verified",
         "phone_number_verified"
     ],
-    "mfaLambdaRole": "comp308439ad84_totp_lambda_role",
-    "userpoolClientLambdaRole": "comp308439ad84_userpoolclient_lambda_role",
+    "mfaLambdaRole": "airlooc5434bb7_totp_lambda_role",
+    "userpoolClientLambdaRole": "airlooc5434bb7_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": true,
     "useDefault": "manual",
     "authSelections": "userPoolOnly",
-    "resourceName": "comp30022",
+    "resourceName": "airloom",
     "usernameAttributes": [
         "email"
     ],
@@ -95,7 +95,7 @@
             "Arn"
         ]
     },
-    "PostConfirmation": "comp30022PostConfirmation",
+    "PostConfirmation": "airloomPostConfirmation",
     "parentStack": {
         "Ref": "AWS::StackId"
     },
@@ -103,7 +103,7 @@
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "comp30022PostConfirmation",
+            "resourceName": "airloomPostConfirmation",
             "triggerProvider": "Cognito",
             "attributes": [
                 "Arn",

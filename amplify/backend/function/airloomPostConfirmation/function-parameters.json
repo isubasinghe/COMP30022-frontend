@@ -3,12 +3,12 @@
     "modules": [
         "custom"
     ],
-    "parentResource": "comp30022",
-    "functionName": "comp30022PostConfirmation",
+    "parentResource": "airloom",
+    "functionName": "airloomPostConfirmation",
     "parentStack": "auth",
     "triggerEnvs": "[]",
     "triggerTemplate": "PostConfirmation.json.ejs",
-    "roleName": "comp30022PostConfirmation",
+    "roleName": "airloomPostConfirmation",
     "skipEdit": true,
-    "resourceName": "comp30022PostConfirmation"
+    "resourceName": "airloomPostConfirmation"
 }
