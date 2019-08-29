@@ -1,0 +1,22 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "comp30022-frontend-prod-20190829170649-authRole",
+            "UnauthRoleArn": "arn:aws:iam::111110792792:role/comp30022-frontend-prod-20190829170649-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::111110792792:role/comp30022-frontend-prod-20190829170649-authRole",
+            "Region": "ap-southeast-2",
+            "DeploymentBucketName": "comp30022-frontend-prod-20190829170649-deployment",
+            "UnauthRoleName": "comp30022-frontend-prod-20190829170649-unauthRole",
+            "StackName": "comp30022-frontend-prod-20190829170649",
+            "StackId": "arn:aws:cloudformation:ap-southeast-2:111110792792:stack/comp30022-frontend-prod-20190829170649/92089030-ca2b-11e9-a56f-0286cfea755e"
+        },
+        "categories": {
+            "function": {
+                "comp30022PostConfirmation": {}
+            },
+            "auth": {
+                "comp30022": {}
+            }
+        }
+    }
+}
