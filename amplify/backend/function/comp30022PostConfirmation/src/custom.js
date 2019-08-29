@@ -15,7 +15,7 @@ exports.handler = async (event, context, callback) => {
     host: process.env.HOST,
     port: process.env.PORT,
     user: process.env.USER,
-    password: process.env.PWD
+    password: parseInt(process.env.PWD, 10)
   };
   const databases = process.env.DBS;
   if (databases === null || databases === undefined) {
