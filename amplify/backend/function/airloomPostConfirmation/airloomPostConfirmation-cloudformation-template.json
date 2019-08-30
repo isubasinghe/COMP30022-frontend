@@ -2,6 +2,11 @@
 	"AWSTemplateFormatVersion": "2010-09-09",
 	"Description": "Lambda resource stack creation using Amplify CLI",
 	"Parameters": {
+		"dbs": {
+			"Type": "String",
+			"Default": "test,prod",
+			"Description": "Comma-seperated list of databases to write to"
+		},
 		"GROUP": {
 			"Type": "String",
 			"Default": ""
@@ -61,12 +66,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"comp30022frontend645e6adfPostConfirmation",
+						"airloomPostConfirmation",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"comp30022frontend645e6adfPostConfirmation",
+									"airloomPostConfirmation",
 									"-",
 									{
 										"Ref": "env"
@@ -89,6 +94,9 @@
 						},
 						"GROUP": {
 							"Ref": "GROUP"
+						},
+						"DBS": {
+							"Ref": "dbs"
 						}
 					}
 				},
@@ -101,8 +109,8 @@
 				"Runtime": "nodejs8.10",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "comp30022-frontend-dev-20190805201326-deployment",
-					"S3Key": "amplify-builds/comp30022frontend645e6adfPostConfirmation-47344b6a4c426670496e-build.zip"
+					"S3Bucket": "comp30022-frontend-prod-20190829193114-deployment",
+					"S3Key": "amplify-builds/airloomPostConfirmation-674b532b6e7068705372-build.zip"
 				}
 			}
 		},
@@ -112,12 +120,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"comp30022frontend645e6adfPostConfirmation",
+						"airloomPostConfirmation",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"comp30022frontend645e6adfPostConfirmation",
+									"airloomPostConfirmation",
 									"-",
 									{
 										"Ref": "env"
@@ -183,6 +191,13 @@
 									}
 								]
 							}
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"secretsmanager:Get*"
+							],
+							"Resource": "arn:aws:secretsmanager:ap-southeast-2:111110792792:secret:AirLoom-cdau4x"
 						}
 					]
 				}
