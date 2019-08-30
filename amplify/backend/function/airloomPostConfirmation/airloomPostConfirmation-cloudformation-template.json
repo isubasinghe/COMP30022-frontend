@@ -2,6 +2,11 @@
 	"AWSTemplateFormatVersion": "2010-09-09",
 	"Description": "Lambda resource stack creation using Amplify CLI",
 	"Parameters": {
+		"dbs": {
+			"Type": "String",
+			"Default": "test,prod",
+			"Description": "Comma-seperated list of databases to write to"
+		},
 		"GROUP": {
 			"Type": "String",
 			"Default": ""
@@ -89,6 +94,9 @@
 						},
 						"GROUP": {
 							"Ref": "GROUP"
+						},
+						"DBS": {
+							"Ref": "dbs"
 						}
 					}
 				},
@@ -102,7 +110,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "comp30022-frontend-prod-20190829193114-deployment",
-					"S3Key": "amplify-builds/airloomPostConfirmation-39305356655576627543-build.zip"
+					"S3Key": "amplify-builds/airloomPostConfirmation-674b532b6e7068705372-build.zip"
 				}
 			}
 		},
@@ -183,6 +191,13 @@
 									}
 								]
 							}
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"secretsmanager:Get*"
+							],
+							"Resource": "arn:aws:secretsmanager:ap-southeast-2:111110792792:secret:AirLoom-cdau4x"
 						}
 					]
 				}
