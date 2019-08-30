@@ -22,7 +22,7 @@ const writeUser = async (client, name, email) => {
   }
 };
 
-const postConfirmationWriteToDBS = (cb, event) => {
+const postConfirmationWriteToDBS = (callback, event) => {
   const region = 'ap-southeast-2';
   const secretName = 'AirLoom';
   let secret;
@@ -35,7 +35,7 @@ const postConfirmationWriteToDBS = (cb, event) => {
   client.getSecretValue({ SecretId: secretName }, async (err, data) => {
     let secretJSON = {};
     if (err) {
-      cb(err, event);
+      callback(err, event);
     } else {
       // Decrypts secret using the associated KMS CMK.
       // Depending on whether the secret is a string or binary, one of these fields will be populated.
@@ -49,6 +49,7 @@ const postConfirmationWriteToDBS = (cb, event) => {
         decodedBinarySecret = buff.toString('ascii');
         secretJSON = JSON.parse(decodedBinarySecret);
       }
+
       const clients = buildClients(secretJSON);
       const writePromises = clients.map(dbClient => {
         return writeUser(
@@ -57,8 +58,9 @@ const postConfirmationWriteToDBS = (cb, event) => {
           event.request.userAttributes.email
         );
       });
+      
       await Promise.all(writePromises);
-      cb(null, event);
+      callback(null, event);
     }
   });
 };
