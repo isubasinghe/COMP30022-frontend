@@ -5,9 +5,11 @@ import Auth from '@aws-amplify/auth';
 import LogRocket from 'logrocket';
 import Home from './pages/Home';
 import MapView from './pages/MapView';
-import './App.css';
 import ListView from './pages/ListView';
 import TimelineView from './pages/TimelineView';
+import ArtifactView from './pages/ArtifactView';
+
+import './App.css';
 
 function App() {
   useEffect(() => {
