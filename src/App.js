@@ -5,6 +5,10 @@ import Auth from '@aws-amplify/auth';
 import LogRocket from 'logrocket';
 import Home from './pages/Home';
 import MapView from './pages/MapView';
+import ListView from './pages/ListView';
+import TimelineView from './pages/TimelineView';
+import ArtifactView from './pages/ArtifactView';
+
 import './App.css';
 
 function App() {
@@ -29,7 +33,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Route exact path="/" component={Home} />
-        <Route exact path="/map" component={MapView} />
+        <Route path="/map" component={MapView} />
+        <Route path="/list" component={ListView} />
+        <Route path="/timeline" component={TimelineView} />
+        <Route path="/artifact" component={ArtifactView} />
       </BrowserRouter>
     </div>
   );
