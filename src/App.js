@@ -6,6 +6,8 @@ import LogRocket from 'logrocket';
 import Home from './pages/Home';
 import MapView from './pages/MapView';
 import './App.css';
+import ListView from './pages/ListView';
+import TimelineView from './pages/TimelineView';
 
 function App() {
   useEffect(() => {
@@ -29,7 +31,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Route exact path="/" component={Home} />
-        <Route exact path="/map" component={MapView} />
+        <Route path="/map" component={MapView} />
+        <Route path="/list" component={ListView} />
+        <Route path="/timeline" component={TimelineView} />
+        <Route path="/artifact" component={ArtifactView} />
       </BrowserRouter>
     </div>
   );
