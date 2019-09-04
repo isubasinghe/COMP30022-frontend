@@ -4,6 +4,7 @@ import Auth from '@aws-amplify/auth';
 import LogRocket from 'logrocket';
 import setupLogRocketReact from 'logrocket-react';
 import awsconfig from './aws-exports';
+import './styles/tailwind.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
