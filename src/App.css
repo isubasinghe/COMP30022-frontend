@@ -32,6 +32,8 @@
   }
 }
 
+/*login*/
+
 .signin-box {
     background-color: #f7fff7;
     border-radius: 25px;
@@ -101,4 +103,18 @@
     height: 67;
     width: 587;
     box-shadow: 5px 5px;
+}
+
+
+
+/*home*/
+
+.home-button {
+    background-color: #FFFFFF;
+    text-align: center;
+    height: 75;
+    width: 200;
+    font-style: sans-serif;
+    padding: 20px;
+    top: 548;
 }
