@@ -1,7 +1,14 @@
 import React from 'react';
 
+
 function MapView() {
-  return <></>;
+    return (
+    <div
+      style={{
+        backgroundColor: '#1A535C',
+      }}
+    />
+  );
 }
 
 export default MapView;
