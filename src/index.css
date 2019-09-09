@@ -51,6 +51,7 @@ register-button {
     font-style: impact;
     font-size: 30px;
     box-shadow: 10px 10px;
+    text-transform: uppercase;
 }
 
 signin-button {
@@ -66,6 +67,7 @@ signin-button {
     font-style: impact;
     font-size: 30px;
     box-shadow: 10px 10px;
+    text-transform: uppercase;
 }
 
 create-input-box {
@@ -85,7 +87,6 @@ signin-input-box {
     box-shadow: 5px 5px;
 }
 
-
 /*home*/
 
 home-button {
@@ -96,10 +97,26 @@ home-button {
     font-style: sans-serif;
     padding: 20px;
     top: 548;
+    color: #1A535C;
+    text-transform: uppercase;
 }
-
 
 /*artifact*/
 content-box {
+    background-color: #F7FFF7;
+    border-style: dashed;
+    border-color: #707070;
+    top: 334;
+    width: 1714;
+}
 
+save-or-edit-button {
+    background-color: #FF6B6B;
+    text-align: center;
+    border-radius: 20px;
+    height: 68;
+    width: 197;
+    font-style: impact;
+    color: white;
+    text-transform: uppercase;
 }
