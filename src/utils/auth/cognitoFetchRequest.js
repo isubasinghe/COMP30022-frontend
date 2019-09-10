@@ -11,7 +11,7 @@ function authFetchRequest(url, fetchOptions) {
         modifiedFetchOptions.headers = {};
       }
       modifiedFetchOptions.headers.authorization = token;
-      return fetch(url, fetchOptions);
+      return fetch(url, modifiedFetchOptions);
     })
     .then(fetchRes => {
       return fetchRes.json();
