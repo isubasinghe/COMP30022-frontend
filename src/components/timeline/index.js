@@ -15,7 +15,7 @@ function ArtifactTimeline(props) {
           <VerticalTimelineElement
             className="vertical-timeline-element"
             date={new Date(arti.date).getFullYear()}
-            iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+            iconStyle={{ background: 'rgb(0, 180, 255)' }}
             icon={<TimelineIcon />}
           >
             <h3 className="vertical-timeline-element-title">{arti.name}</h3>
