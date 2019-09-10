@@ -1,0 +1,11 @@
+home-button {
+    background-color: #FFFFFF;
+    text-align: center;
+    height: 75;
+    width: 200;
+    font-style: sans-serif;
+    padding: 20px;
+    top: 548;
+    color: #1A535C;
+    text-transform: uppercase;
+}
