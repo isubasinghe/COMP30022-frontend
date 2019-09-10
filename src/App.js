@@ -6,6 +6,7 @@ import LogRocket from 'logrocket';
 import Home from './pages/Home';
 import MapView from './pages/MapView';
 import './App.css';
+import './styles/index.css';
 
 function App() {
   useEffect(() => {
