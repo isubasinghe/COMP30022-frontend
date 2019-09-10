@@ -14,7 +14,6 @@ function ArtifactTimeline(props) {
         {ordered.map(arti => (
           <VerticalTimelineElement
             className="vertical-timeline-element"
-            // date=
             date={new Date(arti.date).getFullYear()}
             iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
             icon={<TimelineIcon />}
