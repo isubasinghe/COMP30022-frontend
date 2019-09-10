@@ -4,14 +4,18 @@ import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeli
 import 'react-vertical-timeline-component/style.min.css';
 import { ReactComponent as TimelineIcon } from '../../assets/timeline/index.svg';
 
-function ArtifactTimeline({ artifacts }) {
+function ArtifactTimeline(props) {
+  const { artifacts } = props;
+  const ordered = artifacts.sort((a, b) => new Date(a.date) - new Date(b.date));
+
   return (
     <body bgcolor="f0f0f0">
-      <VerticalTimeline layout="2-columns">
-        {artifacts.map(arti => (
+      <VerticalTimeline layout="1-column">
+        {ordered.map(arti => (
           <VerticalTimelineElement
             className="vertical-timeline-element"
-            date={arti.date}
+            // date=
+            date={new Date(arti.date).getFullYear()}
             iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
             icon={<TimelineIcon />}
           >
