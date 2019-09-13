@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Route exact path="/" component={Home} />
-        <Route path="/map" component={MapView} />
+        <Route path="/map/:registerId" component={MapView} />
         <Route path="/list" component={ListView} />
         <Route path="/timeline" component={TimelineView} />
         <Route path="/artifact" component={ArtifactView} />

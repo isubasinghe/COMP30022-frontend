@@ -3,19 +3,23 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import PropTypes from 'prop-types';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
+import iconUrl from 'leaflet/dist/images/marker-icon.png';
+import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
+import styled from './index.module.scss';
+
+// Reload Map Marker
+// TODO: Customize
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl,
+  iconUrl,
+  shadowUrl
+});
 
 class ArtifactMap extends React.Component {
   constructor(props) {
     super(props);
-
-    // Reload Map Marker
-    // TODO: Customize
-    delete L.Icon.Default.prototype._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-      iconUrl: require('leaflet/dist/images/marker-icon.png'),
-      shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-    });
 
     // Default Map Position and Zoom
     this.state = {
@@ -26,31 +30,35 @@ class ArtifactMap extends React.Component {
   }
 
   render() {
-    const artifacts = this.props.artifacts;
+    const { artifacts } = this.props;
     const mapPosition = [this.state.lat, this.state.lon];
     return (
-      <Map center={mapPosition} zoom={this.state.zoom} style={{ width: '75%', height: '600px' }}>
+      <Map center={mapPosition} zoom={this.state.zoom} className={styled['map-component']}>
         <TileLayer
           url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {artifacts.map(arti => (
-          <Marker position={[arti.lat, arti.lon]}>
-            <Popup>
-              <span>
-                <b>{arti.name}</b>
-                <br />
-                {arti.description}
-              </span>
-            </Popup>
-          </Marker>
-        ))}
+        {artifacts.map(arti => {
+          console.log(arti);
+          return (
+            <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
+              <Popup>
+                <span>
+                  <b>{arti.name}</b>
+                  <br />
+                  {arti.description}
+                </span>
+              </Popup>
+            </Marker>
+          );
+        })}
       </Map>
     );
   }
 }
+
 ArtifactMap.propTypes = {
-  artifacts: PropTypes.node.isRequired
+  artifacts: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default ArtifactMap;
