@@ -1,0 +1,111 @@
+#logo {
+    color:#F7FFF7;
+    font-family: impact;
+    font-size: 28px;
+    position: absolute;
+    left: 13.6px;
+    top: 13.6px;
+}
+#home {
+    color:#F7FFF7;
+    font-family: sans-serif;
+    font-size: 22.4px;
+    position: absolute;
+    left: 619.2px;
+    top: 18.4px;
+}
+#list {
+    color:#F7FFF7;
+    font-family: sans-serif;
+    font-size: 22.4px;
+    position: absolute;
+    left: 788.8px;
+    top: 18.4px;
+}
+#timeline {
+    color:#F7FFF7;
+    font-family: sans-serif;
+    font-size: 22.4px;
+    position: absolute;
+    left: 916.8px;
+    top: 18.4px;
+}
+#mapview {
+    color:#F7FFF7;
+    font-family: sans-serif;
+    font-size: 22.4px;
+    position: absolute;
+    left: 1072.8px;
+    top: 18.4px;
+}
+#setting {
+    color:#F7FFF7;
+    font-family: sans-serif;
+    font-size: 22.4px;
+    position: absolute;
+    left: 1240.8px;
+    top: 18.4px;
+}
+#logout {
+    color:#F7FFF7;
+    font-family: sans-serif;
+    font-size: 22.4px;
+    position: absolute;
+    left: 1400px;
+    top: 18.4px;
+}
+
+top-box {
+    background-color: #FF6B6B;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1536px;
+    height: 60px;
+}
+
+content-box {
+    background-color: #F7FFF7;
+    border-width:thick;
+    border-style: dashed;
+    border-color: #707070;
+    border-radius: 50px;
+    position: absolute;
+    left: 82.4px;
+    top: 267.2px;
+    width: 1371.2px;
+    height: 879.2px;
+}
+
+item-box {
+    background-color: #4EB9B0;
+    text-align: center;
+    height:102.4px;
+    width: 1035.2px;
+    border-radius: 15px;
+    padding:0px;
+    font-family: sans-serif;
+    font-size: 16px;
+    color: white;
+    text-transform: uppercase;
+    position:absolute;
+    left: 250.4px;
+    top: 344.8px;
+    box-shadow: 5px 5px 5px gray;
+}
+
+next-page-button {
+    background-color: #FF6B6B;
+    text-align: center;
+    height:54.4px;
+    width: 157.6px;
+    border-radius: 25px;
+    padding:0px;
+    font-family: impact;
+    font-size: 40px;
+    color: white;
+    text-transform: uppercase;
+    position:relative;
+    left: 1293.6px;
+    box-shadow: 5px 5px 5px gray;
+}
