@@ -13,8 +13,8 @@ function TimelineView(props) {
       .then(data => {
         const mapData = Object.values(data);
         for (let i = 0; i < mapData.length; i++) {
-          mapData[i].lat = parseInt(mapData[i].lat, 10);
-          mapData[i].lon = parseInt(mapData[i].lon, 10);
+          mapData[i].lat = parseFloat(mapData[i].lat);
+          mapData[i].lon = parseFloat(mapData[i].lon);
         }
         setArtifacts(mapData);
         setHasLoaded(true);
