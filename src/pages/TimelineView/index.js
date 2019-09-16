@@ -21,6 +21,7 @@ function TimelineView(props) {
       })
       .catch(err => {
         setErrorState(true);
+        setHasLoaded(true);
       });
   }, [registerId]);
   if (!hasLoaded) {

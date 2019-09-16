@@ -9,6 +9,7 @@ function MapView(props) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errorState, setErrorState] = useState(false);
   const { registerId } = props.match.params;
+  // TODO: write a hook to replicate useEffect authenticated fetch
   useEffect(() => {
     authFetchRequest(`https://api.airloom.xyz/api/v1/register/all/${registerId}`, {})
       .then(data => {
@@ -22,6 +23,7 @@ function MapView(props) {
       })
       .catch(err => {
         setErrorState(true);
+        setHasLoaded(true);
       });
   }, [registerId]);
   if (!hasLoaded) {
