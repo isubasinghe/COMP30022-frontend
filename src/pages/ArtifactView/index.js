@@ -25,12 +25,13 @@ function ArtifactView(props) {
   if (errorState) {
     return <div className="error">Something went wrong with your request, whoops</div>;
   }
+
   return <>
     <Nav registerId={registerId}/>
+    <p>{JSON.stringify(artifact)}</p>
     <div>
-      <p>{JSON.stringify(artifact)}</p>
       {artifact.photos.map(({ url }) => 
-        <img src={url} alt={url} width='200'/>
+        <img src={url} alt={url} width='200' style={{ display: 'inline-block' }}/>
       )}
     </div>
   </>;
