@@ -11,7 +11,11 @@ function ArtifactView(props) {
   useEffect(() => {
     authFetchRequest(`https://api.airloom.xyz/api/v1/register/artifact/${registerId}/${artifactId}`, {})
       .then(data => {
-        setArtifact(data[0]);
+        if (data.length === 0){
+          setErrorState(true);
+        } else {
+          setArtifact(data[0]);
+        }
         setHasLoaded(true);
       })
       .catch(err => {
