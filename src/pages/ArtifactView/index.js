@@ -11,7 +11,7 @@ function ArtifactView(props) {
   useEffect(() => {
     authFetchRequest(`https://api.airloom.xyz/api/v1/register/artifact/${registerId}/${artifactId}`, {})
       .then(data => {
-        setArtifact(data);
+        setArtifact(data[0]);
         setHasLoaded(true);
       })
       .catch(err => {
@@ -27,7 +27,12 @@ function ArtifactView(props) {
   }
   return <>
     <Nav registerId={registerId}/>
-    <p>{JSON.stringify(artifact)}</p>
+    <div>
+      <p>{JSON.stringify(artifact)}</p>
+      {artifact.photos.map(({ url }) => 
+        <img src={url} alt={url} width='200'/>
+      )}
+    </div>
   </>;
 }
 
