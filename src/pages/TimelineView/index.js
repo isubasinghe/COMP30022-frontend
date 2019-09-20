@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ArtifactTimeline from '../../components/timeline';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
+import Nav from '../../components/nav';
 
 function TimelineView(props) {
   const [artifacts, setArtifacts] = useState([]);
@@ -30,12 +31,15 @@ function TimelineView(props) {
   if (errorState) {
     return <div className="error">Something went wrong with your request, woops</div>;
   }
-  return <ArtifactTimeline artifacts={artifacts} />;
+  return <>
+    <Nav registerId={registerId}/>
+    <ArtifactTimeline artifacts={artifacts} />
+  </>;
 }
 TimelineView.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      registerId: PropTypes.string.isRequired
+      registerId: PropTypes.string
     }).isRequired
   }).isRequired
 };
