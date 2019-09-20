@@ -1,5 +1,6 @@
 import React from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -43,11 +44,11 @@ class ArtifactMap extends React.Component {
           return (
             <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
               <Popup>
-                <span>
+                <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}`}> 
                   <b>{arti.name}</b>
                   <br />
                   {arti.description}
-                </span>
+                </Link>
               </Popup>
             </Marker>
           );

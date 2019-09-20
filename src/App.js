@@ -36,7 +36,7 @@ function App() {
         <Route path="/map/:registerId" component={MapView} />
         <Route path="/list" component={ListView} />
         <Route path="/timeline/:registerId" component={TimelineView} />
-        <Route path="/artifact" component={ArtifactView} />
+        <Route path="/artifact/:registerId/:artifactId" component={ArtifactView} />
       </BrowserRouter>
     </div>
   );

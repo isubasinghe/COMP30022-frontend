@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { Link } from 'react-router-dom';
 import 'react-vertical-timeline-component/style.min.css';
 import { ReactComponent as TimelineIcon } from '../../assets/timeline/index.svg';
 
@@ -18,9 +19,11 @@ function ArtifactTimeline(props) {
             iconStyle={{ background: 'rgb(0, 180, 255)' }}
             icon={<TimelineIcon />}
           >
-            <h3 className="vertical-timeline-element-title">{arti.name}</h3>
-            <h4 className="vertical-timeline-element-subtitle">{arti.family_members}</h4>
-            <p>{arti.description}</p>
+            <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}`}> 
+              <h3 className="vertical-timeline-element-title">{arti.name}</h3>
+              <h4 className="vertical-timeline-element-subtitle">{arti.family_members}</h4>
+              <p>{arti.description}</p>
+            </Link>
           </VerticalTimelineElement>
         ))}
       </VerticalTimeline>
