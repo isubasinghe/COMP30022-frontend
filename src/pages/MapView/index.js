@@ -12,20 +12,22 @@ function MapView(props) {
   const { registerId } = props.match.params;
   // TODO: write a hook to replicate useEffect authenticated fetch
   useEffect(() => {
-    authFetchRequest(`https://api.airloom.xyz/api/v1/register/all/${registerId}`, {})
-      .then(data => {
-        const mapData = Object.values(data);
-        for (let i = 0; i < mapData.length; i++) {
-          mapData[i].lat = parseFloat(mapData[i].lat);
-          mapData[i].lon = parseFloat(mapData[i].lon);
-        }
-        setArtifacts(mapData);
-        setHasLoaded(true);
-      })
-      .catch(err => {
-        setErrorState(true);
-        setHasLoaded(true);
-      });
+    if (registerId !== null) {
+      authFetchRequest(`https://api.airloom.xyz/api/v1/register/all/${registerId}`, {})
+        .then(data => {
+          const mapData = Object.values(data);
+          for (let i = 0; i < mapData.length; i++) {
+            mapData[i].lat = parseFloat(mapData[i].lat);
+            mapData[i].lon = parseFloat(mapData[i].lon);
+          }
+          setArtifacts(mapData);
+          setHasLoaded(true);
+        })
+        .catch(err => {
+          setErrorState(true);
+          setHasLoaded(true);
+        });
+    }
   }, [registerId]);
   if (!hasLoaded) {
     return <div className="loading">Loading your request</div>;
@@ -33,10 +35,12 @@ function MapView(props) {
   if (errorState) {
     return <div className="error">Something went wrong with your request, woops</div>;
   }
-  return <>
-    <Nav registerId={registerId}/>
-    <ArtifactMap className={styled['artifact-map']} artifacts={artifacts} />
-  </>;
+  return (
+    <>
+      <Nav registerId={registerId} />
+      <ArtifactMap className={styled['artifact-map']} artifacts={artifacts} />
+    </>
+  );
 }
 
 MapView.propTypes = {

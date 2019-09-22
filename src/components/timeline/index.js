@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import styled from './index.module.scss';
 import 'react-vertical-timeline-component/style.min.css';
 import { ReactComponent as TimelineIcon } from '../../assets/timeline/index.svg';
 
@@ -9,10 +9,11 @@ function ArtifactTimeline(props) {
   const ordered = artifacts.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
-    <body bgcolor="f0f0f0">
+    <div className={styled['timeline-container']}>
       <VerticalTimeline layout="1-column">
         {ordered.map(arti => (
           <VerticalTimelineElement
+            key={arti.artifact_id}
             className="vertical-timeline-element"
             date={new Date(arti.date).getFullYear()}
             iconStyle={{ background: 'rgb(0, 180, 255)' }}
@@ -24,11 +25,8 @@ function ArtifactTimeline(props) {
           </VerticalTimelineElement>
         ))}
       </VerticalTimeline>
-    </body>
+    </div>
   );
 }
-ArtifactTimeline.propTypes = {
-  artifacts: PropTypes.node.isRequired
-};
 
 export default ArtifactTimeline;
