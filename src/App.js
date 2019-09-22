@@ -9,7 +9,9 @@ import ListView from './pages/ListView';
 import TimelineView from './pages/TimelineView';
 import ArtifactView from './pages/ArtifactView';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import getDefaultRegister from './utils/register';
 
 function App() {
   useEffect(() => {
@@ -22,6 +24,10 @@ function App() {
           email: user.attributes.email,
           userID: user.username
         });
+        return getDefaultRegister();
+      })
+      .then(reg => {
+        localStorage.setItem('reg', JSON.stringify(reg));
       })
       .catch(() => {
         LogRocket.identify({
