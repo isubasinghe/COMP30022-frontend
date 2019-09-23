@@ -6,7 +6,7 @@ import styled from './index.module.scss';
 function Nav({ registerId }) {
   return (
     <div className={styled.nav}>
-      <div className={styled.logo}>airloom</div>
+      <div className={styled.logo}>Airloom</div>
       <ButtonToolbar className={styled['button-toolbar']}>
         <Button href="/" className={styled.button}>
           Home
