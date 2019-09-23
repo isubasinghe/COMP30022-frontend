@@ -1,4 +1,4 @@
-ul {
+.list-component {
   list-style-type: none;
   background-color: grey;
   overflow: hidden;
@@ -6,17 +6,17 @@ ul {
   padding: 0;
 }
 
-li {
+.list-element {
   float: left;
 }
 
-li a {
+.list-element a {
   display: block;
   color: white;
   text-align: center;
   padding: 15px 50px;
 }
 
-li a:hover {
+.list-element a:hover {
   background-color: black;
 }
