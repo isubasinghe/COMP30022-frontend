@@ -8,7 +8,9 @@ import MapView from './pages/MapView';
 import ListView from './pages/ListView';
 import TimelineView from './pages/TimelineView';
 import ArtifactView from './pages/ArtifactView';
+import getDefaultRegister from './utils/register';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
@@ -22,6 +24,10 @@ function App() {
           email: user.attributes.email,
           userID: user.username
         });
+        return getDefaultRegister();
+      })
+      .then(reg => {
+        localStorage.setItem('reg', JSON.stringify(reg));
       })
       .catch(() => {
         LogRocket.identify({
@@ -33,9 +39,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Route exact path="/" component={Home} />
-        <Route path="/map" component={MapView} />
+        <Route path="/map/:registerId" component={MapView} />
         <Route path="/list" component={ListView} />
-        <Route path="/timeline" component={TimelineView} />
+        <Route path="/timeline/:registerId" component={TimelineView} />
         <Route path="/artifact" component={ArtifactView} />
       </BrowserRouter>
     </div>
