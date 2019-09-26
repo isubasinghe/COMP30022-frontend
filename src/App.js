@@ -1,19 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { withAuthenticator } from 'aws-amplify-react';
 import Auth from '@aws-amplify/auth';
 import LogRocket from 'logrocket';
+import AirNavBar from './components/navbar';
 import Home from './pages/Home';
 import MapView from './pages/MapView';
 import ListView from './pages/ListView';
 import TimelineView from './pages/TimelineView';
 import ArtifactView from './pages/ArtifactView';
-import getDefaultRegister from './utils/register';
+import { getDefaultRegister, getRegisters } from './utils/register';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
+  const [registers, setRegisters] = useState([]);
   useEffect(() => {
     Auth.currentAuthenticatedUser({
       bypassCache: false
@@ -34,13 +36,24 @@ function App() {
           name: 'Anonymous'
         });
       });
+    getRegisters()
+      .then(registersFetched => {
+        if (registersFetched !== null) {
+          setRegisters(registersFetched);
+        }
+      })
+      .catch(error => {
+        LogRocket.error(error);
+      });
   }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
+        <AirNavBar registers={registers} />
         <Route exact path="/" component={Home} />
         <Route path="/map/:registerId" component={MapView} />
-        <Route path="/list" component={ListView} />
+        <Route path="/list/:registerId" component={ListView} />
         <Route path="/timeline/:registerId" component={TimelineView} />
         <Route path="/artifact" component={ArtifactView} />
       </BrowserRouter>

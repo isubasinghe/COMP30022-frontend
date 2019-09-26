@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ArtifactMap from '../../components/map';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
-import Nav from '../../components/nav';
 import styled from './index.module.scss';
 
 function MapView(props) {
@@ -37,7 +36,6 @@ function MapView(props) {
   }
   return (
     <>
-      <Nav registerId={registerId} />
       <ArtifactMap className={styled['artifact-map']} artifacts={artifacts} />
     </>
   );
