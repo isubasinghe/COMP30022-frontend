@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
+import { Auth } from 'aws-amplify';
 import RegisterForm from '../registerform';
 import styled from './index.module.scss';
 
@@ -18,6 +19,10 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
     return () => {
       history.push(location);
     };
+  };
+
+  const logout = () => {
+    Auth.signOut();
   };
   return (
     <Navbar className={styled['navbar-main']} expand="lg">
@@ -79,7 +84,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
-        <Nav.Link className={styled['text-modifier']} onClick={() => {}}>
+        <Nav.Link className={styled['text-modifier']} onClick={logout}>
           Log out
         </Nav.Link>
       </Navbar.Collapse>
