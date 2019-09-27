@@ -24,7 +24,7 @@
     "start": "npm run build:css && react-scripts start",
     "build:css": "tailwind build ./src/styles/index.css -o ./src/styles/tailwind.css",
     "purge:css": "purgecss --css build/static/css/*.css --content build/index.html build/static/js/*.js --out build/static/css",
-    "build": "npm run build:css && react-scripts build && npm run purge:css && npm run build-sw",
+    "build": "npm run build:css && react-scripts build && npm run build-sw",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-sw": "node ./src/swconfig/sw-build.js"
