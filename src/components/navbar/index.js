@@ -49,6 +49,8 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
               </Nav.Link>
             </>
           )}
+        </Nav>
+        <Nav>
           <NavDropdown
             className={styled['text-modifier']}
             title={registerDisplay}
@@ -77,6 +79,9 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
+        <Nav.Link className={styled['text-modifier']} onClick={() => {}}>
+          Log out
+        </Nav.Link>
       </Navbar.Collapse>
       <RegisterForm
         refetchRegisters={refetchRegisters}
