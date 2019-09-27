@@ -53,14 +53,14 @@ function ArtifactView(props) {
                   src={photoCount !== 0 ? artifact.photos[photoIndex].url : null} 
                   alt=""/>
           </div>
-          <button 
+          <button className={styled["button"]}
             onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
           >&larr;</button>
           { artifact.is_admin
-              ? <button onClick={addPhoto}>+</button>
+              ? <button className={styled["button"]} onClick={addPhoto}>+</button>
               : <></> 
           }
-          <button 
+          <button className={styled["button"]}
             onClick={() => setPhotoIndex((photoIndex + photoCount - 1) % photoCount)}
           >&rarr;</button>
         </div>
