@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
+import RegisterForm from '../registerform';
 import styled from './index.module.scss';
 
 function AirLoomNavbar({ registers, history }) {
+  const [showModal, setShowModal] = useState(false);
   const [registerSelect, setRegisterSelect] = useState('Select register');
   const hasRegisters = registers.length > 0;
   const selectedRegister = registerSelect !== 'Select register';
@@ -40,10 +42,17 @@ function AirLoomNavbar({ registers, history }) {
               );
             })}
             {hasRegisters && <NavDropdown.Divider />}
-            <NavDropdown.Item>Add Register</NavDropdown.Item>
+            <NavDropdown.Item
+              onClick={() => {
+                setShowModal(true);
+              }}
+            >
+              Add Register
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
+      <RegisterForm showModal={showModal} setShowModal={setShowModal} />
     </Navbar>
   );
 }
