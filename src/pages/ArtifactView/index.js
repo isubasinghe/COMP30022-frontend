@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
-import Nav from '../../components/nav';
 import styled from './index.module.scss';
 
 function ArtifactView(props) {
@@ -39,21 +38,12 @@ function ArtifactView(props) {
     return <div className="error">Something went wrong with your request, woops</div>;
   }
 
-  function nextPhoto() {
-    setPhotoIndex((photoIndex + 1) % photoCount);
-  }
-  
-  function prevPhoto() {
-    setPhotoIndex((photoIndex + photoCount - 1) % photoCount);
-  }
-
   function addPhoto() {
     // TODO
   }
 
   return (
     <>
-      <Nav registerId={registerId} />
       <div className={styled["container"]}>
       <div className={styled["name"]}>{artifact.name}</div> 
       <div className={styled["artifact-container"]}>
@@ -63,16 +53,20 @@ function ArtifactView(props) {
                   src={photoCount !== 0 ? artifact.photos[photoIndex].url : null} 
                   alt=""/>
           </div>
-          <button onClick={prevPhoto}>&larr;</button>
+          <button 
+            onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
+          >&larr;</button>
           { artifact.is_admin
-              ? <button onClick={undefined}>+</button>
+              ? <button onClick={addPhoto}>+</button>
               : <></> 
           }
-          <button onClick={addPhoto}>&rarr;</button>
+          <button 
+            onClick={() => setPhotoIndex((photoIndex + photoCount - 1) % photoCount)}
+          >&rarr;</button>
         </div>
         <div className={styled["column"]}>
           {[{ title:"Location", data:(artifact.lat + ", " + artifact.lon) },
-            { title:"Date", data:((new Date(artifact.date)).toDateString()) },
+            { title:"Date", data:(new Date(artifact.date).toISOString().split('T')[0]) },
             { title:"Family Members", data:artifact.family_members },
             { title:"Description", data:artifact.description }
            ].map(({title, data}) => (<>
