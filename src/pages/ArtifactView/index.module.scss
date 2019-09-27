@@ -37,7 +37,7 @@
 
 .title {
     text-align: left;
-    padding: 2% 5%;
+    padding: 10px 10px 15px;
     color:#1A535C;
     font-family: impact;
     font-size: 48px;
@@ -45,7 +45,7 @@
 
 .data {
     text-align: left;
-    padding: 2% 5%;
+    padding: 15px;
     width: 90%;
     font-family: sans-serif;
     font-size: 16px;
@@ -77,9 +77,6 @@
     color: white;
     text-transform: uppercase;
     font-weight: bold;
-    // position:absolute;
-    // left: 1216.8px;
-    // top: 372px;
     border-radius: 15px;
     box-shadow: 5px 5px 5px gray;
     margin-left: 2%;

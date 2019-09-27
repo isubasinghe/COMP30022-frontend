@@ -13,7 +13,10 @@ function ArtifactView(props) {
   // TODO: write a hook to replicate useEffect authenticated fetch
   useEffect(() => {
     if (registerId !== null && artifactId !== null) {
-      authFetchRequest(`https://api.airloom.xyz/api/v1/register/artifact/${registerId}/${artifactId}`, {})
+      authFetchRequest(
+        `https://api.airloom.xyz/api/v1/register/artifact/${registerId}/${artifactId}`,
+        {}
+      )
         .then(data => {
           if (data.length === 0) {
             setErrorState(true);
@@ -44,48 +47,63 @@ function ArtifactView(props) {
 
   return (
     <>
-      <div className={styled["container"]}>
-      <div className={styled["name"]}>{artifact.name}</div> 
-      <div className={styled["artifact-container"]}>
-        <div className={styled["column"]}>
-          <div className={styled["photo-container"]}>
-            <img className={styled["photo"]} 
-                  src={photoCount !== 0 ? artifact.photos[photoIndex].url : null} 
-                  alt=""/>
+      <div className={styled['container']}>
+        <div className={styled['name']}>{artifact.name}</div>
+        <div className={styled['artifact-container']}>
+          <div className={styled['column']}>
+            <div className={styled['photo-container']}>
+              <img
+                className={styled['photo']}
+                src={photoCount !== 0 ? artifact.photos[photoIndex].url : ''}
+                alt="No Images Found. Try add some below with the '+'"
+              />
+            </div>
+            <button
+              type="button"
+              className={styled['button']}
+              onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
+            >
+              &larr;
+            </button>
+            {artifact.is_admin ? (
+              <button type="button" className={styled['button']} onClick={addPhoto}>
+                +
+              </button>
+            ) : (
+              <></>
+            )}
+            <button
+              type="button"
+              className={styled['button']}
+              onClick={() => setPhotoIndex((photoIndex + photoCount - 1) % photoCount)}
+            >
+              &rarr;
+            </button>
           </div>
-          <button className={styled["button"]}
-            onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
-          >&larr;</button>
-          { artifact.is_admin
-              ? <button className={styled["button"]} onClick={addPhoto}>+</button>
-              : <></> 
-          }
-          <button className={styled["button"]}
-            onClick={() => setPhotoIndex((photoIndex + photoCount - 1) % photoCount)}
-          >&rarr;</button>
+          <div className={styled['column']}>
+            {[
+              { title: 'Location', data:`${artifact.lat}, ${artifact.lon}`},
+              { title: 'Date', data: new Date(artifact.date).toISOString().split('T')[0] },
+              { title: 'Family Members', data: artifact.family_members },
+              { title: 'Description', data: artifact.description }
+            ].map(({ title, data }) => (
+              <>
+                <div className={styled['title']}>{title}</div>
+                <div className={styled['data']}>{data}</div>
+              </>
+            ))}
+          </div>
         </div>
-        <div className={styled["column"]}>
-          {[{ title:"Location", data:(artifact.lat + ", " + artifact.lon) },
-            { title:"Date", data:(new Date(artifact.date).toISOString().split('T')[0]) },
-            { title:"Family Members", data:artifact.family_members },
-            { title:"Description", data:artifact.description }
-           ].map(({title, data}) => (<>
-              <div className={styled["title"]}>{title}</div>
-              <div className={styled["data"]}>{data}</div>
-            </>))
-          }
-        </div>
-      </div>
       </div>
     </>
   );
 }
-  
+
 ArtifactView.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       registerId: PropTypes.string.isRequired,
-      artifactId: PropTypes.string.isRequired,
+      artifactId: PropTypes.string.isRequired
     }).isRequired
   }).isRequired
 };
