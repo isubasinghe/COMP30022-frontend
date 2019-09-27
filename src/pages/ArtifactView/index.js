@@ -88,8 +88,12 @@ function ArtifactView(props) {
               { title: 'Description', data: artifact.description }
             ].map(({ title, data }) => (
               <>
-                <div className={styled['title']}>{title}</div>
-                <div className={styled['data']}>{data}</div>
+                <div key={`title-${title}-${data}`} className={styled['title']}>
+                  {title}
+                </div>
+                <div key={`data-${title}-${data}`} className={styled['data']}>
+                  {data}
+                </div>
               </>
             ))}
           </div>
