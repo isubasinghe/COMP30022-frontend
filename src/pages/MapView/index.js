@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ArtifactMap from '../../components/map';
+import Spinner from '../../components/spinner';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
@@ -29,7 +30,7 @@ function MapView(props) {
     }
   }, [registerId]);
   if (!hasLoaded) {
-    return <div className="loading">Loading your request</div>;
+    return <Spinner />;
   }
   if (errorState) {
     return <div className="error">Something went wrong with your request, woops</div>;

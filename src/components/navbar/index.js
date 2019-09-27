@@ -1,34 +1,31 @@
 import React, { useState } from 'react';
-import { Navbar, Form, FormControl, NavDropdown, Nav, Button, NavItem } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
+import styled from './index.module.scss';
 
-function AirLoomNavbar({ registers }) {
+function AirLoomNavbar({ registers, history }) {
   const [registerSelect, setRegisterSelect] = useState('Select register');
   const hasRegisters = registers.length > 0;
   const selectedRegister = registerSelect !== 'Select register';
+
+  const redirect = location => {
+    return () => {
+      history.push(location);
+    };
+  };
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="/">AirLoom</Navbar.Brand>
+      <Navbar.Brand className={styled['home-nav-link']} onClick={redirect('')}>
+        AirLoom
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           {hasRegisters && selectedRegister && (
             <>
-              <Nav.Link
-                exact
-                to={`/list/${registerSelect}`}
-                className="list-nav-link"
-                activeClassName="active-nav-list"
-              >
-                List View
-              </Nav.Link>
-              {/* Fix the rest and make css nice for the Nav.Link */}
-              <Nav.Link tag={Link} to={`/map/${registerSelect}`}>
-                Map View
-              </Nav.Link>
-              <Nav.Link tag={Link} to={`/timeline/${registerSelect}`}>
-                Timeline view
-              </Nav.Link>
+              <Nav.Link onClick={redirect(`/list/${registerSelect}`)}>List View</Nav.Link>
+              <Nav.Link onClick={redirect(`/map/${registerSelect}`)}>Map View</Nav.Link>
+              <Nav.Link onClick={redirect(`/timeline/${registerSelect}`)}>Timeline view</Nav.Link>
             </>
           )}
           <NavDropdown title={registerSelect} id="basic-nav-dropdown">
@@ -46,13 +43,9 @@ function AirLoomNavbar({ registers }) {
             <NavDropdown.Item>Add Register</NavDropdown.Item>
           </NavDropdown>
         </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
       </Navbar.Collapse>
     </Navbar>
   );
 }
 
-export default AirLoomNavbar;
+export default withRouter(AirLoomNavbar);
