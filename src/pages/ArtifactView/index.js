@@ -47,6 +47,10 @@ function ArtifactView(props) {
     setPhotoIndex((photoIndex + photoCount - 1) % photoCount);
   }
 
+  function addPhoto() {
+    // TODO
+  }
+
   return (
     <>
       <Nav registerId={registerId} />
@@ -64,7 +68,7 @@ function ArtifactView(props) {
               ? <button onClick={undefined}>+</button>
               : <></> 
           }
-          <button onClick={nextPhoto}>&rarr;</button>
+          <button onClick={addPhoto}>&rarr;</button>
         </div>
         <div className={styled["column"]}>
           {[{ title:"Location", data:(artifact.lat + ", " + artifact.lon) },
