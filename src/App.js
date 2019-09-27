@@ -16,6 +16,17 @@ import './App.css';
 
 function App() {
   const [registers, setRegisters] = useState([]);
+  const refetchRegisters = () => {
+    getRegisters()
+      .then(registers => {
+        if (registers !== null) {
+          setRegisters(registers);
+        }
+      })
+      .catch(err => {
+        LogRocket.error(err);
+      });
+  };
   useEffect(() => {
     Auth.currentAuthenticatedUser({
       bypassCache: false
@@ -50,7 +61,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <AirNavBar registers={registers} />
+        <AirNavBar refetchRegisters={refetchRegisters} registers={registers} />
         <Route exact path="/" component={Home} />
         <Route path="/map/:registerId" component={MapView} />
         <Route path="/list/:registerId" component={ListView} />

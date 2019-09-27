@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import RegisterForm from '../registerform';
 import styled from './index.module.scss';
 
-function AirLoomNavbar({ registers, history }) {
+function AirLoomNavbar({ refetchRegisters, registers, history }) {
   const [showModal, setShowModal] = useState(false);
   const [registerSelect, setRegisterSelect] = useState('Select register');
   const hasRegisters = registers.length > 0;
@@ -32,6 +32,7 @@ function AirLoomNavbar({ registers, history }) {
           )}
           <NavDropdown title={registerSelect} id="basic-nav-dropdown">
             {registers.map(register => {
+              console.log(register);
               return (
                 <NavDropdown.Item
                   key={register.register_id}
@@ -52,7 +53,11 @@ function AirLoomNavbar({ registers, history }) {
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
-      <RegisterForm showModal={showModal} setShowModal={setShowModal} />
+      <RegisterForm
+        refetchRegisters={refetchRegisters}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </Navbar>
   );
 }
