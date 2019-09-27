@@ -35,8 +35,8 @@ class ArtifactMap extends React.Component {
     return (
       <Map center={mapPosition} zoom={this.state.zoom} className={styled['map-component']}>
         <TileLayer
-          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
         />
         {artifacts.map(arti => {
           console.log(arti);
