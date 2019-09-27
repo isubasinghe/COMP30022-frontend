@@ -10,6 +10,7 @@ import './index.scss';
 function AirLoomNavbar({ refetchRegisters, registers, history }) {
   const [showModal, setShowModal] = useState(false);
   const [registerSelect, setRegisterSelect] = useState('Select register');
+  const [registerDisplay, setRegisterDisplay] = useState('Select register');
   const hasRegisters = registers.length > 0;
   const selectedRegister = registerSelect !== 'Select register';
 
@@ -50,17 +51,19 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
           )}
           <NavDropdown
             className={styled['text-modifier']}
-            title={registerSelect}
+            title={registerDisplay}
             id="basic-nav-dropdown"
           >
             {registers.map(register => {
-              console.log(register);
               return (
                 <NavDropdown.Item
                   key={register.register_id}
-                  onClick={() => setRegisterSelect(`${register.register_id}`)}
+                  onClick={() => {
+                    setRegisterSelect(`${register.register_id}`);
+                    setRegisterDisplay(`${register.name}`);
+                  }}
                 >
-                  {register.register_id}
+                  {register.name}
                 </NavDropdown.Item>
               );
             })}

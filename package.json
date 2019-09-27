@@ -1,6 +1,6 @@
 {
   "name": "comp30022-cra",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "private": true,
   "dependencies": {
     "@aws-amplify/auth": "^1.2.31",
