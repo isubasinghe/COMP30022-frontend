@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import PropTypes from 'prop-types';
 import 'leaflet/dist/leaflet.css';
@@ -35,19 +36,19 @@ class ArtifactMap extends React.Component {
     return (
       <Map center={mapPosition} zoom={this.state.zoom} className={styled['map-component']}>
         <TileLayer
-          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
         />
         {artifacts.map(arti => {
           console.log(arti);
           return (
             <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
               <Popup>
-                <span>
+                <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
                   <b>{arti.name}</b>
                   <br />
                   {arti.description}
-                </span>
+                </Link>
               </Popup>
             </Marker>
           );
