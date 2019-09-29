@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
-import { Auth } from 'aws-amplify';
+import Auth from '@aws-amplify/auth';
 import RegisterForm from '../registerform';
 import styled from './index.module.scss';
 
