@@ -58,7 +58,7 @@ const postConfirmationWriteToDBS = (callback, event) => {
           event.request.userAttributes.email
         );
       });
-      
+
       await Promise.all(writePromises);
       callback(null, event);
     }
