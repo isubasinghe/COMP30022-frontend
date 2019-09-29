@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8baa32e6-ea4b-41f2-a59c-1e11bd4de1d1/deploy-status)](https://app.netlify.com/sites/cranky-franklin-21bc43/deploys)  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8baa32e6-ea4b-41f2-a59c-1e11bd4de1d1/deploy-status)](https://app.netlify.com/sites/cranky-franklin-21bc43/deploys) [![CodeFactor](https://www.codefactor.io/repository/github/isubasinghe/comp30022-frontend/badge)](https://www.codefactor.io/repository/github/isubasinghe/comp30022-frontend)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
