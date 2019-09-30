@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
@@ -121,7 +122,7 @@ function ArtifactView(props) {
           <div className={styled['column']}>
             {[
               { title: 'Location', data: `${artifact.lat}, ${artifact.lon}` },
-              { title: 'Date', data: new Date(artifact.date).toISOString().split('T')[0] },
+              { title: 'Date', data: moment(artifact.date).format('dddd, MMMM Do YYYY') },
               { title: 'Family Members', data: artifact.family_members },
               { title: 'Description', data: artifact.description }
             ].map(({ title, data }) => (
