@@ -14,7 +14,7 @@ function ArtifactView(props) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errorState, setErrorState] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const { acceptedFiles, rejectedFiles, getRootProps, getInputProps } = useDropzone({
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: 'image/jpeg, image/png'
   });
   const { registerId, artifactId } = props.match.params;
