@@ -100,7 +100,7 @@
 						}
 					}
 				},
-				"Memory": "3008",
+				"MemorySize": "3008",
 				"Role": {
 					"Fn::GetAtt": [
 						"LambdaExecutionRole",
