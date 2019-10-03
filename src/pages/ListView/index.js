@@ -40,7 +40,11 @@ function ListView(props) {
           </p>
         ) : (
           artifacts.map(artifact => (
-            <div id={`artifact-${artifact.artifact_id}`} className={styled['item-container']}>
+            <div
+              key={artifact.artifact_id}
+              id={`artifact-${artifact.artifact_id}`}
+              className={styled['item-container']}
+            >
               <Link
                 className={styled['link-text']}
                 to={`/artifact/${registerId}/${artifact.artifact_id}/`}
