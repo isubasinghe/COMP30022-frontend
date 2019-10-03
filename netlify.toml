@@ -11,4 +11,3 @@
     X-Content-Type-Options = "nosniff"
     Feature-Policy = "geolocation 'self'"
     Referrer-Policy = "same-origin"
-    Content-Security-Policy = "img-src * data:; script-src 'self'"
