@@ -69,6 +69,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
                   onClick={() => {
                     setRegisterSelect(`${register.register_id}`);
                     setRegisterDisplay(`${register.name}`);
+                    redirect('')();
                   }}
                 >
                   {register.name}
