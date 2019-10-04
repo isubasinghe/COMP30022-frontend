@@ -10,10 +10,11 @@ import './index.scss';
 
 function AirLoomNavbar({ refetchRegisters, registers, history }) {
   const [showModal, setShowModal] = useState(false);
-  const [registerSelect, setRegisterSelect] = useState('Select register');
-  const [registerDisplay, setRegisterDisplay] = useState('Select register');
+  const selectRegister = 'SELECT REGISTER';
+  const [registerSelect, setRegisterSelect] = useState(selectRegister);
+  const [registerDisplay, setRegisterDisplay] = useState(selectRegister);
   const hasRegisters = registers.length > 0;
-  const selectedRegister = registerSelect !== 'Select register';
+  const selectedRegister = registerSelect !== selectRegister;
 
   const redirect = location => {
     return () => {
@@ -38,19 +39,19 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
                 className={styled['text-modifier']}
                 onClick={redirect(`/list/${registerSelect}`)}
               >
-                List View
+                LIST
               </Nav.Link>
               <Nav.Link
                 className={styled['text-modifier']}
                 onClick={redirect(`/map/${registerSelect}`)}
               >
-                Map View
+                MAP
               </Nav.Link>
               <Nav.Link
                 className={styled['text-modifier']}
                 onClick={redirect(`/timeline/${registerSelect}`)}
               >
-                Timeline view
+                TIMELINE
               </Nav.Link>
             </>
           )}
@@ -70,7 +71,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
                     setRegisterDisplay(`${register.name}`);
                   }}
                 >
-                  {register.name}
+                  {register.name} 
                 </NavDropdown.Item>
               );
             })}
@@ -80,12 +81,12 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
                 setShowModal(true);
               }}
             >
-              Add Register
+              ADD REGISTER
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Nav.Link className={styled['text-modifier']} onClick={logout}>
-          Log out
+          LOG OUT
         </Nav.Link>
       </Navbar.Collapse>
       <RegisterForm
