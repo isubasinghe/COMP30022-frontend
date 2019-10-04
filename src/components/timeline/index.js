@@ -11,7 +11,7 @@ function ArtifactTimeline(props) {
 
   return (
     <div className={styled['timeline-container']}>
-      <VerticalTimeline layout="1-column">
+      <VerticalTimeline layout="1-column" className={styled['timeline-container']}>
         {ordered.map(arti => (
           <VerticalTimelineElement
             key={arti.artifact_id}
