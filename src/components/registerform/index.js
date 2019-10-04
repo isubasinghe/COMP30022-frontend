@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
+import './index.scss';
+import styled from './index.module.scss';
 
 function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
   let nameRef = useRef();
@@ -33,39 +35,37 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
       onHide={() => {
         setShowModal(false);
       }}
+      size="lg"
     >
-      <Modal.Header closeButton>
-        <Modal.Title>Create A New Register</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Enter the name of the register</Form.Label>
-            <Form.Control
-              ref={inputRef => {
-                nameRef = inputRef;
-              }}
-              placeholder="Enter register name"
-            />
-            <Form.Text className="text-muted">
-              We'll never share your data with anyone else.
-            </Form.Text>
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            setShowModal(false);
-          }}
-        >
-          Close
-        </Button>
-        <Button onClick={() => createNewRegister(nameRef.value)} variant="primary">
-          Create
-        </Button>
-      </Modal.Footer>
+      <div className={styled['container']}>
+        <Modal.Header>
+          <div className={styled['title']}>Create A New Register</div>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formNewRegister">
+              <Form.Label className={styled['text-title']}>
+                Enter the name of the register
+              </Form.Label>
+              <Form.Control
+                className={styled['text-field']}
+                ref={inputRef => {
+                  nameRef = inputRef;
+                }}
+                placeholder="Enter register name"
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={() => setShowModal(false)} className={styled['button']}>
+            Cancel
+          </button>
+          <button onClick={() => createNewRegister(nameRef.value)} className={styled['button']}>
+            Create
+          </button>
+        </Modal.Footer>
+      </div>
     </Modal>
   );
 }
