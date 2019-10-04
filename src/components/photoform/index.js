@@ -49,8 +49,8 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
         setShowModal(false);
       }}
       size="lg"
+      dialogClassName="photo-modal"
     >
-      <div className={styled['container']}>
         <Modal.Header>
           <div className={styled['title']}>Add A Photo</div>
         </Modal.Header>
@@ -87,7 +87,6 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
             Add
           </button>
         </Modal.Footer>
-      </div>
     </Modal>
   );
 }

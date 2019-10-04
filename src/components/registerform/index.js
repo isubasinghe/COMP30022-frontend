@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
-import './index.scss';
+// import './index.scss';
 import styled from './index.module.scss';
 
 function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
@@ -36,8 +36,8 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
         setShowModal(false);
       }}
       size="lg"
+      dialogClassName="register-modal"
     >
-      <div className={styled['container']}>
         <Modal.Header>
           <div className={styled['title']}>Create A New Register</div>
         </Modal.Header>
@@ -69,7 +69,6 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
             Create
           </button>
         </Modal.Footer>
-      </div>
     </Modal>
   );
 }
