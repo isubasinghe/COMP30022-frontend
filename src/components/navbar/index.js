@@ -71,7 +71,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
                     setRegisterDisplay(`${register.name}`);
                   }}
                 >
-                  {register.name} 
+                  {register.name}
                 </NavDropdown.Item>
               );
             })}
