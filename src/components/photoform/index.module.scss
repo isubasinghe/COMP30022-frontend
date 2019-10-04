@@ -9,17 +9,66 @@
     border-color: #eeeeee;
     border-style: dashed;
     background-color: #fafafa;
-    color: #bdbdbd;
+    // color: #bdbdbd;
     outline: none;
     transition: border .24s ease-in-out;
+}
+
+.container {
+    background-color: #F7FFF7 !important;
+    border-width: thick !important;
+    border-style: dashed !important;
+    border-color: #707070 !important;
+    border-radius: 25px !important;
+    padding: 5px !important;
+    color:none !important;
+}  
+
+.title {
+    text-align: left;
+    padding: 10px 10px 15px;
+    color:#1A535C;
+    font-family: impact !important;
+    font-size: 48px;
+}
+
+.text-title {
+    text-align: left;
+    color:#1A535C;
+    font-family: impact;
+    font-size: 24px;
+}
+
+.text-field {
+    text-align: left;
+    padding: 15px;
+    font-family: sans-serif;
+    font-size: 16px;
+    color:#1A535C;
+    background-color: white;
+    box-shadow: 5px 5px 5px gray;
+    border-radius: 15px;
+}
+
+.button {
+    background-color: #FF6B6B;
+    text-align: center;
+    height: 50px;
+    width: 100px;
+    border-radius: 25px;
+    font-family: impact;
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px gray;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .submit-button--disabled {
     cursor: not-allowed;
     background-color: rgb(229, 229, 229) !important;
     pointer-events: none;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-}
-
-.submit-button--enabled {
-
 }
