@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import './index.scss';
 import styled from './index.module.scss';

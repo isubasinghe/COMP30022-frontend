@@ -1,14 +1,4 @@
 
-.modal-dialog {
-    width: 90vh !important;
-}
-
-.text-modifier {
-    color:#F7FFF7 !important;
-    font-family: impact;
-    font-size: 1em;   
-}
-
 .container {
     background-color: #F7FFF7 !important;
     border-width: thick !important;
@@ -18,28 +8,6 @@
     padding: 5px !important;
     color:none !important;
 }  
-
-.blank {
-    // background: none; 
-    // background-color: none;
-    // border-width: thick;
-    // border-style: dashed;
-    // border-color: red !important;
-    // border-radius: 0px !important;
-    // padding: 5px;
-    
-    position: 'absolute';
-    top: 40px;
-    left: 40px;
-    right: 40px;
-    bottom: 40px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    overflow: auto;
-    border-radius: 4px;
-    outline: none;
-    padding: 20px;
-}
 
 .title {
     text-align: left;
