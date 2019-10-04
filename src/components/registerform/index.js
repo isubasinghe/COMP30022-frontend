@@ -35,7 +35,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
       }}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Create new Register</Modal.Title>
+        <Modal.Title>Create A New Register</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -63,7 +63,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
           Close
         </Button>
         <Button onClick={() => createNewRegister(nameRef.value)} variant="primary">
-          Save Changes
+          Create
         </Button>
       </Modal.Footer>
     </Modal>
