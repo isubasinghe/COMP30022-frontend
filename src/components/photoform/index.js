@@ -49,7 +49,7 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
       dialogClassName="photo-modal"
     >
       <Modal.Header>
-        <div className={styled['title']}>Add A Photo</div>
+        <div className={styled['title']}>Add Photos</div>
       </Modal.Header>
       <Modal.Body>
         <section className="container">
@@ -76,11 +76,11 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
           onClick={() => {
             setShowModal(false);
           }}
-          className={styled['button']}
+          className={styled['button-teal']}
         >
           Close
         </button>
-        <button onClick={addPhoto} className={styled['button']}>
+        <button onClick={addPhoto} className={styled['button-red']}>
           Add
         </button>
       </Modal.Footer>

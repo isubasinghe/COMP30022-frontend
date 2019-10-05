@@ -70,13 +70,12 @@
 }
 
 .button {
-    background-color: #FF6B6B;
     text-align: center;
     height: 50px;
-    width: 28%;
+    width: 100px;
     border-radius: 25px;
     font-family: impact;
-    font-size: 30px;
+    font-size: 20px;
     color: white;
     text-transform: uppercase;
     font-weight: bold;
@@ -84,31 +83,17 @@
     box-shadow: 5px 5px 5px gray;
     margin-left: 2%;
     margin-right: 2%;
-}
 
-
-.dropzone {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border-width: 2px;
-    border-radius: 2px;
-    border-color: #eeeeee;
-    border-style: dashed;
-    background-color: #fafafa;
-    color: #bdbdbd;
-    outline: none;
-    transition: border .24s ease-in-out;
-}
-
-.submit-button--disabled {
-    cursor: not-allowed;
-    background-color: rgb(229, 229, 229) !important;
-    pointer-events: none;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-}
-
-.submit-button--enabled {
-
+    &-red {
+        @extend .button;
+        background-color: #FF6B6B;
+    }
+    &-grey {
+        @extend .button;
+        background-color: #1A535C;
+    }
+    &-teal {
+        @extend .button;
+        background-color: #4ECDC4;
+    }
 }

@@ -28,6 +28,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
         alert(err.message);
       });
   };
+
   return (
     <Modal
       show={showModal}
@@ -38,7 +39,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
       dialogClassName="register-modal"
     >
       <Modal.Header>
-        <div className={styled['title']}>Create A New Register</div>
+        <div className={styled.title}>Create A New Register</div>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -55,13 +56,13 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <button onClick={() => setShowModal(false)} className={styled['button']}>
+        <button onClick={() => setShowModal(false)} className={styled['button-teal']}>
           Cancel
         </button>
         <button
           onClick={() => createNewRegister(nameRef.value)}
-          className={styled['button']}
-          disabled={JSON.stringify(nameRef.value) !== ''}
+          className={styled[`button-${nameRef.value ? 'red' : 'grey'}`]}
+          disabled={nameRef.value !== ''}
         >
           Create
         </button>

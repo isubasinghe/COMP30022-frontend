@@ -45,7 +45,7 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
       size="lg"
       dialogClassName="artifact-modal"
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <div className={styled['title']}>Create A New Artifact</div>
       </Modal.Header>
       <Modal.Body>
@@ -119,13 +119,13 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
           onClick={() => {
             setShowModal(false);
           }}
-          className={styled['button']}
+          className={styled['button-grey']}
         >
           Close
         </button>
         <button
           type="submit"
-          className={styled['button']}
+          className={styled['button-red']}
           onClick={() =>
             createNewArtifact(
               nameRef.value,
