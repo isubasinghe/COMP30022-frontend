@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
 import RegisterForm from '../registerform';
 import ArtifactForm from '../artifactform';
+import Settings from '../settings';
 import styled from './index.module.scss';
 
 // overwrite some css in the DropDown menu
@@ -12,6 +14,7 @@ import './index.scss';
 function AirLoomNavbar({ refetchRegisters, registers, history }) {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showArtifactModal, setShowArtifactModal] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
   const selectRegister = 'SELECT REGISTER';
   const [registerSelect, setRegisterSelect] = useState(selectRegister);
   const [registerDisplay, setRegisterDisplay] = useState(selectRegister);
@@ -60,14 +63,24 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
           )}
         </Nav>
         {isAdmin ? (
-          <Nav.Link
-            className={styled['text-modifier']}
-            onClick={() => {
-              setShowArtifactModal(true);
-            }}
-          >
-            ADD ARTIFACT
-          </Nav.Link>
+          <>
+            <Nav.Link
+              className={styled['text-modifier']}
+              onClick={() => {
+                setShowArtifactModal(true);
+              }}
+            >
+              ADD ARTIFACT
+            </Nav.Link>
+            <Nav.Link
+              className={styled['text-modifier']}
+              onClick={() => {
+                setShowSettingsModal(true);
+              }}
+            >
+              SETTINGS
+            </Nav.Link>
+          </>
         ) : (
           <></>
         )}
@@ -84,7 +97,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
                   onClick={() => {
                     setRegisterSelect(`${register.register_id}`);
                     setRegisterDisplay(`${register.name}`);
-                    setIsAdmin(`${register.is_admin}`);
+                    setIsAdmin(register.is_admin);
                     redirect('')();
                   }}
                 >
@@ -112,12 +125,31 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
         setShowModal={setShowRegisterModal}
       />
       <ArtifactForm
-        registerId={parseInt(registerSelect)}
+        registerId={registerSelect}
         showModal={showArtifactModal}
         setShowModal={setShowArtifactModal}
+      />
+      <Settings
+        registerId={registerSelect}
+        showModal={showSettingsModal}
+        setShowModal={setShowSettingsModal}
       />
     </Navbar>
   );
 }
+
+AirLoomNavbar.propTypes = {
+  refetchRegisters: PropTypes.func.isRequired,
+  registers: PropTypes.arrayOf(
+    PropTypes.shape(
+      PropTypes.number.isRequired,
+      PropTypes.string.isRequired,
+      PropTypes.bool.isRequired
+    ).isRequired
+  ).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
+};
 
 export default withRouter(AirLoomNavbar);

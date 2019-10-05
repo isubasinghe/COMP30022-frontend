@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Form } from 'react-bootstrap';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
@@ -11,8 +12,6 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
       name: registerName
     };
 
-    JSON.stringify(data);
-
     authFetchRequest('https://api.airloom.xyz/api/v1/register/addregister', {
       method: 'POST',
       headers: {
@@ -20,14 +19,13 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
       },
       body: JSON.stringify(data)
     })
-      .then(result => {
+      .then(() => {
         refetchRegisters();
         setShowModal(false);
       })
-      .catch(err => {
-        alert(err.message);
-      });
+      .catch(() => {});
   };
+
   return (
     <Modal
       show={showModal}
@@ -38,7 +36,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
       dialogClassName="register-modal"
     >
       <Modal.Header>
-        <div className={styled['title']}>Create A New Register</div>
+        <div className={styled.title}>Create A New Register</div>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -49,19 +47,19 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
               ref={inputRef => {
                 nameRef = inputRef;
               }}
-              placeholder="Name must not be empty"
+              placeholder="Enter register name"
             />
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <button onClick={() => setShowModal(false)} className={styled['button']}>
+        <button type="button" onClick={() => setShowModal(false)} className={styled['button-teal']}>
           Cancel
         </button>
         <button
+          type="button"
           onClick={() => createNewRegister(nameRef.value)}
-          className={styled['button']}
-          disabled={JSON.stringify(nameRef.value) !== ''}
+          className={styled['button-red']}
         >
           Create
         </button>
@@ -69,5 +67,11 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
     </Modal>
   );
 }
+
+RegisterForm.propTypes = {
+  refetchRegisters: PropTypes.func.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  setShowModal: PropTypes.func.isRequired
+};
 
 export default RegisterForm;

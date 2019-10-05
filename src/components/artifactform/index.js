@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { Modal, Button, Form, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Modal, Form, Col } from 'react-bootstrap';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
@@ -29,12 +30,10 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
       },
       body: JSON.stringify(data)
     })
-      .then(result => {
+      .then(() => {
         setShowModal(false);
       })
-      .catch(err => {
-        alert(err.message + JSON.stringify(data));
-      });
+      .catch(() => {});
   };
   return (
     <Modal
@@ -45,7 +44,7 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
       size="lg"
       dialogClassName="artifact-modal"
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <div className={styled['title']}>Create A New Artifact</div>
       </Modal.Header>
       <Modal.Body>
@@ -116,17 +115,17 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
       </Modal.Body>
       <Modal.Footer>
         <button
+          type="button"
           onClick={() => {
             setShowModal(false);
           }}
-          className={styled['button']}
+          className={styled['button-grey']}
         >
           Close
         </button>
         <button
-          type="submit"
-          className={styled['button']}
-          onClick={() =>
+          className={styled['button-red']}
+          onClick={() => {
             createNewArtifact(
               nameRef.value,
               famMembRef.value,
@@ -134,8 +133,9 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
               dateRef.value,
               latRef.value,
               lonRef.value
-            )
-          }
+            );
+          }}
+          type="button"
         >
           Create
         </button>
@@ -143,5 +143,11 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
     </Modal>
   );
 }
+
+ArtifactForm.propTypes = {
+  registerId: PropTypes.string.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  setShowModal: PropTypes.func.isRequired
+};
 
 export default ArtifactForm;

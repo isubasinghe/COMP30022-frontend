@@ -7,7 +7,11 @@ import PhotoForm from '../../components/photoform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
-function ArtifactView(props) {
+function ArtifactView({
+  match: {
+    params: { registerId, artifactId }
+  }
+}) {
   const [artifact, setArtifact] = useState(undefined);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [photoCount, setPhotoCount] = useState(0);
@@ -15,9 +19,6 @@ function ArtifactView(props) {
   const [errorState, setErrorState] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const { registerId, artifactId } = props.match.params;
-
-  // TODO: write a hook to replicate useEffect authenticated fetch
   useEffect(() => {
     if (registerId !== null && artifactId !== null) {
       authFetchRequest(
@@ -52,7 +53,7 @@ function ArtifactView(props) {
     return <Spinner />;
   }
   if (errorState) {
-    return <div className="error">Something went wrong with your request, woops</div>;
+    return <div className="error">Something went wrong with your request, whoops</div>;
   }
 
   return (
@@ -70,13 +71,17 @@ function ArtifactView(props) {
             </div>
             <button
               type="button"
-              className={styled['button']}
+              className={styled['button-teal']}
               onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
             >
               &larr;
             </button>
             {artifact.is_admin ? (
-              <button type="button" className={styled['button']} onClick={() => setShowModal(true)}>
+              <button
+                type="button"
+                className={styled['button-red']}
+                onClick={() => setShowModal(true)}
+              >
                 +
               </button>
             ) : (
@@ -84,7 +89,7 @@ function ArtifactView(props) {
             )}
             <button
               type="button"
-              className={styled['button']}
+              className={styled['button-teal']}
               onClick={() => {
                 setPhotoIndex((photoIndex + photoCount - 1) % photoCount);
               }}
@@ -99,14 +104,14 @@ function ArtifactView(props) {
               { title: 'Family Members', data: artifact.family_members },
               { title: 'Description', data: artifact.description }
             ].map(({ title, data }) => (
-              <>
+              <div key={`${title}`}>
                 <div key={`title-${title}-${data}`} className={styled['title']}>
                   {title}
                 </div>
                 <div key={`data-${title}-${data}`} className={styled['data']}>
                   {data}
                 </div>
-              </>
+              </div>
             ))}
           </div>
         </div>
