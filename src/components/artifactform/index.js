@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Modal, Button, Form, Col } from 'react-bootstrap';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
+import styled from './index.module.scss';
 
 function ArtifactForm({ registerId, showModal, setShowModal }) {
   let nameRef = useRef();
@@ -41,29 +42,34 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
       onHide={() => {
         setShowModal(false);
       }}
+      size="lg"
+      dialogClassName="artifact-modal"
     >
       <Modal.Header closeButton>
-        <Modal.Title>Create A New Artifact</Modal.Title>
+        <div className={styled['title']}>Create A New Artifact</div>
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Name</Form.Label>
+          <Form.Group controlId="formNewArtifact">
+            <Form.Label className={styled['text-title']}>Name</Form.Label>
             <Form.Control
+              className={styled['text-field']}
               ref={inputRef => {
                 nameRef = inputRef;
               }}
               placeholder="Enter artifact name"
             />
-            <Form.Label>Family Members</Form.Label>
+            <Form.Label className={styled['text-title']}>Family Members</Form.Label>
             <Form.Control
+              className={styled['text-field']}
               ref={inputRef => {
                 famMembRef = inputRef;
               }}
               placeholder="Enter family members relevant to this artifact"
             />
-            <Form.Label>Description</Form.Label>
+            <Form.Label className={styled['text-title']}>Description</Form.Label>
             <Form.Control
+              className={styled['text-field']}
               ref={inputRef => {
                 descRef = inputRef;
               }}
@@ -71,18 +77,20 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
               rows="3"
               placeholder="Enter artifact description"
             />
-            <Form.Label>Date</Form.Label>
+            <Form.Label className={styled['text-title']}>Date</Form.Label>
             <Form.Control
+              className={styled['text-field']}
               ref={inputRef => {
                 dateRef = inputRef;
               }}
               type="date"
               placeholder="Enter artifact date (YYYY-MM-DD)"
             />
-            <Form.Label>Location</Form.Label>
+            <Form.Label className={styled['text-title']}>Location</Form.Label>
             <Form.Row>
               <Col>
                 <Form.Control
+                  className={styled['text-field']}
                   ref={inputRef => {
                     latRef = inputRef;
                   }}
@@ -93,6 +101,7 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
               </Col>
               <Col>
                 <Form.Control
+                  className={styled['text-field']}
                   ref={inputRef => {
                     lonRef = inputRef;
                   }}
@@ -102,23 +111,21 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
                 />
               </Col>
             </Form.Row>
-            <Form.Text className="text-muted">
-              We'll never share your data with anyone else.
-            </Form.Text>
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button
-          variant="secondary"
+        <button
           onClick={() => {
             setShowModal(false);
           }}
+          className={styled['button']}
         >
           Close
-        </Button>
-        <Button
+        </button>
+        <button
           type="submit"
+          className={styled['button']}
           onClick={() =>
             createNewArtifact(
               nameRef.value,
@@ -129,10 +136,9 @@ function ArtifactForm({ registerId, showModal, setShowModal }) {
               lonRef.value
             )
           }
-          variant="primary"
         >
           Create
-        </Button>
+        </button>
       </Modal.Footer>
     </Modal>
   );
