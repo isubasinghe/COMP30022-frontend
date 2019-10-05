@@ -70,13 +70,13 @@ function ArtifactView(props) {
             </div>
             <button
               type="button"
-              className={styled['button']}
+              className={styled['button-teal']}
               onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
             >
               &larr;
             </button>
             {artifact.is_admin ? (
-              <button type="button" className={styled['button']} onClick={() => setShowModal(true)}>
+              <button type="button" className={styled['button-red']} onClick={() => setShowModal(true)}>
                 +
               </button>
             ) : (
@@ -84,7 +84,7 @@ function ArtifactView(props) {
             )}
             <button
               type="button"
-              className={styled['button']}
+              className={styled['button-teal']}
               onClick={() => {
                 setPhotoIndex((photoIndex + photoCount - 1) % photoCount);
               }}
