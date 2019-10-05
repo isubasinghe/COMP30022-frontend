@@ -80,7 +80,7 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
         >
           Close
         </button>
-        <button onClick={addPhoto} className={styled['button-red']} type="input">
+        <button onClick={addPhoto} className={styled['button-red']} type="button">
           Add
         </button>
       </Modal.Footer>
