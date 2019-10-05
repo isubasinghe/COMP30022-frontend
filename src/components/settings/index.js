@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Form } from 'react-bootstrap';
 import { addMember, delMember, updateMember } from './requests';
 import styled from './index.module.scss';
@@ -44,7 +45,7 @@ function Settings({ registerId, showModal, setShowModal }) {
           </Form.Group>
         </Form>
         <button
-          type="submit"
+          type="button"
           className={styled['button-red']}
           onClick={() => {
             addMember(registerId, emailRef.value, adminRef.checked)
@@ -57,7 +58,7 @@ function Settings({ registerId, showModal, setShowModal }) {
           Add
         </button>
         <button
-          type="submit"
+          type="button"
           className={styled['button-red']}
           onClick={() => {
             delMember(registerId, emailRef.value)
@@ -70,7 +71,7 @@ function Settings({ registerId, showModal, setShowModal }) {
           Delete
         </button>
         <button
-          type="submit"
+          type="button"
           className={styled['button-red']}
           onClick={() => {
             updateMember(registerId, emailRef.value, adminRef.checked)
