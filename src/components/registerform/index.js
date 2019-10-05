@@ -38,37 +38,35 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
       size="lg"
       dialogClassName="register-modal"
     >
-        <Modal.Header>
-          <div className={styled['title']}>Create A New Register</div>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formNewRegister">
-              <Form.Label className={styled['text-title']}>
-                Enter the name of the register
-              </Form.Label>
-              <Form.Control
-                className={styled['text-field']}
-                ref={inputRef => {
-                  nameRef = inputRef;
-                }}
-                placeholder="Name must not be empty"
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <button onClick={() => setShowModal(false)} className={styled['button']}>
-            Cancel
-          </button>
-          <button
-            onClick={() => createNewRegister(nameRef.value)}
-            className={styled['button']}
-            disabled={JSON.stringify(nameRef.value) !== ''}
-          >
-            Create
-          </button>
-        </Modal.Footer>
+      <Modal.Header>
+        <div className={styled['title']}>Create A New Register</div>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group controlId="formNewRegister">
+            <Form.Label className={styled['text-title']}>Enter the name of the register</Form.Label>
+            <Form.Control
+              className={styled['text-field']}
+              ref={inputRef => {
+                nameRef = inputRef;
+              }}
+              placeholder="Name must not be empty"
+            />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <button onClick={() => setShowModal(false)} className={styled['button']}>
+          Cancel
+        </button>
+        <button
+          onClick={() => createNewRegister(nameRef.value)}
+          className={styled['button']}
+          disabled={JSON.stringify(nameRef.value) !== ''}
+        >
+          Create
+        </button>
+      </Modal.Footer>
     </Modal>
   );
 }
