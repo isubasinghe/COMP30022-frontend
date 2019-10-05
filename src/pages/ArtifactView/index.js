@@ -52,7 +52,7 @@ function ArtifactView(props) {
     return <Spinner />;
   }
   if (errorState) {
-    return <div className="error">Something went wrong with your request, woops</div>;
+    return <div className="error">Something went wrong with your request, whoops</div>;
   }
 
   return (
@@ -103,14 +103,14 @@ function ArtifactView(props) {
               { title: 'Family Members', data: artifact.family_members },
               { title: 'Description', data: artifact.description }
             ].map(({ title, data }) => (
-              <>
+              <div key={`${title}`}>
                 <div key={`title-${title}-${data}`} className={styled['title']}>
                   {title}
                 </div>
                 <div key={`data-${title}-${data}`} className={styled['data']}>
                   {data}
                 </div>
-              </>
+              </div>
             ))}
           </div>
         </div>
