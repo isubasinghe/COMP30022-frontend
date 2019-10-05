@@ -7,7 +7,7 @@ import PhotoForm from '../../components/photoform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
-function ArtifactView(props) {
+function ArtifactView({ match: { params: { registerId, artifactId } }}) {
   const [artifact, setArtifact] = useState(undefined);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [photoCount, setPhotoCount] = useState(0);
@@ -15,9 +15,6 @@ function ArtifactView(props) {
   const [errorState, setErrorState] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const { registerId, artifactId } = props.match.params;
-
-  // TODO: write a hook to replicate useEffect authenticated fetch
   useEffect(() => {
     if (registerId !== null && artifactId !== null) {
       authFetchRequest(
