@@ -140,7 +140,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
 
 AirLoomNavbar.propTypes = {
   refetchRegisters: PropTypes.func.isRequired,
-  registers: PropTypes.arrayOf( 
+  registers: PropTypes.arrayOf(
     PropTypes.shape(
       PropTypes.number.isRequired,
       PropTypes.string.isRequired,
