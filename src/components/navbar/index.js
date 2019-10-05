@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
@@ -136,5 +137,11 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
     </Navbar>
   );
 }
+
+AirLoomNavbar.propTypes = {
+  refetchRegisters: PropTypes.func.isRequired, 
+  registers: PropTypes.array.isRequired, 
+  history: PropTypes.object.isRequired
+};
 
 export default withRouter(AirLoomNavbar);
