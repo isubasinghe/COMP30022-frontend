@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { withAuthenticator } from 'aws-amplify-react';
 import Auth from '@aws-amplify/auth';
+import AppErrorBoundary from './AppErrorBoundary';
 import AirNavBar from './components/navbar';
 import Home from './pages/Home';
 import MapView from './pages/MapView';
@@ -46,14 +47,16 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <AirNavBar refetchRegisters={refetchRegisters} registers={registers} />
-        <Route exact path="/" component={Home} />
-        <Route path="/map/:registerId" component={MapView} />
-        <Route path="/list/:registerId" component={ListView} />
-        <Route path="/timeline/:registerId" component={TimelineView} />
-        <Route path="/artifact/:registerId/:artifactId" component={ArtifactView} />
-      </BrowserRouter>
+      <AppErrorBoundary>
+        <BrowserRouter>
+          <AirNavBar refetchRegisters={refetchRegisters} registers={registers} />
+          <Route exact path="/" component={Home} />
+          <Route path="/map/:registerId" component={MapView} />
+          <Route path="/list/:registerId" component={ListView} />
+          <Route path="/timeline/:registerId" component={TimelineView} />
+          <Route path="/artifact/:registerId/:artifactId" component={ArtifactView} />
+        </BrowserRouter>
+      </AppErrorBoundary>
     </div>
   );
 }
