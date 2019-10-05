@@ -147,7 +147,9 @@ AirLoomNavbar.propTypes = {
       PropTypes.bool.isRequired
     ).isRequired
   ).isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default withRouter(AirLoomNavbar);
