@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Spinner from '../../components/spinner';
 import ArtifactTimeline from '../../components/timeline';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 
@@ -25,7 +26,7 @@ function TimelineView(props) {
       });
   }, [registerId]);
   if (!hasLoaded) {
-    return <div className="loading">Loading your request</div>;
+    return <Spinner />;
   }
   if (errorState) {
     return <div className="error">Something went wrong with your request, woops</div>;
