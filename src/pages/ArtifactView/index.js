@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import Spinner from '../../components/spinner';
 import PhotoForm from '../../components/photoform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
@@ -48,7 +49,7 @@ function ArtifactView(props) {
   }, [registerId, artifactId]);
 
   if (!hasLoaded) {
-    return <div className="loading">Loading your request</div>;
+    return <Spinner />;
   }
   if (errorState) {
     return <div className="error">Something went wrong with your request, woops</div>;

@@ -8,6 +8,7 @@ import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
 import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import styled from './index.module.scss';
+import './index.scss';
 
 // Reload Map Marker
 // TODO: Customize
@@ -43,11 +44,13 @@ class ArtifactMap extends React.Component {
           console.log(arti);
           return (
             <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
-              <Popup>
+              <Popup className={styled['pop-up']}>
                 <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
-                  <b>{arti.name}</b>
+                  <b className={styled['text-modifier']}>{arti.name}</b>
                   <br />
-                  {arti.description}
+                  <div className={styled['text-modifier']}>
+                    {arti.description}
+                  </div>
                 </Link>
               </Popup>
             </Marker>

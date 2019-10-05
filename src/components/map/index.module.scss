@@ -1,4 +1,9 @@
 .map-component {
-    height: 90vh;
+    height: calc(100vh - 70px);
     width: 100vw;
+}
+
+.text-modifier {
+    font-family: sans-serif;
+    font-size: 1.5em;
 }

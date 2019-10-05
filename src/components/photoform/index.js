@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import styled from './index.module.scss';
 
@@ -35,16 +35,22 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
 
   const files = acceptedFiles.map(file => (
     <li key={file.path}>
-      {file.path} -{file.size} bytes
+      {file.path} - {file.size} bytes
     </li>
   ));
 
-  const submitButtonClass =
-    acceptedFiles.length > 0 ? styled['submit-button--enabled'] : styled['submit-button--disabled'];
-
   return (
-    <Modal show={showModal} onHide={() => setShowModal(false)}>
-      <Modal.Header closeButton>Add a photo</Modal.Header>
+    <Modal
+      show={showModal}
+      onHide={() => {
+        setShowModal(false);
+      }}
+      size="lg"
+      dialogClassName="photo-modal"
+    >
+      <Modal.Header>
+        <div className={styled['title']}>Add A Photo</div>
+      </Modal.Header>
       <Modal.Body>
         <section className="container">
           <div {...getRootProps({ className: styled.dropzone })}>
@@ -52,24 +58,31 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
             <p>Drag 'n' drop some files here, or click to select files</p>
             <em>(Only *.jpeg and *.png images will be accepted)</em>
           </div>
-          <aside>
-            <h4>Files</h4>
-            <ul>{files}</ul>
-          </aside>
+          {files.length !== 0 ? (
+            <>
+              <br />
+              <aside>
+                <div className={styled['text-title']}>Files</div>
+                <ul>{files}</ul>
+              </aside>
+            </>
+          ) : (
+            <></>
+          )}
         </section>
       </Modal.Body>
       <Modal.Footer>
-        <Button
-          variant="secondary"
+        <button
           onClick={() => {
             setShowModal(false);
           }}
+          className={styled['button']}
         >
           Close
-        </Button>
-        <Button className={submitButtonClass} onClick={addPhoto} variant="primary">
-          Add a photo
-        </Button>
+        </button>
+        <button onClick={addPhoto} className={styled['button']}>
+          Add
+        </button>
       </Modal.Footer>
     </Modal>
   );
