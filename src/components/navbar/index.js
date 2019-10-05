@@ -3,16 +3,19 @@ import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
 import RegisterForm from '../registerform';
+import ArtifactForm from '../artifactform';
 import styled from './index.module.scss';
 
 // overwrite some css in the DropDown menu
 import './index.scss';
 
 function AirLoomNavbar({ refetchRegisters, registers, history }) {
-  const [showModal, setShowModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showArtifactModal, setShowArtifactModal] = useState(false);
   const selectRegister = 'SELECT REGISTER';
   const [registerSelect, setRegisterSelect] = useState(selectRegister);
   const [registerDisplay, setRegisterDisplay] = useState(selectRegister);
+  const [isAdmin, setIsAdmin] = useState(false);
   const hasRegisters = registers.length > 0;
   const selectedRegister = registerSelect !== selectRegister;
 
@@ -56,6 +59,18 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
             </>
           )}
         </Nav>
+        {isAdmin ? (
+          <Nav.Link
+            className={styled['text-modifier']}
+            onClick={() => {
+              setShowArtifactModal(true);
+            }}
+          >
+            ADD ARTIFACT
+          </Nav.Link>
+        ) : (
+          <></>
+        )}
         <Nav>
           <NavDropdown
             className={styled['text-modifier']}
@@ -69,6 +84,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
                   onClick={() => {
                     setRegisterSelect(`${register.register_id}`);
                     setRegisterDisplay(`${register.name}`);
+                    setIsAdmin(`${register.is_admin}`);
                     redirect('')();
                   }}
                 >
@@ -79,7 +95,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
             {hasRegisters && <NavDropdown.Divider />}
             <NavDropdown.Item
               onClick={() => {
-                setShowModal(true);
+                setShowRegisterModal(true);
               }}
             >
               ADD REGISTER
@@ -92,8 +108,13 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
       </Navbar.Collapse>
       <RegisterForm
         refetchRegisters={refetchRegisters}
-        showModal={showModal}
-        setShowModal={setShowModal}
+        showModal={showRegisterModal}
+        setShowModal={setShowRegisterModal}
+      />
+      <ArtifactForm
+        registerId={parseInt(registerSelect)}
+        showModal={showArtifactModal}
+        setShowModal={setShowArtifactModal}
       />
     </Navbar>
   );
