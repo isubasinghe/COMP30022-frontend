@@ -48,42 +48,42 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
       size="lg"
       dialogClassName="photo-modal"
     >
-        <Modal.Header>
-          <div className={styled['title']}>Add A Photo</div>
-        </Modal.Header>
-        <Modal.Body>
-          <section className="container">
-            <div {...getRootProps({ className: styled.dropzone })}>
-              <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here, or click to select files</p>
-              <em>(Only *.jpeg and *.png images will be accepted)</em>
-            </div>
-            {files.length !== 0 ? (
-              <>
+      <Modal.Header>
+        <div className={styled['title']}>Add A Photo</div>
+      </Modal.Header>
+      <Modal.Body>
+        <section className="container">
+          <div {...getRootProps({ className: styled.dropzone })}>
+            <input {...getInputProps()} />
+            <p>Drag 'n' drop some files here, or click to select files</p>
+            <em>(Only *.jpeg and *.png images will be accepted)</em>
+          </div>
+          {files.length !== 0 ? (
+            <>
               <br />
               <aside>
                 <div className={styled['text-title']}>Files</div>
                 <ul>{files}</ul>
               </aside>
-              </>
-            ) : (
-              <></>
-            )}
-          </section>
-        </Modal.Body>
-        <Modal.Footer>
-          <button
-            onClick={() => {
-              setShowModal(false);
-            }}
-            className={styled['button']}
-          >
-            Close
-          </button>
-          <button onClick={addPhoto} className={styled['button']}>
-            Add
-          </button>
-        </Modal.Footer>
+            </>
+          ) : (
+            <></>
+          )}
+        </section>
+      </Modal.Body>
+      <Modal.Footer>
+        <button
+          onClick={() => {
+            setShowModal(false);
+          }}
+          className={styled['button']}
+        >
+          Close
+        </button>
+        <button onClick={addPhoto} className={styled['button']}>
+          Add
+        </button>
+      </Modal.Footer>
     </Modal>
   );
 }
