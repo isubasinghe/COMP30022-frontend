@@ -26,7 +26,6 @@
 }
 
 .button {
-    background-color: #FF6B6B;
     text-align: center;
     height: 50px;
     width: 100px;
@@ -40,4 +39,17 @@
     box-shadow: 5px 5px 5px gray;
     margin-left: 2%;
     margin-right: 2%;
+
+    &-red {
+        @extend .button;
+        background-color: #FF6B6B;
+    }
+    &-grey {
+        @extend .button;
+        background-color: #1A535C;
+    }
+    &-teal {
+        @extend .button;
+        background-color: #4ECDC4;
+    }
 }
