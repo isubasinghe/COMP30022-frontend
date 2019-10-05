@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
-import { Modal, Form, Col } from 'react-bootstrap';
-import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
+import { Modal, Form } from 'react-bootstrap';
 import { addMember, delMember, updateMember } from './requests';
 import styled from './index.module.scss';
 
@@ -48,7 +47,7 @@ function Settings({ registerId, showModal, setShowModal }) {
           type="submit"
           className={styled['button-red']}
           onClick={() => {
-            updateMember(registerId, emailRef.value, adminRef.checked)
+            addMember(registerId, emailRef.value, adminRef.checked)
               .then(result => {
                 setShowModal(false);
               })
