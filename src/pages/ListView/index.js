@@ -40,18 +40,18 @@ function ListView(props) {
           </p>
         ) : (
           artifacts.map(artifact => (
-            <div
-              key={artifact.artifact_id}
-              id={`artifact-${artifact.artifact_id}`}
-              className={styled['item-container']}
+            <Link
+              key={`link-${artifact.artifact_id}`}
+              to={`/artifact/${registerId}/${artifact.artifact_id}/`}
             >
-              <Link
-                className={styled['link-text']}
-                to={`/artifact/${registerId}/${artifact.artifact_id}/`}
+              <div
+                key={artifact.artifact_id}
+                id={`artifact-${artifact.artifact_id}`}
+                className={styled['item-container']}
               >
-                {artifact.name}
-              </Link>
-            </div>
+                {artifact.name}{' '}
+              </div>
+            </Link>
           ))
         )}
       </div>

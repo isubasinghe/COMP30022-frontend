@@ -39,9 +39,6 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
     </li>
   ));
 
-  const submitButtonClass =
-    acceptedFiles.length > 0 ? styled['submit-button--enabled'] : styled['submit-button--disabled'];
-
   return (
     <Modal
       show={showModal}
@@ -83,7 +80,7 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
           >
             Close
           </button>
-          <button className={submitButtonClass} onClick={addPhoto} className={styled['button']}>
+          <button onClick={addPhoto} className={styled['button']}>
             Add
           </button>
         </Modal.Footer>

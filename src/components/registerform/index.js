@@ -64,7 +64,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
           <button
             onClick={() => createNewRegister(nameRef.value)}
             className={styled['button']}
-            disabled={JSON.stringify(nameRef.value !== '')}
+            disabled={JSON.stringify(nameRef.value) !== ''}
           >
             Create
           </button>
