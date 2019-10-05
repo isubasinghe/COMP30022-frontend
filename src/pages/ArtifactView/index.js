@@ -1,8 +1,9 @@
 /* eslint-disable dot-notation */
 import React, { useEffect, useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
-import { useDropzone } from 'react-dropzone';
+import moment from 'moment';
 import PropTypes from 'prop-types';
+import Spinner from '../../components/spinner';
+import PhotoForm from '../../components/photoform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
@@ -13,9 +14,7 @@ function ArtifactView(props) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errorState, setErrorState] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const { acceptedFiles, rejectedFiles, getRootProps, getInputProps } = useDropzone({
-    accept: 'image/jpeg, image/png'
-  });
+
   const { registerId, artifactId } = props.match.params;
 
   // TODO: write a hook to replicate useEffect authenticated fetch
@@ -31,6 +30,12 @@ function ArtifactView(props) {
             setHasLoaded(true);
           } else {
             const artifactData = data[0];
+            // preload image assets
+            artifactData.photos.forEach((artifactCurr, i) => {
+              if (i !== 0) {
+                new Image().src = artifactCurr.url;
+              }
+            });
             setArtifact(artifactData);
             setPhotoCount(artifactData.photos.length);
             setHasLoaded(true);
@@ -44,44 +49,11 @@ function ArtifactView(props) {
   }, [registerId, artifactId]);
 
   if (!hasLoaded) {
-    return <div className="loading">Loading your request</div>;
+    return <Spinner />;
   }
   if (errorState) {
     return <div className="error">Something went wrong with your request, woops</div>;
   }
-
-  const addPhoto = () => {
-    setShowModal(false);
-    const promisedRequests = acceptedFiles.map(file => {
-      const formData = new FormData();
-      formData.append('registerId', registerId);
-      formData.append('artifactId', artifactId);
-      formData.append('photo', file);
-      return authFetchRequest('https://api.airloom.xyz/api/v1/artifact/addphoto/', {
-        method: 'POST',
-        body: formData
-      }).then(result => {
-        console.log(result);
-      });
-    });
-
-    Promise.all(promisedRequests)
-      .then(results => {
-        console.log(results);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const files = acceptedFiles.map(file => (
-    <li key={file.path}>
-      {file.path} -{file.size} bytes
-    </li>
-  ));
-
-  const submitButtonClass =
-    acceptedFiles.length > 0 ? styled['submit-button--enabled'] : styled['submit-button--disabled'];
 
   return (
     <>
@@ -113,7 +85,9 @@ function ArtifactView(props) {
             <button
               type="button"
               className={styled['button']}
-              onClick={() => setPhotoIndex((photoIndex + photoCount - 1) % photoCount)}
+              onClick={() => {
+                setPhotoIndex((photoIndex + photoCount - 1) % photoCount);
+              }}
             >
               &rarr;
             </button>
@@ -121,7 +95,7 @@ function ArtifactView(props) {
           <div className={styled['column']}>
             {[
               { title: 'Location', data: `${artifact.lat}, ${artifact.lon}` },
-              { title: 'Date', data: new Date(artifact.date).toISOString().split('T')[0] },
+              { title: 'Date', data: moment(artifact.date).format('dddd, MMMM Do YYYY') },
               { title: 'Family Members', data: artifact.family_members },
               { title: 'Description', data: artifact.description }
             ].map(({ title, data }) => (
@@ -137,35 +111,12 @@ function ArtifactView(props) {
           </div>
         </div>
       </div>
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>Add a photo</Modal.Header>
-        <Modal.Body>
-          <section className="container">
-            <div {...getRootProps({ className: styled['dropzone'] })}>
-              <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here, or click to select files</p>
-              <em>(Only *.jpeg and *.png images will be accepted)</em>
-            </div>
-            <aside>
-              <h4>Files</h4>
-              <ul>{files}</ul>
-            </aside>
-          </section>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              setShowModal(false);
-            }}
-          >
-            Close
-          </Button>
-          <Button className={submitButtonClass} onClick={addPhoto} variant="primary">
-            Add a photo
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <PhotoForm
+        registerId={registerId}
+        artifactId={artifactId}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </>
   );
 }

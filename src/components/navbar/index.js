@@ -3,17 +3,21 @@ import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
 import RegisterForm from '../registerform';
+import ArtifactForm from '../artifactform';
 import styled from './index.module.scss';
 
 // overwrite some css in the DropDown menu
 import './index.scss';
 
 function AirLoomNavbar({ refetchRegisters, registers, history }) {
-  const [showModal, setShowModal] = useState(false);
-  const [registerSelect, setRegisterSelect] = useState('Select register');
-  const [registerDisplay, setRegisterDisplay] = useState('Select register');
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showArtifactModal, setShowArtifactModal] = useState(false);
+  const selectRegister = 'SELECT REGISTER';
+  const [registerSelect, setRegisterSelect] = useState(selectRegister);
+  const [registerDisplay, setRegisterDisplay] = useState(selectRegister);
+  const [isAdmin, setIsAdmin] = useState(false);
   const hasRegisters = registers.length > 0;
-  const selectedRegister = registerSelect !== 'Select register';
+  const selectedRegister = registerSelect !== selectRegister;
 
   const redirect = location => {
     return () => {
@@ -38,23 +42,35 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
                 className={styled['text-modifier']}
                 onClick={redirect(`/list/${registerSelect}`)}
               >
-                List View
+                LIST
               </Nav.Link>
               <Nav.Link
                 className={styled['text-modifier']}
                 onClick={redirect(`/map/${registerSelect}`)}
               >
-                Map View
+                MAP
               </Nav.Link>
               <Nav.Link
                 className={styled['text-modifier']}
                 onClick={redirect(`/timeline/${registerSelect}`)}
               >
-                Timeline view
+                TIMELINE
               </Nav.Link>
             </>
           )}
         </Nav>
+        {isAdmin ? (
+          <Nav.Link
+            className={styled['text-modifier']}
+            onClick={() => {
+              setShowArtifactModal(true);
+            }}
+          >
+            ADD ARTIFACT
+          </Nav.Link>
+        ) : (
+          <></>
+        )}
         <Nav>
           <NavDropdown
             className={styled['text-modifier']}
@@ -68,6 +84,8 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
                   onClick={() => {
                     setRegisterSelect(`${register.register_id}`);
                     setRegisterDisplay(`${register.name}`);
+                    setIsAdmin(`${register.is_admin}`);
+                    redirect('')();
                   }}
                 >
                   {register.name}
@@ -77,21 +95,26 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
             {hasRegisters && <NavDropdown.Divider />}
             <NavDropdown.Item
               onClick={() => {
-                setShowModal(true);
+                setShowRegisterModal(true);
               }}
             >
-              Add Register
+              ADD REGISTER
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Nav.Link className={styled['text-modifier']} onClick={logout}>
-          Log out
+          LOG OUT
         </Nav.Link>
       </Navbar.Collapse>
       <RegisterForm
         refetchRegisters={refetchRegisters}
-        showModal={showModal}
-        setShowModal={setShowModal}
+        showModal={showRegisterModal}
+        setShowModal={setShowRegisterModal}
+      />
+      <ArtifactForm
+        registerId={parseInt(registerSelect)}
+        showModal={showArtifactModal}
+        setShowModal={setShowArtifactModal}
       />
     </Navbar>
   );

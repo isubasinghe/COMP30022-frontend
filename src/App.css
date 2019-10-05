@@ -31,3 +31,27 @@
     transform: rotate(360deg);
   }
 }
+
+.register-modal .modal-content {
+  background-color: #F7FFF7 !important;
+  border-width: thick !important;
+  border-style: dashed !important;
+  border-color: #707070 !important;
+  border-radius: 25px !important;
+  padding: 5px !important;
+  color:none !important;
+  background-clip: unset;
+}  
+
+.photo-modal .modal-content {
+  background-color: #F7FFF7 !important;
+  border-width: thick !important;
+  border-style: dashed !important;
+  border-color: #707070 !important;
+  border-radius: 25px !important;
+  padding: 5px !important;
+  color:none !important;
+  background-clip: unset;
+}  
+
+

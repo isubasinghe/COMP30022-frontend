@@ -1,0 +1,32 @@
+.banner-top {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 30vh;
+    background-image: url(../../assets/home/background1.svg);
+    background-repeat: repeat-x;
+}
+
+.banner-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30vh;
+    background-image: url(../../assets/home/background2.svg);
+    background-repeat: repeat-x;
+}
+
+.title {
+    color: #1A535C;
+    font-family: impact;
+    font-size: 10vh;
+    margin: 7.5vh;
+}
+
+.description {
+    font-family: impact;
+    font-size: 2vh;
+    margin-top: -5vh;
+}
+
