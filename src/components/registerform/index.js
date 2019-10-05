@@ -29,7 +29,6 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
       });
   };
 
-
   return (
     <Modal
       show={showModal}
@@ -40,7 +39,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
       dialogClassName="register-modal"
     >
       <Modal.Header>
-        <div className={styled['title']}>Create A New Register</div>
+        <div className={styled.title}>Create A New Register</div>
       </Modal.Header>
       <Modal.Body>
         <Form>

@@ -76,7 +76,11 @@ function ArtifactView(props) {
               &larr;
             </button>
             {artifact.is_admin ? (
-              <button type="button" className={styled['button-red']} onClick={() => setShowModal(true)}>
+              <button
+                type="button"
+                className={styled['button-red']}
+                onClick={() => setShowModal(true)}
+              >
                 +
               </button>
             ) : (
