@@ -72,7 +72,7 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
       </Modal.Body>
       <Modal.Footer>
         <button
-          type="input"
+          type="button"
           onClick={() => {
             setShowModal(false);
           }}
