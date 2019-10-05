@@ -124,12 +124,12 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
         setShowModal={setShowRegisterModal}
       />
       <ArtifactForm
-        registerId={parseInt(registerSelect)}
+        registerId={registerSelect}
         showModal={showArtifactModal}
         setShowModal={setShowArtifactModal}
       />
       <Settings
-        registerId={parseInt(registerSelect)}
+        registerId={registerSelect}
         showModal={showSettingsModal}
         setShowModal={setShowSettingsModal}
       />
