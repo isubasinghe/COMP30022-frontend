@@ -139,8 +139,8 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
 }
 
 AirLoomNavbar.propTypes = {
-  refetchRegisters: PropTypes.func.isRequired, 
-  registers: PropTypes.array.isRequired, 
+  refetchRegisters: PropTypes.func.isRequired,
+  registers: PropTypes.array.isRequired,
   history: PropTypes.object.isRequired
 };
 
