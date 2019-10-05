@@ -13,7 +13,7 @@ export const addMember = (registerId, email, isAdmin) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
-  });  
+  });
 };
 
 export const delMember = (registerId, email) => {
@@ -28,7 +28,7 @@ export const delMember = (registerId, email) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
-  });  
+  });
 };
 
 export const updateMember = (registerId, email, isAdmin) => {
@@ -44,5 +44,5 @@ export const updateMember = (registerId, email, isAdmin) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
-  });  
+  });
 };

@@ -59,10 +59,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
         <button onClick={() => setShowModal(false)} className={styled['button-teal']}>
           Cancel
         </button>
-        <button
-          onClick={() => createNewRegister(nameRef.value)}
-          className={styled['button-red']}
-        >
+        <button onClick={() => createNewRegister(nameRef.value)} className={styled['button-red']}>
           Create
         </button>
       </Modal.Footer>
