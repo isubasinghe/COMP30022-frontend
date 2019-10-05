@@ -48,12 +48,10 @@ function Settings({ registerId, showModal, setShowModal }) {
           className={styled['button-red']}
           onClick={() => {
             addMember(registerId, emailRef.value, adminRef.checked)
-              .then(result => {
+              .then(() => {
                 setShowModal(false);
               })
-              .catch(err => {
-                alert(err.message);
-              });
+              .catch(() => {});
           }}
         >
           Add
@@ -63,12 +61,10 @@ function Settings({ registerId, showModal, setShowModal }) {
           className={styled['button-red']}
           onClick={() => {
             delMember(registerId, emailRef.value)
-              .then(result => {
+              .then(() => {
                 setShowModal(false);
               })
-              .catch(err => {
-                alert(err.message);
-              });
+              .catch(() => {});
           }}
         >
           Delete
@@ -78,12 +74,10 @@ function Settings({ registerId, showModal, setShowModal }) {
           className={styled['button-red']}
           onClick={() => {
             updateMember(registerId, emailRef.value, adminRef.checked)
-              .then(result => {
+              .then(() => {
                 setShowModal(false);
               })
-              .catch(err => {
-                alert(err.message);
-              });
+              .catch(() => {});
           }}
         >
           Update
@@ -91,6 +85,7 @@ function Settings({ registerId, showModal, setShowModal }) {
       </Modal.Body>
       <Modal.Footer>
         <button
+          type="button"
           onClick={() => {
             setShowModal(false);
           }}
@@ -102,5 +97,11 @@ function Settings({ registerId, showModal, setShowModal }) {
     </Modal>
   );
 }
+
+Settings.propTypes = {
+  registerId: PropTypes.string.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  setShowModal: PropTypes.func.isRequired
+};
 
 export default Settings;
