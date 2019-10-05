@@ -7,7 +7,11 @@ import PhotoForm from '../../components/photoform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
-function ArtifactView({ match: { params: { registerId, artifactId } }}) {
+function ArtifactView({
+  match: {
+    params: { registerId, artifactId }
+  }
+}) {
   const [artifact, setArtifact] = useState(undefined);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [photoCount, setPhotoCount] = useState(0);
