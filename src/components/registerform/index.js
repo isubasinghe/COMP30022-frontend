@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
-// import './index.scss';
 import styled from './index.module.scss';
 
 function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
