@@ -33,24 +33,21 @@ class ArtifactMap extends React.Component {
 
   render() {
     const { artifacts } = this.props;
-    const mapPosition = [this.state.lat, this.state.lon];
+    const { lat, lon, zoom } = this.state;
     return (
-      <Map center={mapPosition} zoom={this.state.zoom} className={styled['map-component']}>
+      <Map center={{ lat, lon }} zoom={zoom} className={styled['map-component']}>
         <TileLayer
           url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
         />
         {artifacts.map(arti => {
-          console.log(arti);
           return (
             <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
               <Popup className={styled['pop-up']}>
                 <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
                   <b className={styled['text-modifier']}>{arti.name}</b>
                   <br />
-                  <div className={styled['text-modifier']}>
-                    {arti.description}
-                  </div>
+                  <p className={styled['text-modifier']}>{arti.description}</p>
                 </Link>
               </Popup>
             </Marker>
