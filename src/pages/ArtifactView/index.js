@@ -29,6 +29,12 @@ function ArtifactView(props) {
             setHasLoaded(true);
           } else {
             const artifactData = data[0];
+            // preload image assets
+            artifactData.photos.forEach((artifactCurr, i) => {
+              if (i !== 0) {
+                new Image().src = artifactCurr.url;
+              }
+            });
             setArtifact(artifactData);
             setPhotoCount(artifactData.photos.length);
             setHasLoaded(true);
@@ -78,7 +84,9 @@ function ArtifactView(props) {
             <button
               type="button"
               className={styled['button']}
-              onClick={() => setPhotoIndex((photoIndex + photoCount - 1) % photoCount)}
+              onClick={() => {
+                setPhotoIndex((photoIndex + photoCount - 1) % photoCount);
+              }}
             >
               &rarr;
             </button>
