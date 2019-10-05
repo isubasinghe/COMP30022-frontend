@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
 import RegisterForm from '../registerform';
 import ArtifactForm from '../artifactform';
+import Settings from '../settings';
 import styled from './index.module.scss';
 
 // overwrite some css in the DropDown menu
@@ -12,6 +13,7 @@ import './index.scss';
 function AirLoomNavbar({ refetchRegisters, registers, history }) {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showArtifactModal, setShowArtifactModal] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
   const selectRegister = 'SELECT REGISTER';
   const [registerSelect, setRegisterSelect] = useState(selectRegister);
   const [registerDisplay, setRegisterDisplay] = useState(selectRegister);
@@ -60,14 +62,24 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
           )}
         </Nav>
         {isAdmin ? (
-          <Nav.Link
-            className={styled['text-modifier']}
-            onClick={() => {
-              setShowArtifactModal(true);
-            }}
-          >
-            ADD ARTIFACT
-          </Nav.Link>
+          <>
+            <Nav.Link
+              className={styled['text-modifier']}
+              onClick={() => {
+                setShowArtifactModal(true);
+              }}
+            >
+              ADD ARTIFACT
+            </Nav.Link>
+            <Nav.Link
+              className={styled['text-modifier']}
+              onClick={() => {
+                setShowSettingsModal(true);
+              }}
+            >
+              SETTINGS
+            </Nav.Link>
+          </>
         ) : (
           <></>
         )}
@@ -115,6 +127,11 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
         registerId={parseInt(registerSelect)}
         showModal={showArtifactModal}
         setShowModal={setShowArtifactModal}
+      />
+      <Settings
+        registerId={parseInt(registerSelect)}
+        showModal={showSettingsModal}
+        setShowModal={setShowSettingsModal}
       />
     </Navbar>
   );

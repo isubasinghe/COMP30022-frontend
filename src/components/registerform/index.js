@@ -50,7 +50,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
               ref={inputRef => {
                 nameRef = inputRef;
               }}
-              placeholder="Name must not be empty"
+              placeholder="Enter register name"
             />
           </Form.Group>
         </Form>
@@ -61,8 +61,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
         </button>
         <button
           onClick={() => createNewRegister(nameRef.value)}
-          className={styled[`button-${nameRef.value ? 'red' : 'grey'}`]}
-          disabled={nameRef.value !== ''}
+          className={styled['button-red']}
         >
           Create
         </button>
