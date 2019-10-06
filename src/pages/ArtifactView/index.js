@@ -1,5 +1,6 @@
 /* eslint-disable dot-notation */
 import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Button, Media } from 'react-bootstrap';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import Spinner from '../../components/spinner';
@@ -58,64 +59,74 @@ function ArtifactView({
 
   return (
     <>
-      <div className={styled['container']}>
-        <div className={styled['name']}>{artifact.name}</div>
-        <div className={styled['artifact-container']}>
-          <div className={styled['column']}>
-            <div className={styled['photo-container']}>
-              <img
-                className={styled['photo']}
-                src={photoCount !== 0 ? artifact.photos[photoIndex].url : ''}
-                alt="No Images Found. Try add some below with the '+'"
-              />
-            </div>
-            <button
-              type="button"
-              className={styled['button-teal']}
-              onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
-            >
-              &larr;
-            </button>
-            {artifact.is_admin ? (
-              <button
+      <Container className={styled['container']}>
+        <Container className={styled['name']}>{artifact.name}</Container>
+        <Container className={styled['artifact-container']}>
+          <Row>
+            <Col>
+              <Media
+                  className={styled['photo-container']}>
+                <img
+                  className={styled['photo']}
+                  src={photoCount !== 0 ? artifact.photos[photoIndex].url : ''}
+                  alt={`No photos found.${artifact.is_admin ?  " Try add some below with the '+'" : ""}`}
+                />
+              </Media>
+            </Col>
+            <Col>
+              {[
+                { title: 'Date', data: moment(artifact.date).format('dddd, MMMM Do YYYY') },
+                { title: 'Description', data: artifact.description },
+                { title: 'Family Members', data: artifact.family_members },
+                { title: 'Location', data: `${artifact.lat}, ${artifact.lon}` }
+              ].map(({ title, data }) => (
+                <div key={`${title}`}>
+                  <div key={`title-${title}-${data}`} className={styled['title']}>
+                    {title}
+                  </div>
+                  <div key={`data-${title}-${data}`} className={styled['data']}>
+                    {data}
+                  </div>
+                </div>
+              ))}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button
                 type="button"
-                className={styled['button-red']}
-                onClick={() => setShowModal(true)}
+                className={styled['button-teal']}
+                onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
               >
-                +
-              </button>
-            ) : (
-              <></>
-            )}
-            <button
-              type="button"
-              className={styled['button-teal']}
-              onClick={() => {
-                setPhotoIndex((photoIndex + photoCount - 1) % photoCount);
-              }}
-            >
-              &rarr;
-            </button>
-          </div>
-          <div className={styled['column']}>
-            {[
-              { title: 'Location', data: `${artifact.lat}, ${artifact.lon}` },
-              { title: 'Date', data: moment(artifact.date).format('dddd, MMMM Do YYYY') },
-              { title: 'Family Members', data: artifact.family_members },
-              { title: 'Description', data: artifact.description }
-            ].map(({ title, data }) => (
-              <div key={`${title}`}>
-                <div key={`title-${title}-${data}`} className={styled['title']}>
-                  {title}
-                </div>
-                <div key={`data-${title}-${data}`} className={styled['data']}>
-                  {data}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+                &larr;
+              </Button>
+              {artifact.is_admin ? (
+                <Button
+                  type="button"
+                  className={styled['button-red']}
+                  onClick={() => setShowModal(true)}
+                >
+                  +
+                </Button>
+              ) : (
+                <></>
+              )}
+              <Button
+                type="button"
+                className={styled['button-teal']}
+                onClick={() => {
+                  setPhotoIndex((photoIndex + photoCount - 1) % photoCount);
+                }}
+              >
+                &rarr;
+              </Button>
+            </Col>
+            <Col>
+                {/* TODO: EDIT */}
+            </Col>
+          </Row>
+        </Container>
+      </Container>
       <PhotoForm
         registerId={registerId}
         artifactId={artifactId}
