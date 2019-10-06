@@ -23,37 +23,52 @@ class ArtifactMap extends React.Component {
   constructor(props) {
     super(props);
 
-    // Default Map Position and Zoom
-    this.state = {
-      lat: 0.0,
-      lon: 0.0,
-      zoom: 2
-    };
+    // Default Map Position
+    const { artifacts } = this.props;
+    switch (artifacts.length) {
+      case 0:
+        this.bounds = new L.latLngBounds([[-60, -120], [60, 120]]);
+        break;
+      case 1:
+        this.bounds = new L.latLng([artifacts[0].lat, artifacts[0].lon]).toBounds(10000);
+        break;
+      default:
+        const markers = [];
+        for (let i = 0; i < artifacts.length; i += 1) {
+          markers.push(L.marker([artifacts[i].lat, artifacts[i].lon]));
+        }
+        this.bounds = new L.featureGroup(markers).getBounds();
+    }
   }
 
   render() {
     const { artifacts } = this.props;
-    const { lat, lon, zoom } = this.state;
     return (
-      <Map center={{ lat, lon }} zoom={zoom} className={styled['map-component']}>
-        <TileLayer
-          url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
-        {artifacts.map(arti => {
-          return (
-            <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
-              <Popup className={styled['pop-up']}>
-                <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
-                  <b className={styled['text-modifier']}>{arti.name}</b>
-                  <br />
-                  <p className={styled['text-modifier']}>{arti.description}</p>
-                </Link>
-              </Popup>
-            </Marker>
-          );
-        })}
-      </Map>
+      <div>
+        <Map
+          className={styled['map-component']}
+          bounds={this.bounds}
+          boundsOptions={{ padding: [10, 10] }}
+        >
+          <TileLayer
+            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+          />
+          {artifacts.map(arti => {
+            return (
+              <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
+                <Popup className={styled['pop-up']}>
+                  <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
+                    <b className={styled['text-modifier']}>{arti.name}</b>
+                    <br />
+                    <p className={styled['text-modifier']}>{arti.description}</p>
+                  </Link>
+                </Popup>
+              </Marker>
+            );
+          })}
+        </Map>
+      </div>
     );
   }
 }
