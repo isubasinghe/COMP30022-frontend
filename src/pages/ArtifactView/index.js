@@ -64,12 +64,13 @@ function ArtifactView({
         <Container className={styled['artifact-container']}>
           <Row>
             <Col>
-              <Media
-                  className={styled['photo-container']}>
+              <Media className={styled['photo-container']}>
                 <img
                   className={styled['photo']}
                   src={photoCount !== 0 ? artifact.photos[photoIndex].url : ''}
-                  alt={`No photos found.${artifact.is_admin ?  " Try add some below with the '+'" : ""}`}
+                  alt={`No photos found.${
+                    artifact.is_admin ? " Try add some below with the '+'" : ''
+                  }`}
                 />
               </Media>
             </Col>
@@ -121,9 +122,7 @@ function ArtifactView({
                 &rarr;
               </Button>
             </Col>
-            <Col>
-                {/* TODO: EDIT */}
-            </Col>
+            <Col>{/* TODO: EDIT */}</Col>
           </Row>
         </Container>
       </Container>
