@@ -4,11 +4,11 @@ import ArtifactForm from '../artifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 
 function UpdateArtifactForm({ registerId, artifactId, showModal, setShowModal, artifactData }) {
-  const updateArtifact = artifactData => {
+  const updateArtifact = artifact => {
     const data = {
       register_id: registerId,
       artifact_id: artifactId,
-      ...artifactData
+      ...artifact
     };
 
     return authFetchRequest('https://api.airloom.xyz/api/v1/artifact/update', {
