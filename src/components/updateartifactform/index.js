@@ -47,13 +47,13 @@ NewArtifactForm.propTypes = {
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired,
   artifactData: PropTypes.shape({
-    name: PropTypes.string,
-    family_members: PropTypes.string,
-    description: PropTypes.string,
-    date: PropTypes.string,
-    lat: PropTypes.string,
-    lon: PropTypes.string
-  })
+    name: PropTypes.string.isRequired,
+    family_members: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    lat: PropTypes.string.isRequired,
+    lon: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default NewArtifactForm;

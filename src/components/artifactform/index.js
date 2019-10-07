@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Form, Col } from 'react-bootstrap';
 import styled from './index.module.scss';
 
-function ArtifactForm({ title, buttonName, showModal, setShowModal, request, artifactData = {} }) {
+function ArtifactForm({ title, buttonName, showModal, setShowModal, request, artifactData }) {
   let nameRef = useRef();
   let famMembRef = useRef();
   let descRef = useRef();
@@ -143,5 +143,9 @@ ArtifactForm.propTypes = {
     lon: PropTypes.string
   })
 };
+
+ArtifactForm.defaultProps = {
+  artifactData: {}
+}
 
 export default ArtifactForm;
