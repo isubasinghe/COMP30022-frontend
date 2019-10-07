@@ -123,7 +123,7 @@ function ArtifactForm({
               date: dateRef.value,
               lat: latRef.value,
               lon: lonRef.value
-          });
+            });
           }}
           type="button"
         >

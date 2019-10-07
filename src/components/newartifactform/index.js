@@ -4,7 +4,7 @@ import ArtifactForm from '../artifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 
 function NewArtifactForm({ registerId, showModal, setShowModal }) {
-  const createNewArtifact = (artifactData) => {
+  const createNewArtifact = artifactData => {
     const data = {
       register_id: registerId,
       ...artifactData
