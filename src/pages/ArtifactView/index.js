@@ -63,7 +63,7 @@ function ArtifactView({
         <Container className={styled['name']}>{artifact.name}</Container>
         <Container className={styled['artifact-container']}>
           <Row>
-            <Col>
+            <Col xs={12} md={6}>
               <Media className={styled['photo-container']}>
                 <img
                   className={styled['photo']}
@@ -101,7 +101,9 @@ function ArtifactView({
               >
                 &larr;
               </Button>
-              {artifact.is_admin ? (
+            </Col>
+            {artifact.is_admin ? (
+              <Col>
                 <Button
                   type="button"
                   className={styled['button-red']}
@@ -109,9 +111,11 @@ function ArtifactView({
                 >
                   +
                 </Button>
-              ) : (
-                <></>
-              )}
+              </Col>
+            ) : (
+              <></>
+            )}
+            <Col>
               <Button
                 type="button"
                 className={styled['button-teal']}
@@ -122,7 +126,6 @@ function ArtifactView({
                 &rarr;
               </Button>
             </Col>
-            <Col>{/* TODO: EDIT */}</Col>
           </Row>
         </Container>
       </Container>
