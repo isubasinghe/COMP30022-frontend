@@ -9,9 +9,7 @@ export const getRegisters = () => {
     return results.sort((a, b) => {
       const { name: aName } = a;
       const { name: bName } = b;
-      const aNameUpper = aName.toUpperCase();
-      const bNameUpper = bName.toUpperCase();
-      return aNameUpper === bNameUpper ? 0 : aNameUpper < bNameUpper ? -1 : 1;
+      return aName.toUpperCase().localeCompare(bName.toUpperCase());
     });
   });
 };
