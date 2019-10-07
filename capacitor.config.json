@@ -1,0 +1,7 @@
+{
+  "appId": "me.isubasinghe.airloom",
+  "appName": "Airloom",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "build"
+}
