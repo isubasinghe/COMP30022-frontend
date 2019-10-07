@@ -4,15 +4,10 @@ import ArtifactForm from '../artifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 
 function NewArtifactForm({ registerId, showModal, setShowModal }) {
-  const createNewArtifact = (name, familyMembers, description, date, lat, lon) => {
+  const createNewArtifact = (artifactData) => {
     const data = {
       register_id: registerId,
-      name,
-      family_members: familyMembers,
-      description,
-      date,
-      lat,
-      lon
+      ...artifactData
     };
 
     authFetchRequest('https://api.airloom.xyz/api/v1/artifact/add', {

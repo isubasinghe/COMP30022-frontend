@@ -116,14 +116,14 @@ function ArtifactForm({
         <button
           className={styled['button-red']}
           onClick={() => {
-            request(
-              nameRef.value,
-              famMembRef.value,
-              descRef.value,
-              dateRef.value,
-              latRef.value,
-              lonRef.value
-            );
+            request({
+              name: nameRef.value,
+              family_members: famMembRef.value,
+              description: descRef.value,
+              date: dateRef.value,
+              lat: latRef.value,
+              lon: lonRef.value
+          });
           }}
           type="button"
         >
