@@ -31,9 +31,10 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
   const logout = () => {
     Auth.signOut();
   };
+  const styledLink = `${styled['text-modifier']} hover-link`;
   return (
     <Navbar className={styled['navbar-main']} expand="lg">
-      <Navbar.Brand className={styled['home-nav-link']} onClick={redirect('')}>
+      <Navbar.Brand className={`${styled['home-nav-link']} hover-link`} onClick={redirect('')}>
         Airloom
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -41,22 +42,13 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
         <Nav className="mr-auto">
           {hasRegisters && selectedRegister && (
             <>
-              <Nav.Link
-                className={styled['text-modifier']}
-                onClick={redirect(`/list/${registerSelect}`)}
-              >
+              <Nav.Link className={styledLink} onClick={redirect(`/list/${registerSelect}`)}>
                 LIST
               </Nav.Link>
-              <Nav.Link
-                className={styled['text-modifier']}
-                onClick={redirect(`/map/${registerSelect}`)}
-              >
+              <Nav.Link className={styledLink} onClick={redirect(`/map/${registerSelect}`)}>
                 MAP
               </Nav.Link>
-              <Nav.Link
-                className={styled['text-modifier']}
-                onClick={redirect(`/timeline/${registerSelect}`)}
-              >
+              <Nav.Link className={styledLink} onClick={redirect(`/timeline/${registerSelect}`)}>
                 TIMELINE
               </Nav.Link>
             </>
@@ -65,7 +57,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
         {isAdmin ? (
           <>
             <Nav.Link
-              className={styled['text-modifier']}
+              className={styledLink}
               onClick={() => {
                 setShowArtifactModal(true);
               }}
@@ -73,7 +65,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
               ADD ARTIFACT
             </Nav.Link>
             <Nav.Link
-              className={styled['text-modifier']}
+              className={styledLink}
               onClick={() => {
                 setShowSettingsModal(true);
               }}
