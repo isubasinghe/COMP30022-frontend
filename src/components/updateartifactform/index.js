@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ArtifactForm from '../artifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 
-function NewArtifactForm({ registerId, artifactId, showModal, setShowModal, artifactData }) {
+function UpdateArtifactForm({ registerId, artifactId, showModal, setShowModal, artifactData }) {
   const updateArtifact = (name, familyMembers, description, date, lat, lon) => {
     const data = {
       register_id: registerId,
@@ -41,7 +41,7 @@ function NewArtifactForm({ registerId, artifactId, showModal, setShowModal, arti
   );
 }
 
-NewArtifactForm.propTypes = {
+UpdateArtifactForm.propTypes = {
   registerId: PropTypes.string.isRequired,
   artifactId: PropTypes.string.isRequired,
   showModal: PropTypes.bool.isRequired,
@@ -56,4 +56,4 @@ NewArtifactForm.propTypes = {
   }).isRequired
 };
 
-export default NewArtifactForm;
+export default UpdateArtifactForm;
