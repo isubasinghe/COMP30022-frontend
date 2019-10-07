@@ -1,6 +1,6 @@
 /* eslint-disable dot-notation */
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Button, Media } from 'react-bootstrap';
+import { Container, Row, Col, button, Media } from 'react-bootstrap';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import Spinner from '../../components/spinner';
@@ -96,40 +96,25 @@ function ArtifactView({
           </Row>
           <Row>
             <Col>
-              <Button
+              <button
                 type="button"
                 className={styled['button-teal']}
                 onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
               >
                 &larr;
-              </Button>
-            </Col>
-            {artifact.is_admin ? (
-              <>
-                <Col>
-                  <Button
-                    type="button"
-                    className={styled['button-red']}
-                    onClick={() => setShowPhotoModal(true)}
-                  >
-                    +
-                  </Button>
-                </Col>
-                <Col>
-                  <Button
-                    type="button"
-                    className={styled['button-red']}
-                    onClick={() => setShowUpdateModal(true)}
-                  >
-                    Update
-                  </Button>
-                </Col>
-              </>
-            ) : (
-              <></>
-            )}
-            <Col>
-              <Button
+              </button>
+              {artifact.is_admin ? (
+                <button
+                  type="button"
+                  className={styled['button-red']}
+                  onClick={() => setShowPhotoModal(true)}
+                >
+                  +
+                </button>
+              ) : (
+                <></>
+              )}
+              <button
                 type="button"
                 className={styled['button-teal']}
                 onClick={() => {
@@ -137,7 +122,20 @@ function ArtifactView({
                 }}
               >
                 &rarr;
-              </Button>
+              </button>
+            </Col>
+            <Col>
+              {artifact.is_admin ? (
+                <button
+                  type="button"
+                  className={styled['button-red']}
+                  onClick={() => setShowUpdateModal(true)}
+                >
+                  Update
+                </button>
+              ) : (
+                <></>
+              )}
             </Col>
           </Row>
         </Container>
