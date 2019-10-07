@@ -5,6 +5,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import Spinner from '../../components/spinner';
 import PhotoForm from '../../components/photoform';
+import UpdateArtifactForm from '../../components/updateartifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
@@ -18,7 +19,8 @@ function ArtifactView({
   const [photoCount, setPhotoCount] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errorState, setErrorState] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
 
   useEffect(() => {
     if (registerId !== null && artifactId !== null) {
@@ -49,6 +51,10 @@ function ArtifactView({
         });
     }
   }, [registerId, artifactId]);
+
+  const refresh = () => {
+    registerId = registerId;
+  }
 
   if (!hasLoaded) {
     return <Spinner />;
@@ -103,15 +109,26 @@ function ArtifactView({
               </Button>
             </Col>
             {artifact.is_admin ? (
-              <Col>
-                <Button
-                  type="button"
-                  className={styled['button-red']}
-                  onClick={() => setShowModal(true)}
-                >
-                  +
-                </Button>
-              </Col>
+              <>
+                <Col>
+                  <Button
+                    type="button"
+                    className={styled['button-red']}
+                    onClick={() => setShowPhotoModal(true)}
+                  >
+                    +
+                  </Button>
+                </Col>
+                <Col>
+                  <Button
+                    type="button"
+                    className={styled['button-red']}
+                    onClick={() => setShowUpdateModal(true)}
+                  >
+                    Update
+                  </Button>
+                </Col>
+              </>
             ) : (
               <></>
             )}
@@ -132,8 +149,15 @@ function ArtifactView({
       <PhotoForm
         registerId={registerId}
         artifactId={artifactId}
-        showModal={showModal}
-        setShowModal={setShowModal}
+        showModal={showPhotoModal}
+        setShowModal={setShowPhotoModal}
+      />
+      <UpdateArtifactForm
+        registerId={registerId}
+        artifactId={artifactId}
+        showModal={showUpdateModal}
+        setShowModal={setShowUpdateModal}
+        artifactData={artifact}
       />
     </>
   );
