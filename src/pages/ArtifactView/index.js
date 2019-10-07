@@ -1,10 +1,11 @@
 /* eslint-disable dot-notation */
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Button, Media } from 'react-bootstrap';
+import { Container, Row, Col, button, Media } from 'react-bootstrap';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import Spinner from '../../components/spinner';
 import PhotoForm from '../../components/photoform';
+import UpdateArtifactForm from '../../components/updateartifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
@@ -18,7 +19,8 @@ function ArtifactView({
   const [photoCount, setPhotoCount] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errorState, setErrorState] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
 
   useEffect(() => {
     if (registerId !== null && artifactId !== null) {
@@ -94,29 +96,25 @@ function ArtifactView({
           </Row>
           <Row>
             <Col>
-              <Button
+              <button
                 type="button"
                 className={styled['button-teal']}
                 onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
               >
                 &larr;
-              </Button>
-            </Col>
-            {artifact.is_admin ? (
-              <Col>
-                <Button
+              </button>
+              {artifact.is_admin ? (
+                <button
                   type="button"
                   className={styled['button-red']}
-                  onClick={() => setShowModal(true)}
+                  onClick={() => setShowPhotoModal(true)}
                 >
                   +
-                </Button>
-              </Col>
-            ) : (
-              <></>
-            )}
-            <Col>
-              <Button
+                </button>
+              ) : (
+                <></>
+              )}
+              <button
                 type="button"
                 className={styled['button-teal']}
                 onClick={() => {
@@ -124,7 +122,20 @@ function ArtifactView({
                 }}
               >
                 &rarr;
-              </Button>
+              </button>
+            </Col>
+            <Col>
+              {artifact.is_admin ? (
+                <button
+                  type="button"
+                  className={styled['button-red']}
+                  onClick={() => setShowUpdateModal(true)}
+                >
+                  Update
+                </button>
+              ) : (
+                <></>
+              )}
             </Col>
           </Row>
         </Container>
@@ -132,8 +143,15 @@ function ArtifactView({
       <PhotoForm
         registerId={registerId}
         artifactId={artifactId}
-        showModal={showModal}
-        setShowModal={setShowModal}
+        showModal={showPhotoModal}
+        setShowModal={setShowPhotoModal}
+      />
+      <UpdateArtifactForm
+        registerId={registerId}
+        artifactId={artifactId}
+        showModal={showUpdateModal}
+        setShowModal={setShowUpdateModal}
+        artifactData={artifact}
       />
     </>
   );
