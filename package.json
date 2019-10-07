@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@aws-amplify/auth": "^1.2.31",
+    "@capacitor/android": "^1.2.1",
+    "@capacitor/cli": "^1.2.1",
+    "@capacitor/core": "^1.2.1",
     "@sentry/browser": "^5.6.3",
     "aws-amplify": "^1.1.36",
     "aws-amplify-react": "^2.3.12",

@@ -13,4 +13,4 @@ Sentry.init({ dsn: 'https://0813d6b162694237800a791622f2b442@sentry.io/1525953' 
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-serviceWorker.unregister();
+serviceWorker.register();
