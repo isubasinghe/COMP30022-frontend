@@ -3,15 +3,20 @@ import PropTypes from 'prop-types';
 import { Modal, Form, Col } from 'react-bootstrap';
 import styled from './index.module.scss';
 
-function ArtifactForm({ title, buttonName, showModal, setShowModal, request, artifactData }) {
+function ArtifactForm({
+  title,
+  buttonName,
+  showModal,
+  setShowModal,
+  request,
+  artifactData: { name, family_members: familyMembers, description, date, lat, lon }
+}) {
   let nameRef = useRef();
   let famMembRef = useRef();
   let descRef = useRef();
   let dateRef = useRef();
   let latRef = useRef();
   let lonRef = useRef();
-
-  const { name, family_members: familyMembers, description, date, lat, lon } = artifactData;
 
   return (
     <Modal
@@ -37,14 +42,15 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
               placeholder="Enter artifact name"
               defaultValue={name || ''}
             />
-            <Form.Label className={styled['text-title']}>Family Members</Form.Label>
+            <Form.Label className={styled['text-title']}>Date</Form.Label>
             <Form.Control
               className={styled['text-field']}
               ref={inputRef => {
-                famMembRef = inputRef;
+                dateRef = inputRef;
               }}
-              placeholder="Enter family members relevant to this artifact"
-              defaultValue={familyMembers || ''}
+              type="date"
+              placeholder="Enter artifact date (YYYY-MM-DD)"
+              defaultValue={date ? date.split('T')[0] : ''}
             />
             <Form.Label className={styled['text-title']}>Description</Form.Label>
             <Form.Control
@@ -57,16 +63,16 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
               placeholder="Enter artifact description"
               defaultValue={description || ''}
             />
-            <Form.Label className={styled['text-title']}>Date</Form.Label>
+            <Form.Label className={styled['text-title']}>Family Members</Form.Label>
             <Form.Control
               className={styled['text-field']}
               ref={inputRef => {
-                dateRef = inputRef;
+                famMembRef = inputRef;
               }}
-              type="date"
-              placeholder="Enter artifact date (YYYY-MM-DD)"
-              defaultValue={date ? date.split('T')[0] : ''}
+              placeholder="Enter family members relevant to this artifact"
+              defaultValue={familyMembers || ''}
             />
+
             <Form.Label className={styled['text-title']}>Location</Form.Label>
             <Form.Row>
               <Col>
@@ -110,14 +116,14 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
         <button
           className={styled['button-red']}
           onClick={() => {
-            request(
-              nameRef.value,
-              famMembRef.value,
-              descRef.value,
-              dateRef.value,
-              latRef.value,
-              lonRef.value
-            );
+            request({
+              name: nameRef.value,
+              family_members: famMembRef.value,
+              description: descRef.value,
+              date: dateRef.value,
+              lat: latRef.value,
+              lon: lonRef.value
+            });
           }}
           type="button"
         >
@@ -145,7 +151,14 @@ ArtifactForm.propTypes = {
 };
 
 ArtifactForm.defaultProps = {
-  artifactData: {}
+  artifactData: {
+    name: '',
+    family_members: '',
+    description: '',
+    date: '',
+    lat: '',
+    lon: ''
+  }
 };
 
 export default ArtifactForm;
