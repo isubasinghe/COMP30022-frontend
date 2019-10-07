@@ -52,10 +52,6 @@ function ArtifactView({
     }
   }, [registerId, artifactId]);
 
-  const refresh = () => {
-    registerId = registerId;
-  };
-
   if (!hasLoaded) {
     return <Spinner />;
   }

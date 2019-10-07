@@ -11,7 +11,7 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
   let latRef = useRef();
   let lonRef = useRef();
 
-  const { name, family_members, description, date, lat, lon } = artifactData;
+  const { name, family_members: familyMembers, description, date, lat, lon } = artifactData;
 
   return (
     <Modal
@@ -44,7 +44,7 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
                 famMembRef = inputRef;
               }}
               placeholder="Enter family members relevant to this artifact"
-              defaultValue={family_members || ''}
+              defaultValue={familyMembers || ''}
             />
             <Form.Label className={styled['text-title']}>Description</Form.Label>
             <Form.Control
@@ -133,7 +133,15 @@ ArtifactForm.propTypes = {
   buttonName: PropTypes.string.isRequired,
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired,
-  request: PropTypes.func.isRequired
+  request: PropTypes.func.isRequired,
+  artifactData: PropTypes.shape({
+    name: PropTypes.string,
+    family_members: PropTypes.string,
+    description: PropTypes.string,
+    date: PropTypes.string,
+    lat: PropTypes.string,
+    lon: PropTypes.string
+  })
 };
 
 export default ArtifactForm;
