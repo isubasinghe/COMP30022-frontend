@@ -1,35 +1,35 @@
-
-
 .list-container {
-    background-color: #F7FFF7;
-    border-width: thick;
-    border-style: dashed;
-    border-color: #707070;
-    border-radius: 50px;
-    margin: 5%;
-    width: 90%;
-    padding: 50px;
-    text-align: center;
+  background-color: #f7fff7;
+  border-width: thick;
+  border-style: dashed;
+  border-color: #707070;
+  border-radius: 50px;
+  margin: 5%;
+  width: 90%;
+  padding: 1vw;
+  text-align: center;
+  a:hover {
+    opacity: 0.75;
+  }
 }
 
 .item-container {
-    background-color: #4EB9B0;
-    text-align: left;
-    border-radius: 15px;
-    box-shadow: 5px 5px 5px gray;
-    margin: 15px auto;
-    width: 75% !important;
-    padding: 2%;
-    text-align: left;
-    color: white;
-    font-family: impact;
-    font-size: 48px;
+  background-color: #4eb9b0;
+  text-align: left;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px gray;
+  margin: 15px auto;
+  width: 75% !important;
+  padding: 10px;
+  color: white;
+  font-family: impact;
+  font-size: 1.5em;
 }
 
 .oops-text {
-    padding: 2%;
-    text-align: left;
-    color: #1A535C;
-    font-family: impact;
-    font-size: 48px;
+  padding: 2%;
+  text-align: left;
+  color: #1a535c;
+  font-family: impact;
+  font-size: 1.5em;
 }
