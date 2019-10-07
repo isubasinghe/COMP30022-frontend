@@ -44,8 +44,6 @@ function Settings({ registerId, showModal, setShowModal }) {
             </Form.Row>
           </Form.Group>
         </Form>
-      </Modal.Body>
-      <Modal.Footer>
         <button
           type="button"
           className={styled['button-red']}
@@ -85,6 +83,8 @@ function Settings({ registerId, showModal, setShowModal }) {
         >
           Update
         </button>
+      </Modal.Body>
+      <Modal.Footer>
         <button
           type="button"
           onClick={() => {
