@@ -22,10 +22,10 @@ function NewArtifactForm({ registerId, showModal, setShowModal }) {
       },
       body: JSON.stringify(data)
     })
-    .then(() => {
-      setShowModal(false);
-    })
-    .catch(() => {});
+      .then(() => {
+        setShowModal(false);
+      })
+      .catch(() => {});
   };
 
   return (

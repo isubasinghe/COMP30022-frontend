@@ -23,10 +23,10 @@ function NewArtifactForm({ registerId, artifactId, showModal, setShowModal, arti
       },
       body: JSON.stringify(data)
     })
-    .then(() => {
-      setShowModal(false);
-    })
-    .catch(() => {});
+      .then(() => {
+        setShowModal(false);
+      })
+      .catch(() => {});
   };
 
   return (

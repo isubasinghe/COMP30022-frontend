@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Form, Col } from 'react-bootstrap';
 import styled from './index.module.scss';
 
-function ArtifactForm({ title, buttonName, showModal, setShowModal, request, artifactData={} }) {
+function ArtifactForm({ title, buttonName, showModal, setShowModal, request, artifactData = {} }) {
   let nameRef = useRef();
   let famMembRef = useRef();
   let descRef = useRef();
@@ -11,7 +11,7 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
   let latRef = useRef();
   let lonRef = useRef();
 
-  let { name, family_members, description, date, lat, lon} = artifactData;
+  const { name, family_members, description, date, lat, lon } = artifactData;
 
   return (
     <Modal
@@ -23,7 +23,7 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
       dialogClassName="artifact-modal"
     >
       <Modal.Header>
-        <div className={styled['title']}>{title}</div>
+        <div className={styled.title}>{title}</div>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -35,7 +35,7 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
                 nameRef = inputRef;
               }}
               placeholder="Enter artifact name"
-              defaultValue={name || ""}
+              defaultValue={name || ''}
             />
             <Form.Label className={styled['text-title']}>Family Members</Form.Label>
             <Form.Control
@@ -44,7 +44,7 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
                 famMembRef = inputRef;
               }}
               placeholder="Enter family members relevant to this artifact"
-              defaultValue={family_members || ""}
+              defaultValue={family_members || ''}
             />
             <Form.Label className={styled['text-title']}>Description</Form.Label>
             <Form.Control
@@ -55,7 +55,7 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
               as="textarea"
               rows="3"
               placeholder="Enter artifact description"
-              defaultValue={description || ""}
+              defaultValue={description || ''}
             />
             <Form.Label className={styled['text-title']}>Date</Form.Label>
             <Form.Control
@@ -65,7 +65,7 @@ function ArtifactForm({ title, buttonName, showModal, setShowModal, request, art
               }}
               type="date"
               placeholder="Enter artifact date (YYYY-MM-DD)"
-              defaultValue={date ? date.split("T")[0] : ""}
+              defaultValue={date ? date.split('T')[0] : ''}
             />
             <Form.Label className={styled['text-title']}>Location</Form.Label>
             <Form.Row>
