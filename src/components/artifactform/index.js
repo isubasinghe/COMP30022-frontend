@@ -146,6 +146,6 @@ ArtifactForm.propTypes = {
 
 ArtifactForm.defaultProps = {
   artifactData: {}
-}
+};
 
 export default ArtifactForm;
