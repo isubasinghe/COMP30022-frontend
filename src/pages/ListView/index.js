@@ -15,7 +15,11 @@ function ListView(props) {
     if (registerId !== null) {
       authFetchRequest(`https://api.airloom.xyz/api/v1/register/all/${registerId}`, {})
         .then(data => {
-          const artifactData = Object.values(data);
+          const artifactData = Object.values(data).sort((a, b) => {
+            const { name: aName } = a;
+            const { name: bName } = b;
+            return aName.toUpperCase().localeCompare(bName.toUpperCase());
+          });
           setArtifacts(artifactData);
           setHasLoaded(true);
         })
