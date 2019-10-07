@@ -6,11 +6,7 @@ export const getRegisters = () => {
     if (results.length === 0) {
       return null;
     }
-    return results.sort((a, b) => {
-      const { name: aName } = a;
-      const { name: bName } = b;
-      return aName.toUpperCase().localeCompare(bName.toUpperCase());
-    });
+    return results;
   });
 };
 
