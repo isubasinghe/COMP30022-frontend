@@ -4,13 +4,13 @@ import ArtifactForm from '../artifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 
 function NewArtifactForm({ registerId, showModal, setShowModal }) {
-  const createNewArtifact = artifactData => {
+  const createNewArtifact = artifact => {
     const data = {
       register_id: registerId,
-      ...artifactData
+      ...artifact
     };
 
-    authFetchRequest('https://api.airloom.xyz/api/v1/artifact/add', {
+    return authFetchRequest('https://api.airloom.xyz/api/v1/artifact/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
