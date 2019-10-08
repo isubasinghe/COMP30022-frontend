@@ -26,7 +26,6 @@ function NewArtifactForm({ registerId, showModal, setShowModal }) {
   return (
     <ArtifactForm
       title="Add A New Artifact"
-      F
       buttonName="Add"
       showModal={showModal}
       setShowModal={setShowModal}
