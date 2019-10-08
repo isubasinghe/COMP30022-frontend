@@ -4,7 +4,7 @@ import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
 import RegisterForm from '../registerform';
-import ArtifactForm from '../artifactform';
+import NewArtifactForm from '../newartifactform';
 import Settings from '../settings';
 import styled from './index.module.scss';
 
@@ -116,7 +116,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
         showModal={showRegisterModal}
         setShowModal={setShowRegisterModal}
       />
-      <ArtifactForm
+      <NewArtifactForm
         registerId={registerSelect}
         showModal={showArtifactModal}
         setShowModal={setShowArtifactModal}
