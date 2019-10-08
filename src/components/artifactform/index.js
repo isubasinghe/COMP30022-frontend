@@ -144,6 +144,9 @@ ArtifactForm.propTypes = {
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired,
   request: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    go: PropTypes.func.isRequired
+  }).isRequired,
   artifactData: PropTypes.shape({
     name: PropTypes.string,
     family_members: PropTypes.string,
