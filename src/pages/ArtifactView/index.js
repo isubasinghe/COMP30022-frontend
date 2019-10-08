@@ -5,6 +5,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import Spinner from '../../components/spinner';
 import PhotoForm from '../../components/photoform';
+import DeleteModal from '../../components/deletemodal';
 import UpdateArtifactForm from '../../components/updateartifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
@@ -12,7 +13,8 @@ import styled from './index.module.scss';
 function ArtifactView({
   match: {
     params: { registerId, artifactId }
-  }
+  },
+  history
 }) {
   const [artifact, setArtifact] = useState(undefined);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -21,6 +23,7 @@ function ArtifactView({
   const [errorState, setErrorState] = useState(false);
   const [showPhotoModal, setShowPhotoModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
     if (registerId !== null && artifactId !== null) {
@@ -51,6 +54,25 @@ function ArtifactView({
         });
     }
   }, [registerId, artifactId]);
+
+  const deleteArtifact = () => {
+    const data = {
+      register_id: registerId,
+      artifact_id: artifactId
+    };
+
+    authFetchRequest(`https://api.airloom.xyz/api/v1/artifact/del/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(() => {
+        history.push(`/list/${registerId}`);
+      })
+      .catch(err => {});
+  };
 
   if (!hasLoaded) {
     return <Spinner />;
@@ -126,13 +148,22 @@ function ArtifactView({
             </Col>
             <Col>
               {artifact.is_admin ? (
-                <button
-                  type="button"
-                  className={styled['button-red']}
-                  onClick={() => setShowUpdateModal(true)}
-                >
-                  Update
-                </button>
+                <>
+                  <button
+                    type="button"
+                    className={styled['button-red']}
+                    onClick={() => setShowUpdateModal(true)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    className={styled['button-red']}
+                    onClick={() => setShowDeleteModal(true)}
+                  >
+                    Delete
+                  </button>
+                </>
               ) : (
                 <></>
               )}
@@ -153,6 +184,11 @@ function ArtifactView({
         setShowModal={setShowUpdateModal}
         artifactData={artifact}
       />
+      <DeleteModal
+        showModal={showDeleteModal}
+        setShowModal={setShowDeleteModal}
+        onConfirmation={deleteArtifact}
+      />
     </>
   );
 }
@@ -163,6 +199,9 @@ ArtifactView.propTypes = {
       registerId: PropTypes.string.isRequired,
       artifactId: PropTypes.string.isRequired
     }).isRequired
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
   }).isRequired
 };
 
