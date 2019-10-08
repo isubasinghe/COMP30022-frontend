@@ -129,7 +129,9 @@ function ArtifactView({
                 <button
                   type="button"
                   className={styled['button-red']}
-                  onClick={() => setShowUpdateModal(true)}
+                  onClick={() => {
+                    setShowUpdateModal(true);
+                  }}
                 >
                   Update
                 </button>

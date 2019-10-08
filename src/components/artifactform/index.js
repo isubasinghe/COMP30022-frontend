@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Form, Col } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 import styled from './index.module.scss';
 
 function ArtifactForm({
@@ -9,6 +10,7 @@ function ArtifactForm({
   showModal,
   setShowModal,
   request,
+  history,
   artifactData: { name, family_members: familyMembers, description, date, lat, lon }
 }) {
   let nameRef = useRef();
@@ -124,7 +126,7 @@ function ArtifactForm({
               lat: latRef.value,
               lon: lonRef.value
             }).then(() => {
-              window.location.reload();
+              history.go(0);
             });
           }}
           type="button"
@@ -163,4 +165,4 @@ ArtifactForm.defaultProps = {
   }
 };
 
-export default ArtifactForm;
+export default withRouter(ArtifactForm);
