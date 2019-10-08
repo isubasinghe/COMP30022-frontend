@@ -1,0 +1,35 @@
+.title {
+  text-align: left;
+  padding: 10px 10px 15px;
+  color: #1a535c;
+  font-family: impact !important;
+  font-size: 48px;
+}
+
+.button {
+  text-align: center;
+  height: 50px;
+  width: 100px;
+  font-family: impact;
+  font-size: 20px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px gray;
+  margin-left: 2%;
+  margin-right: 2%;
+
+  &-red {
+    @extend .button;
+    background-color: #ff6b6b;
+  }
+  &-grey {
+    @extend .button;
+    background-color: #1a535c;
+  }
+  &-teal {
+    @extend .button;
+    background-color: #4ecdc4;
+  }
+}
