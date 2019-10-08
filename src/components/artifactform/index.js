@@ -123,6 +123,8 @@ function ArtifactForm({
               date: dateRef.value,
               lat: latRef.value,
               lon: lonRef.value
+            }).then(() => {
+              window.location.reload();
             });
           }}
           type="button"
