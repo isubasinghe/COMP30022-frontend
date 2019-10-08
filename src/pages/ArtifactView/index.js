@@ -48,7 +48,7 @@ function ArtifactView({
             setHasLoaded(true);
           }
         })
-        .catch(err => {
+        .catch(() => {
           setErrorState(true);
           setHasLoaded(true);
         });
