@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
+import { useLocalStorage } from 'react-use';
 import RegisterForm from '../registerform';
 import NewArtifactForm from '../newartifactform';
 import Settings from '../settings';
@@ -11,16 +12,25 @@ import styled from './index.module.scss';
 // overwrite some css in the DropDown menu
 import './index.scss';
 
+const KEY_SELECT_REGISTER = 'AIRLOOMNAVBAR_SELECT_REGISTER';
+const SELECT_REGISTER = 'SELECT REGISTER';
+
+const KEY_IS_ADMIN = 'AIRLOOMNAVBAR_IS_ADMIN';
+const IS_ADMIN = false;
+
 function AirLoomNavbar({ refetchRegisters, registers, history }) {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showArtifactModal, setShowArtifactModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
-  const selectRegister = 'SELECT REGISTER';
-  const [registerSelect, setRegisterSelect] = useState(selectRegister);
-  const [registerDisplay, setRegisterDisplay] = useState(selectRegister);
-  const [isAdmin, setIsAdmin] = useState(false);
+  
+  const [registerSelect, setRegisterSelect] = useLocalStorage(KEY_SELECT_REGISTER, SELECT_REGISTER);
+  const [registerDisplay, setRegisterDisplay] = useLocalStorage(
+    KEY_SELECT_REGISTER,
+    SELECT_REGISTER
+  );
+  const [isAdmin, setIsAdmin] = useLocalStorage(KEY_IS_ADMIN, IS_ADMIN);
   const hasRegisters = registers.length > 0;
-  const selectedRegister = registerSelect !== selectRegister;
+  const selectedRegister = registerSelect !== SELECT_REGISTER;
 
   const redirect = location => {
     return () => {
