@@ -10,7 +10,7 @@ import ListView from './pages/ListView';
 import TimelineView from './pages/TimelineView';
 import ArtifactView from './pages/ArtifactView';
 import { getDefaultRegister, getRegisters } from './utils/register';
-import AuthTheme from './AuthTheme.js';
+import AuthTheme from './AuthTheme';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';

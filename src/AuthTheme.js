@@ -52,7 +52,6 @@ export const Input = {
 };
 export const Button = {
   textAlign: 'center',
-  borderRadius: '25px',
   fontFamily: 'impact',
   fontSize: '20px',
   color: 'white',
