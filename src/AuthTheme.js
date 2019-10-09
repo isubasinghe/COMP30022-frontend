@@ -22,7 +22,8 @@ export const FormSection = {
   backgroundColor: '#f7fff7',
   borderRadius: '25px',
   padding: '50px',
-  width: '40%'
+  minWidth: '40%',
+  margin: '50px'
 };
 export const FormField = { fontFamily: 'impact' };
 export const SectionHeader = {
@@ -58,8 +59,6 @@ export const Button = {
   textTransform: 'uppercase',
   borderRadius: '15px',
   boxShadow: '5px 5px 5px gray',
-  paddingLeft: '15px',
-  paddingRight: '15px',
   backgroundColor: '#FF6B6B',
   borderStyle: 'outset',
   borderColor: 'buttonface'
