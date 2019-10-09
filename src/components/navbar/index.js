@@ -13,6 +13,7 @@ import styled from './index.module.scss';
 import './index.scss';
 
 const KEY_SELECT_REGISTER = 'AIRLOOMNAVBAR_SELECT_REGISTER';
+const KEY_DISPLAY_REGISTER = 'AIRLOOMNAVBAR_DISPLAY_REGISTER';
 const SELECT_REGISTER = 'SELECT REGISTER';
 
 const KEY_IS_ADMIN = 'AIRLOOMNAVBAR_IS_ADMIN';
@@ -24,7 +25,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [registerSelect, setRegisterSelect] = useLocalStorage(KEY_SELECT_REGISTER, SELECT_REGISTER);
   const [registerDisplay, setRegisterDisplay] = useLocalStorage(
-    KEY_SELECT_REGISTER,
+    KEY_DISPLAY_REGISTER,
     SELECT_REGISTER
   );
   const [isAdmin, setIsAdmin] = useLocalStorage(KEY_IS_ADMIN, IS_ADMIN);
