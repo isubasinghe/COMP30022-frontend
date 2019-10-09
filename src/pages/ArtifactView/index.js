@@ -1,24 +1,29 @@
 /* eslint-disable dot-notation */
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Button, Media } from 'react-bootstrap';
+import { Container, Row, Col, button, Media } from 'react-bootstrap';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import Spinner from '../../components/spinner';
 import PhotoForm from '../../components/photoform';
+import DeleteModal from '../../components/deletemodal';
+import UpdateArtifactForm from '../../components/updateartifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
 function ArtifactView({
   match: {
     params: { registerId, artifactId }
-  }
+  },
+  history
 }) {
   const [artifact, setArtifact] = useState(undefined);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [photoCount, setPhotoCount] = useState(0);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errorState, setErrorState] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
     if (registerId !== null && artifactId !== null) {
@@ -43,12 +48,31 @@ function ArtifactView({
             setHasLoaded(true);
           }
         })
-        .catch(err => {
+        .catch(() => {
           setErrorState(true);
           setHasLoaded(true);
         });
     }
   }, [registerId, artifactId]);
+
+  const deleteArtifact = () => {
+    const data = {
+      register_id: registerId,
+      artifact_id: artifactId
+    };
+
+    authFetchRequest(`https://api.airloom.xyz/api/v1/artifact/del/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(() => {
+        history.push(`/list/${registerId}`);
+      })
+      .catch(err => {});
+  };
 
   if (!hasLoaded) {
     return <Spinner />;
@@ -94,29 +118,25 @@ function ArtifactView({
           </Row>
           <Row>
             <Col>
-              <Button
+              <button
                 type="button"
                 className={styled['button-teal']}
                 onClick={() => setPhotoIndex((photoIndex + 1) % photoCount)}
               >
                 &larr;
-              </Button>
-            </Col>
-            {artifact.is_admin ? (
-              <Col>
-                <Button
+              </button>
+              {artifact.is_admin ? (
+                <button
                   type="button"
                   className={styled['button-red']}
-                  onClick={() => setShowModal(true)}
+                  onClick={() => setShowPhotoModal(true)}
                 >
                   +
-                </Button>
-              </Col>
-            ) : (
-              <></>
-            )}
-            <Col>
-              <Button
+                </button>
+              ) : (
+                <></>
+              )}
+              <button
                 type="button"
                 className={styled['button-teal']}
                 onClick={() => {
@@ -124,7 +144,29 @@ function ArtifactView({
                 }}
               >
                 &rarr;
-              </Button>
+              </button>
+            </Col>
+            <Col>
+              {artifact.is_admin ? (
+                <>
+                  <button
+                    type="button"
+                    className={styled['button-red']}
+                    onClick={() => setShowUpdateModal(true)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    className={styled['button-red']}
+                    onClick={() => setShowDeleteModal(true)}
+                  >
+                    Delete
+                  </button>
+                </>
+              ) : (
+                <></>
+              )}
             </Col>
           </Row>
         </Container>
@@ -132,8 +174,20 @@ function ArtifactView({
       <PhotoForm
         registerId={registerId}
         artifactId={artifactId}
-        showModal={showModal}
-        setShowModal={setShowModal}
+        showModal={showPhotoModal}
+        setShowModal={setShowPhotoModal}
+      />
+      <UpdateArtifactForm
+        registerId={registerId}
+        artifactId={artifactId}
+        showModal={showUpdateModal}
+        setShowModal={setShowUpdateModal}
+        artifactData={artifact}
+      />
+      <DeleteModal
+        showModal={showDeleteModal}
+        setShowModal={setShowDeleteModal}
+        onConfirmation={deleteArtifact}
       />
     </>
   );
@@ -145,6 +199,9 @@ ArtifactView.propTypes = {
       registerId: PropTypes.string.isRequired,
       artifactId: PropTypes.string.isRequired
     }).isRequired
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
   }).isRequired
 };
 
