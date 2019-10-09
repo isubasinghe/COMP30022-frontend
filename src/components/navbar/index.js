@@ -22,7 +22,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showArtifactModal, setShowArtifactModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
-  
+
   const [registerSelect, setRegisterSelect] = useLocalStorage(KEY_SELECT_REGISTER, SELECT_REGISTER);
   const [registerDisplay, setRegisterDisplay] = useLocalStorage(
     KEY_SELECT_REGISTER,
