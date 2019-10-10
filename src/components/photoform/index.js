@@ -6,7 +6,7 @@ import styled from './index.module.scss';
 
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 
-function PhotoForm({ artifactId, registerId, showModal, setShowModal, history  }) {
+function PhotoForm({ artifactId, registerId, showModal, setShowModal, history }) {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: 'image/jpeg, image/png'
   });
@@ -26,14 +26,16 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal, history  }
     });
 
     Promise.all(promisedRequests)
-      .then(() => {history.go(0)})
+      .then(() => {
+        history.go(0);
+      })
       .catch(() => {});
   };
 
   const files = acceptedFiles.map(file => (
     <li key={file.path}>
       <p>
-        {file.path} - {file.size} bytes
+        {file.path} -{file.size} bytes
       </p>
     </li>
   ));
@@ -48,7 +50,7 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal, history  }
       dialogClassName="photo-modal"
     >
       <Modal.Header>
-        <div className={styled['title']}>Add Photos</div>
+        <div className={styled.title}>Add Photos</div>
       </Modal.Header>
       <Modal.Body>
         <section className="container">
@@ -75,7 +77,6 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal, history  }
           type="button"
           onClick={() => {
             setShowModal(false);
-
           }}
           className={styled['button-teal']}
         >
