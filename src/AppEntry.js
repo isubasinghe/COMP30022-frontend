@@ -10,6 +10,7 @@ import ListView from './pages/ListView';
 import TimelineView from './pages/TimelineView';
 import ArtifactView from './pages/ArtifactView';
 import { getDefaultRegister, getRegisters } from './utils/register';
+import AuthTheme from './AuthTheme';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -69,5 +70,6 @@ export default withAuthenticator(App, {
       { label: 'Username', key: 'username', required: true, displayOrder: 2, type: 'string' },
       { label: 'Password', key: 'password', required: true, displayOrder: 3, type: 'password' }
     ]
-  }
+  },
+  theme: AuthTheme
 });

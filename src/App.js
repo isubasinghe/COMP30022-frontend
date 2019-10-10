@@ -11,7 +11,7 @@ const LoadableApp = Loadable({
 });
 
 function App() {
-  return <LoadableApp />;
+  return <LoadableApp className='App'/>;
 }
 
 export default App;
