@@ -44,11 +44,7 @@ class ArtifactMap extends React.Component {
     const { artifacts, displayPopups, mapFrame } = this.props;
     return (
       <div>
-        <Map
-          className={mapFrame}
-          bounds={this.bounds}
-          boundsOptions={{ padding: [10, 10] }}
-        >
+        <Map className={mapFrame} bounds={this.bounds} boundsOptions={{ padding: [10, 10] }}>
           <TileLayer
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -56,7 +52,7 @@ class ArtifactMap extends React.Component {
           {artifacts.map(arti => {
             return (
               <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
-                {displayPopups ? 
+                {displayPopups ? (
                 <Popup className={styled['pop-up']}>
                   <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
                     <b className={styled['text-modifier']}>{arti.name}</b>
@@ -64,9 +60,9 @@ class ArtifactMap extends React.Component {
                     <p className={styled['text-modifier']}>{arti.description}</p>
                   </Link>
                 </Popup>
-                :
-                <></>
-                }
+              )
+                ) : (
+                  <></>}
               </Marker>
             );
           })}
@@ -83,6 +79,6 @@ ArtifactMap.propTypes = {
 };
 ArtifactMap.defaultProps = {
   displayPopups: true
-}
+};
 
 export default ArtifactMap;
