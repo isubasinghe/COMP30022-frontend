@@ -6,7 +6,7 @@ import styled from './index.module.scss';
 
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 
-function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
+function PhotoForm({ artifactId, registerId, showModal, setShowModal, history  }) {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: 'image/jpeg, image/png'
   });
@@ -26,7 +26,7 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
     });
 
     Promise.all(promisedRequests)
-      .then(() => {})
+      .then(() => {history.go(0)})
       .catch(() => {});
   };
 
@@ -75,6 +75,7 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal }) {
           type="button"
           onClick={() => {
             setShowModal(false);
+
           }}
           className={styled['button-teal']}
         >
@@ -92,7 +93,10 @@ PhotoForm.propTypes = {
   registerId: PropTypes.string.isRequired,
   artifactId: PropTypes.string.isRequired,
   showModal: PropTypes.bool.isRequired,
-  setShowModal: PropTypes.func.isRequired
+  setShowModal: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    go: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default PhotoForm;
