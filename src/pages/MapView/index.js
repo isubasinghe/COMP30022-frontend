@@ -35,11 +35,7 @@ function MapView(props) {
   if (errorState) {
     return <div className="error">Something went wrong with your request, woops</div>;
   }
-  return (
-    <>
-      <ArtifactMap className={styled['artifact-map']} artifacts={artifacts} />
-    </>
-  );
+  return <ArtifactMap className={styled['map-component']} artifacts={artifacts} />;
 }
 
 MapView.propTypes = {

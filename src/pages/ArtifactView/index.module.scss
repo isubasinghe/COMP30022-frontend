@@ -20,7 +20,7 @@
 
 .title {
   text-align: left;
-  padding: 10px 10px 15px;
+  padding: 10px 0px 15px;
   color: #1a535c;
   font-family: impact;
   font-size: 2em;
@@ -36,6 +36,22 @@
   background-color: white;
   box-shadow: 5px 5px 5px gray;
   border-radius: 15px;
+}
+
+.map {
+  padding: 15px;
+  width: 90%;
+  height: 250px;
+  color: #1a535c;
+  background-color: white;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 15px;
+}
+
+.map-component {
+  padding: 15px;
+  height: 220px;
+  width: 100%;
 }
 
 .photo-container {
@@ -71,7 +87,7 @@
   color: white;
   text-transform: uppercase;
   box-shadow: 5px 5px 5px gray;
-  margin-top: 10px;
+  margin-top: 25px;
   margin-left: 2%;
   margin-right: 2%;
 
