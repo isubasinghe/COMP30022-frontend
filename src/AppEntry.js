@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { withAuthenticator } from 'aws-amplify-react';
 import Auth from '@aws-amplify/auth';
+import { I18n } from '@aws-amplify/core';
 import AppErrorBoundary from './AppErrorBoundary';
 import AirNavBar from './components/navbar';
 import Home from './pages/Home';
@@ -10,9 +11,19 @@ import ListView from './pages/ListView';
 import TimelineView from './pages/TimelineView';
 import ArtifactView from './pages/ArtifactView';
 import { getDefaultRegister, getRegisters } from './utils/register';
+import AuthTheme from './AuthTheme';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
+const authScreenLabels = {
+  en: {
+    'Sign in to your account': 'Sign in to Airloom'
+  }
+};
+
+I18n.setLanguage('en');
+I18n.putVocabularies(authScreenLabels);
 
 function App() {
   const [registers, setRegisters] = useState([]);
@@ -23,7 +34,7 @@ function App() {
           setRegisters(registersFetched);
         }
       })
-      .catch(err => {});
+      .catch(() => {});
   };
   useEffect(() => {
     Auth.currentAuthenticatedUser({
@@ -42,7 +53,7 @@ function App() {
           setRegisters(registersFetched);
         }
       })
-      .catch(error => {});
+      .catch(() => {});
   }, []);
 
   return (
@@ -69,5 +80,6 @@ export default withAuthenticator(App, {
       { label: 'Username', key: 'username', required: true, displayOrder: 2, type: 'string' },
       { label: 'Password', key: 'password', required: true, displayOrder: 3, type: 'password' }
     ]
-  }
+  },
+  theme: AuthTheme
 });

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Spinner from '../../components/spinner';
 import PhotoForm from '../../components/photoform';
 import DeleteModal from '../../components/deletemodal';
+import ArtifactMap from '../../components/map';
 import UpdateArtifactForm from '../../components/updateartifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
@@ -37,6 +38,7 @@ function ArtifactView({
             setHasLoaded(true);
           } else {
             const artifactData = data[0];
+
             // preload image assets
             artifactData.photos.forEach((artifactCurr, i) => {
               if (i !== 0) {
@@ -102,8 +104,7 @@ function ArtifactView({
               {[
                 { title: 'Date', data: moment(artifact.date).format('dddd, MMMM Do YYYY') },
                 { title: 'Description', data: artifact.description },
-                { title: 'Family Members', data: artifact.family_members },
-                { title: 'Location', data: `${artifact.lat}, ${artifact.lon}` }
+                { title: 'Family Members', data: artifact.family_members }
               ].map(({ title, data }) => (
                 <div key={`${title}`}>
                   <div key={`title-${title}-${data}`} className={styled['title']}>
@@ -114,6 +115,15 @@ function ArtifactView({
                   </div>
                 </div>
               ))}
+              <br />
+              <div className={styled['title']}>Location</div>
+              <div className={styled['map']}>
+                <ArtifactMap
+                  className={styled['map-component']}
+                  artifacts={[artifact]}
+                  displayPopups={false}
+                />
+              </div>
             </Col>
           </Row>
           <Row>
@@ -176,6 +186,7 @@ function ArtifactView({
         artifactId={artifactId}
         showModal={showPhotoModal}
         setShowModal={setShowPhotoModal}
+        history={history}
       />
       <UpdateArtifactForm
         registerId={registerId}

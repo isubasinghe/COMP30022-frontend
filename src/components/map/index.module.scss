@@ -1,6 +1,7 @@
 .map-component {
-    height: calc(100vh - 70px);
-    width: 100vw;
+    min-height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
 .text-modifier {

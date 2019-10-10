@@ -7,6 +7,7 @@ import { useLocalStorage } from 'react-use';
 import RegisterForm from '../registerform';
 import NewArtifactForm from '../newartifactform';
 import Settings from '../settings';
+import Logo from '../../assets/favicon.svg';
 import styled from './index.module.scss';
 
 // overwrite some css in the DropDown menu
@@ -45,7 +46,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
   return (
     <Navbar className={styled['navbar-main']} expand="lg">
       <Navbar.Brand className={`${styled['home-nav-link']} hover-link`} onClick={redirect('')}>
-        Airloom
+        <img className={styled['logo']} src={Logo} alt="Airloom" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -88,9 +89,10 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
         )}
         <Nav>
           <NavDropdown
-            className={styled['text-modifier']}
+            className={`${styled['text-modifier']}`}
             title={registerDisplay}
             id="basic-nav-dropdown"
+            alignRight
           >
             {registers.map(register => {
               return (

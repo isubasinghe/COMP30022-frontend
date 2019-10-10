@@ -25,6 +25,7 @@ class ArtifactMap extends React.Component {
 
     // Default Map Position
     const { artifacts } = this.props;
+
     switch (artifacts.length) {
       case 0:
         this.bounds = new L.latLngBounds([[-60, -120], [60, 120]]);
@@ -42,13 +43,13 @@ class ArtifactMap extends React.Component {
   }
 
   render() {
-    const { artifacts } = this.props;
+    const { artifacts, displayPopups, className } = this.props;
     return (
       <div>
         <Map
-          className={styled['map-component']}
+          className={className}
           bounds={this.bounds}
-          boundsOptions={{ padding: [10, 10] }}
+          // boundsOptions={{ padding: [10, 10] }}
         >
           <TileLayer
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
@@ -57,13 +58,17 @@ class ArtifactMap extends React.Component {
           {artifacts.map(arti => {
             return (
               <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
-                <Popup className={styled['pop-up']}>
-                  <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
-                    <b className={styled['text-modifier']}>{arti.name}</b>
-                    <br />
-                    <p className={styled['text-modifier']}>{arti.description}</p>
-                  </Link>
-                </Popup>
+                {displayPopups ? (
+                  <Popup className={styled['pop-up']}>
+                    <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
+                      <b className={styled['text-modifier']}>{arti.name}</b>
+                      <br />
+                      <p className={styled['text-modifier']}>{arti.description}</p>
+                    </Link>
+                  </Popup>
+                ) : (
+                  <></>
+                )}
               </Marker>
             );
           })}
@@ -74,7 +79,13 @@ class ArtifactMap extends React.Component {
 }
 
 ArtifactMap.propTypes = {
-  artifacts: PropTypes.arrayOf(PropTypes.object).isRequired
+  artifacts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  className: PropTypes.string.isRequired,
+  displayPopups: PropTypes.bool
+};
+
+ArtifactMap.defaultProps = {
+  displayPopups: true
 };
 
 export default ArtifactMap;

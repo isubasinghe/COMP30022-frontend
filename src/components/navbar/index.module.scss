@@ -1,17 +1,25 @@
 .home-nav-link {
   cursor: pointer;
   color: #f7fff7 !important;
-  font-family: impact;
+  font-family: sans-serif;
   font-size: 28px;
 }
 
 .navbar-main {
   background-color: #4ecdc4;
-  min-height: 70px;
+  min-height: 72px;
+  z-index: 1;
 }
 
 .text-modifier {
   color: #f7fff7 !important;
-  font-family: impact;
+  font-family: sans-serif;
   font-size: 1em;
+  letter-spacing: 1.5px;
+}
+
+.logo {
+  width: 43px;
+  height: 43px;
+  position: relative;
 }
