@@ -14,6 +14,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 I18n.setLanguage('en');
+
+const authScreenLabels = {
+  en: {
+    'Sign in to your account': 'Sign in to Airloom'
+  }
+};
+
 I18n.putVocabularies(authScreenLabels);
 
 function Loading() {
@@ -39,12 +46,6 @@ const ArtifactView = Loadable({
   loader: () => import('./pages/ArtifactView'),
   loading: Loading
 });
-
-const authScreenLabels = {
-  en: {
-    'Sign in to your account': 'Sign in to Airloom'
-  }
-};
 
 function App() {
   const [registers, setRegisters] = useState([]);
