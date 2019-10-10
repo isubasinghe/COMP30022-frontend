@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Spinner from '../../components/spinner';
+import Error from '../../components/error';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
@@ -33,7 +34,7 @@ function ListView(props) {
     return <Spinner />;
   }
   if (errorState) {
-    return <div className="error">Something went wrong with your request, woops</div>;
+    return <Error />;
   }
   return (
     <>

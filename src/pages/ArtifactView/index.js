@@ -1,9 +1,10 @@
 /* eslint-disable dot-notation */
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, button, Media } from 'react-bootstrap';
+import { Container, Row, Col, Media } from 'react-bootstrap';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import Spinner from '../../components/spinner';
+import Error from '../../components/error';
 import PhotoForm from '../../components/photoform';
 import DeleteModal from '../../components/deletemodal';
 import ArtifactMap from '../../components/map';
@@ -80,7 +81,7 @@ function ArtifactView({
     return <Spinner />;
   }
   if (errorState) {
-    return <div className="error">Something went wrong with your request, whoops</div>;
+    return <Error />;
   }
 
   return (
