@@ -34,7 +34,7 @@ function App() {
           setRegisters(registersFetched);
         }
       })
-      .catch(err => {});
+      .catch(() => {});
   };
   useEffect(() => {
     Auth.currentAuthenticatedUser({
@@ -53,7 +53,7 @@ function App() {
           setRegisters(registersFetched);
         }
       })
-      .catch(error => {});
+      .catch(() => {});
   }, []);
 
   return (
