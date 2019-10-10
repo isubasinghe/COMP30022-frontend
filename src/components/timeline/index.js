@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import styled from './index.module.scss';
 import 'react-vertical-timeline-component/style.min.css';
-import { ReactComponent as TimelineIcon } from '../../assets/timeline/index.svg';
+import { ReactComponent as TimelineIcon } from '../../assets/timeline/clock.svg';
 
 function ArtifactTimeline(props) {
   const { artifacts } = props;
