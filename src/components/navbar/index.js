@@ -46,7 +46,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
   return (
     <Navbar className={styled['navbar-main']} expand="lg">
       <Navbar.Brand className={`${styled['home-nav-link']} hover-link`} onClick={redirect('')}>
-        <img className={styled['logo']} src={Logo} alt='Airloom' />
+        <img className={styled['logo']} src={Logo} alt="Airloom" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
