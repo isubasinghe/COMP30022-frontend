@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
+import { Navbar, NavDropdown, Nav, Dropdown, NavItem, NavLink } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
 import { useLocalStorage } from 'react-use';
@@ -45,7 +45,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
   return (
     <Navbar className={styled['navbar-main']} expand="lg">
       <Navbar.Brand className={`${styled['home-nav-link']} hover-link`} onClick={redirect('')}>
-        Airloom
+        <img className={styled['logo']} src={require('../../assets/favicon.svg')} alt={'Airloom'} />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -88,9 +88,10 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
         )}
         <Nav>
           <NavDropdown
-            className={styled['text-modifier']}
+            className={`${styled['text-modifier']}`}
             title={registerDisplay}
             id="basic-nav-dropdown"
+            alignRight
           >
             {registers.map(register => {
               return (
