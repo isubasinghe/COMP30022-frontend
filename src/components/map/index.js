@@ -10,8 +10,7 @@ import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import styled from './index.module.scss';
 import './index.scss';
 
-// Reload Map Marker
-// TODO: Customize
+// Reload Map Marker GLOBAL
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl,
@@ -30,7 +29,7 @@ class ArtifactMap extends React.Component {
         this.bounds = new L.latLngBounds([[-60, -120], [60, 120]]);
         break;
       case 1:
-        this.bounds = new L.latLng([artifacts[0].lat, artifacts[0].lon]).toBounds(10000);
+        this.bounds = new L.latLng([artifacts[0].lat, artifacts[0].lon]).toBounds(1000000);
         break;
       default:
         const markers = [];
@@ -42,11 +41,11 @@ class ArtifactMap extends React.Component {
   }
 
   render() {
-    const { artifacts, displayLinks } = this.props;
+    const { artifacts, displayPopups, mapFrame } = this.props;
     return (
       <div>
         <Map
-          className={styled['map-component']}
+          className={mapFrame}
           bounds={this.bounds}
           boundsOptions={{ padding: [10, 10] }}
         >
@@ -57,7 +56,7 @@ class ArtifactMap extends React.Component {
           {artifacts.map(arti => {
             return (
               <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
-                {displayLinks ? 
+                {displayPopups ? 
                 <Popup className={styled['pop-up']}>
                   <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
                     <b className={styled['text-modifier']}>{arti.name}</b>
@@ -79,7 +78,8 @@ class ArtifactMap extends React.Component {
 
 ArtifactMap.propTypes = {
   artifacts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  displayPopups: bool.isRequired
+  displayPopups: bool.isRequired,
+  mapFrame: PropTypes.object.isRequired
 };
 ArtifactMap.defaultProps = {
   displayPopups: true

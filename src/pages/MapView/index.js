@@ -37,7 +37,11 @@ function MapView(props) {
   }
   return (
     <>
-      <ArtifactMap className={styled['artifact-map']} artifacts={artifacts} />
+      <ArtifactMap 
+        artifacts={artifacts} 
+        displayLinks={true} 
+        mapFrame={styled['map-component']}
+      />
     </>
   );
 }

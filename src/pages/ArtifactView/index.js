@@ -115,8 +115,12 @@ function ArtifactView({
                   </div>
                 </div>
               ))}
-              <div className={styled['map-container']}>
-                <ArtifactMap artifacts={[artifact]} displayLinks={false} />
+              <div>
+                <ArtifactMap 
+                  artifacts={[artifact]} 
+                  displayLinks={false} 
+                  mapFrame={styled['map-container']}
+                />
               </div>
             </Col>
           </Row>
