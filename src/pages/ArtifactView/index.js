@@ -176,6 +176,7 @@ function ArtifactView({
         artifactId={artifactId}
         showModal={showPhotoModal}
         setShowModal={setShowPhotoModal}
+        history={history}
       />
       <UpdateArtifactForm
         registerId={registerId}
