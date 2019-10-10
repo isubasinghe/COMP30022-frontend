@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { withAuthenticator } from 'aws-amplify-react';
 import Auth from '@aws-amplify/auth';
+import { I18n } from '@aws-amplify/core';
 import AppErrorBoundary from './AppErrorBoundary';
 import AirNavBar from './components/navbar';
 import Home from './pages/Home';
@@ -14,6 +15,15 @@ import AuthTheme from './AuthTheme';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
+const authScreenLabels = {
+  en: {
+    'Sign in to your account': 'Sign in to Airloom'
+  }
+};
+
+I18n.setLanguage('en');
+I18n.putVocabularies(authScreenLabels);
 
 function App() {
   const [registers, setRegisters] = useState([]);

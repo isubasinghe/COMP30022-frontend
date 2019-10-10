@@ -2,12 +2,12 @@ body {
   height: 100%;
   width: 100%;
   position: absolute;
-  background:  #1A535C;
+  background: #1a535c;
 }
 
 .App {
   text-align: center;
-  background:  #1A535C;
+  background: #1a535c;
 }
 
 .App-logo {
@@ -52,6 +52,10 @@ body {
 
 a:hover {
   text-decoration: none;
+}
+
+a:focus {
+  outline: none;
 }
 
 .hover-link:hover {
