@@ -38,14 +38,19 @@
   border-radius: 15px;
 }
 
+.map-container {
+  padding: 15px;
+  width: 90%;
+  height: 300px;
+  color: #1a535c;
+  background-color: white;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 15px;
+}
+
 .photo-container {
   height: 100%;
   width: 100%;
-}
-
-.map-container {
-  height: 300px;
-  width: 300px;
 }
 
 .photo {

@@ -104,7 +104,6 @@ function ArtifactView({
                 { title: 'Date', data: moment(artifact.date).format('dddd, MMMM Do YYYY') },
                 { title: 'Description', data: artifact.description },
                 { title: 'Family Members', data: artifact.family_members },
-                { title: 'Location', data: `${artifact.lat}, ${artifact.lon}` }
               ].map(({ title, data }) => (
                 <div key={`${title}`}>
                   <div key={`title-${title}-${data}`} className={styled['title']}>
@@ -115,12 +114,17 @@ function ArtifactView({
                   </div>
                 </div>
               ))}
-              <div>
-                <ArtifactMap 
-                  artifacts={[artifact]} 
-                  displayLinks={false} 
-                  mapFrame={styled['map-container']}
-                />
+              <div key={'Location'}>
+                <div key={`title-Location`} className={styled['title']}>
+                  Location
+                </div>
+                <div>
+                  <ArtifactMap 
+                    artifacts={[artifact]} 
+                    displayLinks={false} 
+                    mapFrame={styled['map-container']}
+                  />
+                </div>
               </div>
             </Col>
           </Row>
