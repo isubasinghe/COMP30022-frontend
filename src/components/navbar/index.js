@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Navbar, NavDropdown, Nav, Dropdown, NavItem, NavLink } from 'react-bootstrap';
+import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import Auth from '@aws-amplify/auth';
 import { useLocalStorage } from 'react-use';
 import RegisterForm from '../registerform';
 import NewArtifactForm from '../newartifactform';
 import Settings from '../settings';
+import Logo from '../../assets/favicon.svg';
 import styled from './index.module.scss';
 
 // overwrite some css in the DropDown menu
@@ -45,7 +46,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
   return (
     <Navbar className={styled['navbar-main']} expand="lg">
       <Navbar.Brand className={`${styled['home-nav-link']} hover-link`} onClick={redirect('')}>
-        <img className={styled['logo']} src={require('../../assets/favicon.svg')} alt={'Airloom'} />
+        <img className={styled['logo']} src={Logo} alt='Airloom' />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
