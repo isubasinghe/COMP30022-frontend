@@ -4,7 +4,7 @@ import { Modal, Form } from 'react-bootstrap';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
-function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
+function RegisterForm({ addRegister, showModal, setShowModal }) {
   let nameRef = useRef();
 
   const createNewRegister = registerName => {
@@ -20,21 +20,18 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
       body: JSON.stringify(data)
     })
       .then(() => {
-        refetchRegisters();
+        addRegister(data);
         setShowModal(false);
       })
       .catch(() => {});
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
-    <Modal
-      show={showModal}
-      onHide={() => {
-        setShowModal(false);
-      }}
-      size="lg"
-      dialogClassName="register-modal"
-    >
+    <Modal show={showModal} onHide={closeModal} size="lg" dialogClassName="register-modal">
       <Modal.Header>
         <div className={styled.title}>Create A New Register</div>
       </Modal.Header>
@@ -53,7 +50,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <button type="button" onClick={() => setShowModal(false)} className={styled['button-grey']}>
+        <button type="button" onClick={closeModal} className={styled['button-grey']}>
           Cancel
         </button>
         <button
@@ -69,7 +66,7 @@ function RegisterForm({ refetchRegisters, showModal, setShowModal }) {
 }
 
 RegisterForm.propTypes = {
-  refetchRegisters: PropTypes.func.isRequired,
+  addRegister: PropTypes.func.isRequired,
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired
 };

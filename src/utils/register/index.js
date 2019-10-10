@@ -4,13 +4,9 @@ export const getRegisters = () => {
   return authFetchRequest('https://api.airloom.xyz/api/v1/register/', {}).then(res => {
     const results = Object.values(res);
     if (results.length === 0) {
-      return null;
+      return [];
     }
-    return results.sort((a, b) => {
-      const { name: aName } = a;
-      const { name: bName } = b;
-      return aName.toUpperCase().localeCompare(bName.toUpperCase());
-    });
+    return results;
   });
 };
 
