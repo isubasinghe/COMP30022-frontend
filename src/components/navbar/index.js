@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
-import Auth from '@aws-amplify/auth';
+import { Auth } from 'aws-amplify';
 import { useLocalStorage } from 'react-use';
 import RegisterForm from '../registerform';
 import NewArtifactForm from '../newartifactform';
@@ -46,7 +46,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
   return (
     <Navbar className={styled['navbar-main']} expand="lg">
       <Navbar.Brand className={`${styled['home-nav-link']} hover-link`} onClick={redirect('')}>
-        <img className={styled['logo']} src={Logo} alt="Airloom" />
+        <img className={styled.logo} src={Logo} alt="Airloom" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
