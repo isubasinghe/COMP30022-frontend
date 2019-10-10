@@ -3,27 +3,48 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { withAuthenticator } from 'aws-amplify-react';
 import Auth from '@aws-amplify/auth';
 import { I18n } from '@aws-amplify/core';
+import Loadable from 'react-loadable';
 import AppErrorBoundary from './AppErrorBoundary';
 import AirNavBar from './components/navbar';
 import Home from './pages/Home';
-import MapView from './pages/MapView';
-import ListView from './pages/ListView';
-import TimelineView from './pages/TimelineView';
-import ArtifactView from './pages/ArtifactView';
 import { getDefaultRegister, getRegisters } from './utils/register';
 import AuthTheme from './AuthTheme';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+I18n.setLanguage('en');
+I18n.putVocabularies(authScreenLabels);
+
+function Loading() {
+  return <p>Loading</p>;
+}
+
+const MapView = Loadable({
+  loader: () => import('./pages/MapView'),
+  loading: Loading
+});
+
+const ListView = Loadable({
+  loader: () => import('./pages/ListView'),
+  loading: Loading
+});
+
+const TimelineView = Loadable({
+  loader: () => import('./pages/TimelineView'),
+  loading: Loading
+});
+
+const ArtifactView = Loadable({
+  loader: () => import('./pages/ArtifactView'),
+  loading: Loading
+});
+
 const authScreenLabels = {
   en: {
     'Sign in to your account': 'Sign in to Airloom'
   }
 };
-
-I18n.setLanguage('en');
-I18n.putVocabularies(authScreenLabels);
 
 function App() {
   const [registers, setRegisters] = useState([]);
