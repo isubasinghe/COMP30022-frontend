@@ -115,7 +115,6 @@ function ArtifactView({
                   </div>
                 </div>
               ))}
-              <br />
               <div className={styled['title']}>Location</div>
               <div className={styled['map']}>
                 <ArtifactMap
