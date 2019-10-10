@@ -5,6 +5,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import Spinner from '../../components/spinner';
 import PhotoForm from '../../components/photoform';
+import ArtifactMap from '../../components/map';
 import DeleteModal from '../../components/deletemodal';
 import UpdateArtifactForm from '../../components/updateartifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
@@ -114,6 +115,9 @@ function ArtifactView({
                   </div>
                 </div>
               ))}
+              <div className={styled['map-container']}>
+                <ArtifactMap artifacts={[artifact]} displayLinks={false} />
+              </div>
             </Col>
           </Row>
           <Row>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import PropTypes from 'prop-types';
+import PropTypes, { bool } from 'prop-types';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
@@ -42,7 +42,7 @@ class ArtifactMap extends React.Component {
   }
 
   render() {
-    const { artifacts } = this.props;
+    const { artifacts, displayLinks } = this.props;
     return (
       <div>
         <Map
@@ -57,6 +57,7 @@ class ArtifactMap extends React.Component {
           {artifacts.map(arti => {
             return (
               <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
+                {displayLinks ? 
                 <Popup className={styled['pop-up']}>
                   <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
                     <b className={styled['text-modifier']}>{arti.name}</b>
@@ -64,6 +65,9 @@ class ArtifactMap extends React.Component {
                     <p className={styled['text-modifier']}>{arti.description}</p>
                   </Link>
                 </Popup>
+                :
+                <></>
+                }
               </Marker>
             );
           })}
@@ -74,7 +78,11 @@ class ArtifactMap extends React.Component {
 }
 
 ArtifactMap.propTypes = {
-  artifacts: PropTypes.arrayOf(PropTypes.object).isRequired
+  artifacts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  displayPopups: bool.isRequired
 };
+ArtifactMap.defaultProps = {
+  displayPopups: true
+}
 
 export default ArtifactMap;
