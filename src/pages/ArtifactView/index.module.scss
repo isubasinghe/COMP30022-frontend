@@ -16,6 +16,7 @@
   top: 25%;
   width: 90%;
   padding: 15px;
+  margin-bottom: 25px;
 }
 
 .title {
@@ -29,7 +30,7 @@
 .data {
   text-align: left;
   padding: 15px;
-  width: 90%;
+  min-width: 90%;
   font-family: sans-serif;
   font-size: 16px;
   color: #1a535c;
@@ -40,7 +41,7 @@
 
 .map {
   padding: 15px;
-  width: 90%;
+  min-width: 90%;
   height: 250px;
   color: #1a535c;
   background-color: white;

@@ -39,9 +39,6 @@ function ArtifactView({
           } else {
             const artifactData = data[0];
 
-            artifactData.lat = parseFloat(artifactData.lat);
-            artifactData.lon = parseFloat(artifactData.lon);
-            console.log(artifactData);
             // preload image assets
             artifactData.photos.forEach((artifactCurr, i) => {
               if (i !== 0) {

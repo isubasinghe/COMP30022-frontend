@@ -26,7 +26,6 @@ class ArtifactMap extends React.Component {
     // Default Map Position
     const { artifacts } = this.props;
 
-    console.log(artifacts);
     switch (artifacts.length) {
       case 0:
         this.bounds = new L.latLngBounds([[-60, -120], [60, 120]]);
