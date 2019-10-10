@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Auth from '@aws-amplify/auth';
+import { Auth } from 'aws-amplify';
 import * as Sentry from '@sentry/browser';
 import awsconfig from './aws-exports';
 import './index.css';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
-import Auth from '@aws-amplify/auth';
+import { Auth } from 'aws-amplify';
 import { useLocalStorage } from 'react-use';
 import RegisterForm from '../registerform';
 import NewArtifactForm from '../newartifactform';
@@ -20,7 +20,7 @@ const SELECT_REGISTER = 'SELECT REGISTER';
 const KEY_IS_ADMIN = 'AIRLOOMNAVBAR_IS_ADMIN';
 const IS_ADMIN = false;
 
-function AirLoomNavbar({ refetchRegisters, registers, history }) {
+function AirLoomNavbar({ addRegister, registers, history }) {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showArtifactModal, setShowArtifactModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
@@ -46,7 +46,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
   return (
     <Navbar className={styled['navbar-main']} expand="lg">
       <Navbar.Brand className={`${styled['home-nav-link']} hover-link`} onClick={redirect('')}>
-        <img className={styled['logo']} src={Logo} alt="Airloom" />
+        <img className={styled.logo} src={Logo} alt="Airloom" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -124,7 +124,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
         </Nav.Link>
       </Navbar.Collapse>
       <RegisterForm
-        refetchRegisters={refetchRegisters}
+        addRegister={addRegister}
         showModal={showRegisterModal}
         setShowModal={setShowRegisterModal}
       />
@@ -143,7 +143,7 @@ function AirLoomNavbar({ refetchRegisters, registers, history }) {
 }
 
 AirLoomNavbar.propTypes = {
-  refetchRegisters: PropTypes.func.isRequired,
+  addRegister: PropTypes.func.isRequired,
   registers: PropTypes.arrayOf(
     PropTypes.shape(
       PropTypes.number.isRequired,
