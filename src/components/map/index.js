@@ -87,6 +87,6 @@ ArtifactMap.propTypes = {
 
 ArtifactMap.defaultProps = {
   displayPopups: true
-}
+};
 
 export default ArtifactMap;
