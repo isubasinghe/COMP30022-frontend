@@ -4,7 +4,7 @@ import styled from './index.module.scss';
 
 function AirSpinner(props) {
   // eslint-disable-next-line dot-notation
-  return <Spinner className={styled['loader']} animation="border" variant="primary" />;
+  return <Spinner className={styled['loader']} animation="border" />;
 }
 
 export default AirSpinner;
