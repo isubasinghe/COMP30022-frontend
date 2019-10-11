@@ -48,6 +48,7 @@ const ArtifactView = Loadable({
 
 function App() {
   const [registers, setRegisters] = useState([]);
+  const [user, setUser] = useState('');
   const addRegister = register => {
     const newRegisters = registers;
     newRegisters.push(register);
@@ -58,7 +59,9 @@ function App() {
     Auth.currentAuthenticatedUser({
       bypassCache: false
     })
-      .then(() => {
+      .then(user => {
+        console.log(user);
+        setUser(user.username);
         return getRegisters();
       })
       .then(registersFetched => {
@@ -77,7 +80,7 @@ function App() {
     <div className="App">
       <AppErrorBoundary>
         <BrowserRouter>
-          <AirNavBar registers={sortedRegisters} addRegister={addRegister} />
+          <AirNavBar userId={user} registers={sortedRegisters} addRegister={addRegister} />
           <Route exact path="/" component={Home} />
           <Route path="/map/:registerId" component={MapView} />
           <Route path="/list/:registerId" component={ListView} />
