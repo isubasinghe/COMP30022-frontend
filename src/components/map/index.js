@@ -23,7 +23,6 @@ const MAP_ATTRIBUTION = '&copy; <a href="https://osm.org/copyright">OpenStreetMa
 
 const ArtifactMap = ({ className, artifacts, displayPopups, movable: { setPos, getPos } }) => {
   const [bounds, setBounds] = useState(new L.latLngBounds([[-60, -120], [60, 120]]));
-  const movable = !!setPos;
 
   useEffect(() => {
     switch (artifacts.length) {
@@ -44,19 +43,7 @@ const ArtifactMap = ({ className, artifacts, displayPopups, movable: { setPos, g
     }
   }, [artifacts]);
 
-  return movable ? (
-    <Map className={className} center={[0.0, 0.0]} zoom={0}>
-      <TileLayer url={MAP_URL} attribution={MAP_ATTRIBUTION} />
-      <Marker
-        position={getPos()}
-        draggable="true"
-        onDragend={({ target }) => {
-          const { lat, lng } = target.getLatLng();
-          setPos(lat, lng);
-        }}
-      />
-    </Map>
-  ) : (
+  return artifacts.length ? (
     <Map className={className} bounds={bounds} boundsOptions={{ padding: [10, 10] }}>
       <TileLayer url={MAP_URL} attribution={MAP_ATTRIBUTION} />
       {artifacts.map(({ artifact_id, register_id, lat, lon, name, description }) => {
@@ -76,6 +63,18 @@ const ArtifactMap = ({ className, artifacts, displayPopups, movable: { setPos, g
           </Marker>
         );
       })}
+    </Map>
+  ) : (
+    <Map className={className} center={[0.0, 0.0]} zoom={0}>
+      <TileLayer url={MAP_URL} attribution={MAP_ATTRIBUTION} />
+      <Marker
+        position={getPos()}
+        draggable="true"
+        onDragend={({ target }) => {
+          const { lat, lng } = target.getLatLng();
+          setPos(lat, lng);
+        }}
+      />
     </Map>
   );
 };
