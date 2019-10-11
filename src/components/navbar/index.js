@@ -20,19 +20,16 @@ const SELECT_REGISTER = 'SELECT REGISTER';
 const KEY_IS_ADMIN = 'AIRLOOMNAVBAR_IS_ADMIN';
 const IS_ADMIN = false;
 
-function AirLoomNavbar({ userId, addRegister, registers, history }) {
+function AirLoomNavbar({ addRegister, registers, history }) {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showArtifactModal, setShowArtifactModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
-  const [registerSelect, setRegisterSelect] = useLocalStorage(
-    `${KEY_SELECT_REGISTER}${userId}`,
-    SELECT_REGISTER
-  );
+  const [registerSelect, setRegisterSelect] = useLocalStorage(KEY_SELECT_REGISTER, SELECT_REGISTER);
   const [registerDisplay, setRegisterDisplay] = useLocalStorage(
-    `${KEY_DISPLAY_REGISTER}${userId}`,
+    KEY_DISPLAY_REGISTER,
     SELECT_REGISTER
   );
-  const [isAdmin, setIsAdmin] = useLocalStorage(`${KEY_IS_ADMIN}${userId}`, IS_ADMIN);
+  const [isAdmin, setIsAdmin] = useLocalStorage(KEY_IS_ADMIN, IS_ADMIN);
   const hasRegisters = registers.length > 0;
   const selectedRegister = registerSelect !== SELECT_REGISTER;
 
@@ -146,7 +143,6 @@ function AirLoomNavbar({ userId, addRegister, registers, history }) {
 }
 
 AirLoomNavbar.propTypes = {
-  userId: PropTypes.string.isRequired,
   addRegister: PropTypes.func.isRequired,
   registers: PropTypes.arrayOf(
     PropTypes.shape(
