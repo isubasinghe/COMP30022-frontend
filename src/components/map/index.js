@@ -10,8 +10,7 @@ import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import styled from './index.module.scss';
 import './index.scss';
 
-// Reload Map Marker
-// TODO: Customize
+// Reload Map Marker Global
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl,
@@ -31,7 +30,7 @@ class ArtifactMap extends React.Component {
         this.bounds = new L.latLngBounds([[-60, -120], [60, 120]]);
         break;
       case 1:
-        this.bounds = new L.latLng([artifacts[0].lat, artifacts[0].lon]).toBounds(10000);
+        this.bounds = new L.latLng([artifacts[0].lat, artifacts[0].lon]).toBounds(1500000);
         break;
       default:
         const markers = [];
@@ -49,7 +48,7 @@ class ArtifactMap extends React.Component {
         <Map
           className={className}
           bounds={this.bounds}
-          // boundsOptions={{ padding: [10, 10] }}
+          boundsOptions={{ padding: [10, 10] }}
         >
           <TileLayer
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
