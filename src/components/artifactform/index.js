@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Form, Col } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import styled from './index.module.scss';
 import ArtifactMap from '../map';
@@ -18,10 +18,19 @@ function ArtifactForm({
   let famMembRef = useRef();
   let descRef = useRef();
   let dateRef = useRef();
-  let latRef = useRef();
-  let lonRef = useRef();
 
   const [showMap, setShowMap] = useState(false);
+  const [newLat, setLat] = useState(lat || 0);
+  const [newLon, setLon] = useState(lon || 0);
+
+  const setLatLon = (lat, lon) => {
+    setLat(lat);
+    setLon(lon);
+  };
+
+  const getLatLon = () => {
+    return [newLat, newLon];
+  };
 
   return (
     <Modal
@@ -59,7 +68,7 @@ function ArtifactForm({
               }}
               type="date"
               placeholder="Enter artifact date (YYYY-MM-DD)"
-              defaultValue={date ? date.split('T')[0] : ''}
+              defaultValue={date.split('T')[0]}
             />
             <Form.Label className={styled['text-title']}>Description</Form.Label>
             <Form.Control
@@ -83,39 +92,12 @@ function ArtifactForm({
             />
 
             <Form.Label className={styled['text-title']}>Location</Form.Label>
-            {/* <Form.Row>
-              <Col>
-                <Form.Control
-                  className={styled['text-field']}
-                  ref={inputRef => {
-                    latRef = inputRef;
-                  }}
-                  placeholder="Enter latitude"
-                  type="number"
-                  step="0.1"
-                  defaultValue={lat}
-                />
-              </Col>
-              <Col>
-                <Form.Control
-                  className={styled['text-field']}
-                  ref={inputRef => {
-                    lonRef = inputRef;
-                  }}
-                  placeholder="Enter longitude"
-                  type="number"
-                  step="0.1"
-                  defaultValue={lon}
-                />
-              </Col>
-            </Form.Row> */}
             <Form.Row>
               <div className={styled['map']}>
                 {showMap ? (
                   <ArtifactMap
                     className={styled['map-component']}
-                    artifacts={[{ lat: lat, lon: lon }]}
-                    movablePin={true}
+                    movable={{ setPos: setLatLon, getPos: getLatLon }}
                   />
                 ) : (
                   <></>
@@ -130,6 +112,7 @@ function ArtifactForm({
           type="button"
           onClick={() => {
             setShowModal(false);
+            setShowMap(false);
           }}
           className={styled['button-grey']}
         >
@@ -143,8 +126,8 @@ function ArtifactForm({
               family_members: famMembRef.value,
               description: descRef.value,
               date: dateRef.value,
-              lat: latRef.value,
-              lon: lonRef.value
+              lat: newLat,
+              lon: newLon
             }).then(() => {
               history.go(0);
             });
@@ -182,7 +165,7 @@ ArtifactForm.defaultProps = {
     name: '',
     family_members: '',
     description: '',
-    date: '',
+    date: '2000-01-01',
     lat: '',
     lon: ''
   }
