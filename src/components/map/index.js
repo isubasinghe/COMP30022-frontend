@@ -58,25 +58,21 @@ class ArtifactMap extends React.Component {
             boundsOptions={{ padding: [10, 10] }}>
         )} */}
         {movablePin ? (
-          <Map
-            className={className}
-            center={[0.0, 0.0]}
-            zoom={0}
-          >
+          <Map className={className} center={[0.0, 0.0]} zoom={0}>
             <TileLayer
               url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
             />
             {artifacts.map(arti => {
-              return (<Marker key={arti.artifact_id} position={[arti.lat, arti.lon]} draggable='true' />);
+              return (
+                <div key={arti.artifact_id}>
+                  <Marker position={[arti.lat, arti.lon]} draggable="true" />
+                </div>
+              );
             })}
           </Map>
         ) : (
-          <Map 
-            className={className}
-            bounds={this.bounds}
-            boundsOptions={{ padding: [10, 10] }}
-          >
+          <Map className={className} bounds={this.bounds} boundsOptions={{ padding: [10, 10] }}>
             <TileLayer
               url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
