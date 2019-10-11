@@ -23,7 +23,7 @@ const authScreenLabels = {
 I18n.putVocabularies(authScreenLabels);
 
 function Loading() {
-  return <p>Loading</p>;
+  return <div></div>;
 }
 
 const MapView = Loadable({
