@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Form, Col } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import styled from './index.module.scss';
+import ArtifactMap from '../map';
 
 function ArtifactForm({
   title,
@@ -76,7 +77,7 @@ function ArtifactForm({
             />
 
             <Form.Label className={styled['text-title']}>Location</Form.Label>
-            <Form.Row>
+            {/* <Form.Row>
               <Col>
                 <Form.Control
                   className={styled['text-field']}
@@ -101,6 +102,15 @@ function ArtifactForm({
                   defaultValue={lon}
                 />
               </Col>
+            </Form.Row> */}
+            <Form.Row>
+            <div className={styled['map']}>
+              <ArtifactMap
+                className={styled['map-component']}
+                artifacts={[{lat: lat, lon: lon}]}
+                movablePin={true}
+              />
+            </div>
             </Form.Row>
           </Form.Group>
         </Form>
