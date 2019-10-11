@@ -21,63 +21,64 @@ function ArtifactForm({
   let latRef = useRef();
   let lonRef = useRef();
 
-  return (
-    <Modal
-      show={showModal}
-      onHide={() => {
-        setShowModal(false);
-      }}
-      size="lg"
-      dialogClassName="artifact-modal"
-    >
-      <Modal.Header>
-        <div className={styled.title}>{title}</div>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Form.Group controlId="formNewArtifact">
-            <Form.Label className={styled['text-title']}>Name</Form.Label>
-            <Form.Control
-              className={styled['text-field']}
-              ref={inputRef => {
-                nameRef = inputRef;
-              }}
-              placeholder="Enter artifact name"
-              defaultValue={name || ''}
-            />
-            <Form.Label className={styled['text-title']}>Date</Form.Label>
-            <Form.Control
-              className={styled['text-field']}
-              ref={inputRef => {
-                dateRef = inputRef;
-              }}
-              type="date"
-              placeholder="Enter artifact date (YYYY-MM-DD)"
-              defaultValue={date ? date.split('T')[0] : ''}
-            />
-            <Form.Label className={styled['text-title']}>Description</Form.Label>
-            <Form.Control
-              className={styled['text-field']}
-              ref={inputRef => {
-                descRef = inputRef;
-              }}
-              as="textarea"
-              rows="3"
-              placeholder="Enter artifact description"
-              defaultValue={description || ''}
-            />
-            <Form.Label className={styled['text-title']}>Family Members</Form.Label>
-            <Form.Control
-              className={styled['text-field']}
-              ref={inputRef => {
-                famMembRef = inputRef;
-              }}
-              placeholder="Enter family members relevant to this artifact"
-              defaultValue={familyMembers || ''}
-            />
+  return showModal ? (
+    <div className={styled['overlay']} onClick={() => {setShowModal(false);}}>
+      <div
+        onHide={() => {
+          setShowModal(false);
+        }}
+        size="lg"
+        dialogClassName="artifact-modal"
+        className={styled['modal']}
+      >
+        <Modal.Header>
+          <div className={styled.title}>{title}</div>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formNewArtifact">
+              <Form.Label className={styled['text-title']}>Name</Form.Label>
+              <Form.Control
+                className={styled['text-field']}
+                ref={inputRef => {
+                  nameRef = inputRef;
+                }}
+                placeholder="Enter artifact name"
+                defaultValue={name || ''}
+              />
+              <Form.Label className={styled['text-title']}>Date</Form.Label>
+              <Form.Control
+                className={styled['text-field']}
+                ref={inputRef => {
+                  dateRef = inputRef;
+                }}
+                type="date"
+                placeholder="Enter artifact date (YYYY-MM-DD)"
+                defaultValue={date ? date.split('T')[0] : ''}
+              />
+              <Form.Label className={styled['text-title']}>Description</Form.Label>
+              <Form.Control
+                className={styled['text-field']}
+                ref={inputRef => {
+                  descRef = inputRef;
+                }}
+                as="textarea"
+                rows="3"
+                placeholder="Enter artifact description"
+                defaultValue={description || ''}
+              />
+              <Form.Label className={styled['text-title']}>Family Members</Form.Label>
+              <Form.Control
+                className={styled['text-field']}
+                ref={inputRef => {
+                  famMembRef = inputRef;
+                }}
+                placeholder="Enter family members relevant to this artifact"
+                defaultValue={familyMembers || ''}
+              />
 
-            <Form.Label className={styled['text-title']}>Location</Form.Label>
-            {/* <Form.Row>
+              <Form.Label className={styled['text-title']}>Location</Form.Label>
+              {/* <Form.Row>
               <Col>
                 <Form.Control
                   className={styled['text-field']}
@@ -103,48 +104,51 @@ function ArtifactForm({
                 />
               </Col>
             </Form.Row> */}
-            <Form.Row>
-            <div className={styled['map']}>
-              <ArtifactMap
-                className={styled['map-component']}
-                artifacts={[{lat: lat, lon: lon}]}
-                movablePin={true}
-              />
-            </div>
-            </Form.Row>
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <button
-          type="button"
-          onClick={() => {
-            setShowModal(false);
-          }}
-          className={styled['button-grey']}
-        >
-          Close
-        </button>
-        <button
-          className={styled['button-red']}
-          onClick={() => {
-            request({
-              name: nameRef.value,
-              family_members: famMembRef.value,
-              description: descRef.value,
-              date: dateRef.value,
-              lat: latRef.value,
-              lon: lonRef.value
-            }).then(() => {
-              history.go(0);
-            });
-          }}
-          type="button"
-        >
-          {buttonName}
-        </button>
-      </Modal.Footer>
-    </Modal>
+              <Form.Row>
+                <div className={styled['map']}>
+                  <ArtifactMap
+                    className={styled['map-component']}
+                    artifacts={[{ lat: lat, lon: lon }]}
+                    movablePin={true}
+                  />
+                </div>
+              </Form.Row>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <button
+            type="button"
+            onClick={() => {
+              setShowModal(false);
+            }}
+            className={styled['button-grey']}
+          >
+            Close
+          </button>
+          <button
+            className={styled['button-red']}
+            onClick={() => {
+              request({
+                name: nameRef.value,
+                family_members: famMembRef.value,
+                description: descRef.value,
+                date: dateRef.value,
+                lat: latRef.value,
+                lon: lonRef.value
+              }).then(() => {
+                history.go(0);
+              });
+            }}
+            type="button"
+          >
+            {buttonName}
+          </button>
+        </Modal.Footer>
+      </div>
+    </div>
+  ) : (
+    <></>
   );
 }
 
