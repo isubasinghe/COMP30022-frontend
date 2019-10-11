@@ -9,6 +9,7 @@ import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import styled from './index.module.scss';
 import './index.scss';
+import { Z_FIXED } from 'zlib';
 
 // Reload Map Marker Global
 delete L.Icon.Default.prototype._getIconUrl;
@@ -42,36 +43,63 @@ class ArtifactMap extends React.Component {
   }
 
   render() {
-    const { artifacts, displayPopups, className } = this.props;
+    const { artifacts, displayPopups, movablePin, className } = this.props;
     return (
       <div>
-        <Map
-          className={className}
-          bounds={this.bounds}
-          boundsOptions={{ padding: [10, 10] }}
-        >
-          <TileLayer
-            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-          />
-          {artifacts.map(arti => {
-            return (
-              <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
-                {displayPopups ? (
-                  <Popup className={styled['pop-up']}>
-                    <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
-                      <b className={styled['text-modifier']}>{arti.name}</b>
-                      <br />
-                      <p className={styled['text-modifier']}>{arti.description}</p>
-                    </Link>
-                  </Popup>
-                ) : (
-                  <></>
-                )}
-              </Marker>
-            );
-          })}
-        </Map>
+        {/* {movablePin ? (
+          <Map
+            className={className}
+            center={[0.0, 0.0]}
+            zoom={0}>
+        ) : (
+          <Map
+            className={className}
+            bounds={this.bounds}
+            boundsOptions={{ padding: [10, 10] }}>
+        )} */}
+        {movablePin ? (
+          <Map
+            className={className}
+            center={[0.0, 0.0]}
+            zoom={0}
+          >
+            <TileLayer
+              url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+            />
+            {artifacts.map(arti => {
+              return (<Marker key={arti.artifact_id} position={[arti.lat, arti.lon]} draggable='true' />);
+            })}
+          </Map>
+        ) : (
+          <Map 
+            className={className}
+            bounds={this.bounds}
+            boundsOptions={{ padding: [10, 10] }}
+          >
+            <TileLayer
+              url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+            />
+            {artifacts.map(arti => {
+              return (
+                <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
+                  {displayPopups ? (
+                    <Popup className={styled['pop-up']}>
+                      <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
+                        <b className={styled['text-modifier']}>{arti.name}</b>
+                        <br />
+                        <p className={styled['text-modifier']}>{arti.description}</p>
+                      </Link>
+                    </Popup>
+                  ) : (
+                    <></>
+                  )}
+                </Marker>
+              );
+            })}
+          </Map>
+        )}
       </div>
     );
   }
@@ -80,11 +108,13 @@ class ArtifactMap extends React.Component {
 ArtifactMap.propTypes = {
   artifacts: PropTypes.arrayOf(PropTypes.object).isRequired,
   className: PropTypes.string.isRequired,
-  displayPopups: PropTypes.bool
+  displayPopups: PropTypes.bool,
+  movablePin: PropTypes.bool
 };
 
 ArtifactMap.defaultProps = {
-  displayPopups: true
+  displayPopups: true,
+  movablePin: false
 };
 
 export default ArtifactMap;
