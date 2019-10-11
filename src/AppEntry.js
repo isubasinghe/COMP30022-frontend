@@ -60,7 +60,6 @@ function App() {
       bypassCache: false
     })
       .then(user => {
-        console.log(user);
         setUser(user.username);
         return getRegisters();
       })
