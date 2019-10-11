@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { withAuthenticator } from 'aws-amplify-react';
-import Auth from '@aws-amplify/auth';
-import { I18n } from '@aws-amplify/core';
+import { Auth, I18n } from 'aws-amplify';
+import Loadable from 'react-loadable';
 import AppErrorBoundary from './AppErrorBoundary';
 import AirNavBar from './components/navbar';
 import Home from './pages/Home';
-import MapView from './pages/MapView';
-import ListView from './pages/ListView';
-import TimelineView from './pages/TimelineView';
-import ArtifactView from './pages/ArtifactView';
-import { getDefaultRegister, getRegisters } from './utils/register';
+import { getRegisters } from './utils/register';
 import AuthTheme from './AuthTheme';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
+I18n.setLanguage('en');
 
 const authScreenLabels = {
   en: {
@@ -22,45 +20,64 @@ const authScreenLabels = {
   }
 };
 
-I18n.setLanguage('en');
 I18n.putVocabularies(authScreenLabels);
+
+function Loading() {
+  return <div></div>;
+}
+
+const MapView = Loadable({
+  loader: () => import('./pages/MapView'),
+  loading: Loading
+});
+
+const ListView = Loadable({
+  loader: () => import('./pages/ListView'),
+  loading: Loading
+});
+
+const TimelineView = Loadable({
+  loader: () => import('./pages/TimelineView'),
+  loading: Loading
+});
+
+const ArtifactView = Loadable({
+  loader: () => import('./pages/ArtifactView'),
+  loading: Loading
+});
 
 function App() {
   const [registers, setRegisters] = useState([]);
-  const refetchRegisters = () => {
-    getRegisters()
-      .then(registersFetched => {
-        if (registers !== null) {
-          setRegisters(registersFetched);
-        }
-      })
-      .catch(() => {});
+  const addRegister = register => {
+    const newRegisters = registers;
+    newRegisters.push(register);
+    setRegisters(newRegisters);
   };
+
   useEffect(() => {
     Auth.currentAuthenticatedUser({
       bypassCache: false
     })
       .then(() => {
-        return getDefaultRegister();
+        return getRegisters();
       })
-      .then(reg => {
-        localStorage.setItem('reg', JSON.stringify(reg));
-      })
-      .catch(() => {});
-    getRegisters()
       .then(registersFetched => {
-        if (registersFetched !== null) {
-          setRegisters(registersFetched);
-        }
+        setRegisters(registersFetched);
       })
       .catch(() => {});
   }, []);
+
+  const sortedRegisters = registers.sort((a, b) => {
+    const { name: aName } = a;
+    const { name: bName } = b;
+    return aName.toUpperCase().localeCompare(bName.toUpperCase());
+  });
 
   return (
     <div className="App">
       <AppErrorBoundary>
         <BrowserRouter>
-          <AirNavBar refetchRegisters={refetchRegisters} registers={registers} />
+          <AirNavBar registers={sortedRegisters} addRegister={addRegister} />
           <Route exact path="/" component={Home} />
           <Route path="/map/:registerId" component={MapView} />
           <Route path="/list/:registerId" component={ListView} />
