@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import PropTypes from 'prop-types';
@@ -18,73 +18,93 @@ L.Icon.Default.mergeOptions({
   shadowUrl
 });
 
-class ArtifactMap extends React.Component {
-  constructor(props) {
-    super(props);
+const MAP_URL = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
+const MAP_ATTRIBUTION = '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors';
 
-    // Default Map Position
-    const { artifacts } = this.props;
+const ArtifactMap = ({ className, artifacts, displayPopups, movable: { setPos, getPos } }) => {
+  const [bounds, setBounds] = useState(new L.latLngBounds([[-60, -120], [60, 120]]));
 
+  useEffect(() => {
     switch (artifacts.length) {
       case 0:
-        this.bounds = new L.latLngBounds([[-60, -120], [60, 120]]);
+        setBounds(new L.latLngBounds([[-60, -120], [60, 120]]));
         break;
       case 1:
-        this.bounds = new L.latLng([artifacts[0].lat, artifacts[0].lon]).toBounds(1500000);
+        setBounds(new L.latLng([artifacts[0].lat, artifacts[0].lon]).toBounds(1500000));
         break;
       default:
-        const markers = [];
-        for (let i = 0; i < artifacts.length; i += 1) {
-          markers.push(L.marker([artifacts[i].lat, artifacts[i].lon]));
-        }
-        this.bounds = new L.featureGroup(markers).getBounds();
+        setBounds(
+          new L.featureGroup(
+            artifacts.map(({ lat, lon }) => {
+              return L.marker([lat, lon]);
+            })
+          ).getBounds()
+        );
     }
-  }
+  }, [artifacts]);
 
-  render() {
-    const { artifacts, displayPopups, className } = this.props;
-    return (
-      <div>
-        <Map
-          className={className}
-          bounds={this.bounds}
-          boundsOptions={{ padding: [10, 10] }}
-        >
-          <TileLayer
-            url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-          />
-          {artifacts.map(arti => {
-            return (
-              <Marker key={arti.artifact_id} position={[arti.lat, arti.lon]}>
-                {displayPopups ? (
-                  <Popup className={styled['pop-up']}>
-                    <Link to={`/artifact/${arti.register_id}/${arti.artifact_id}/`}>
-                      <b className={styled['text-modifier']}>{arti.name}</b>
-                      <br />
-                      <p className={styled['text-modifier']}>{arti.description}</p>
-                    </Link>
-                  </Popup>
-                ) : (
-                  <></>
-                )}
-              </Marker>
-            );
-          })}
-        </Map>
-      </div>
-    );
-  }
-}
+  return artifacts.length ? (
+    <Map className={className} bounds={bounds} boundsOptions={{ padding: [10, 10] }}>
+      <TileLayer url={MAP_URL} attribution={MAP_ATTRIBUTION} />
+      {artifacts.map(({ artifact_id, register_id, lat, lon, name, description }) => {
+        return (
+          <Marker key={artifact_id} position={[lat, lon]}>
+            {displayPopups ? (
+              <Popup className={styled['pop-up']}>
+                <Link to={`/artifact/${register_id}/${artifact_id}/`}>
+                  <b className={styled['text-modifier']}>{name}</b>
+                  <br />
+                  <p className={styled['text-modifier']}>{description}</p>
+                </Link>
+              </Popup>
+            ) : (
+              <></>
+            )}
+          </Marker>
+        );
+      })}
+    </Map>
+  ) : (
+    <Map className={className} center={[0.0, 0.0]} zoom={0}>
+      <TileLayer url={MAP_URL} attribution={MAP_ATTRIBUTION} />
+      <Marker
+        position={getPos()}
+        draggable="true"
+        onDragend={({ target }) => {
+          const { lat, lng } = target.getLatLng();
+          setPos(lat, lng);
+        }}
+      />
+    </Map>
+  );
+};
 
 ArtifactMap.propTypes = {
-  artifacts: PropTypes.arrayOf(PropTypes.object).isRequired,
   className: PropTypes.string.isRequired,
-  displayPopups: PropTypes.bool
+  artifacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      artifact_id: PropTypes.number.isRequired,
+      register_id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      lat: PropTypes.string.isRequired,
+      lon: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    })
+  ),
+  displayPopups: PropTypes.bool,
+  movable: PropTypes.shape({
+    setPos: PropTypes.func,
+    getPos: PropTypes.func
+  })
 };
 
 ArtifactMap.defaultProps = {
-  displayPopups: true
+  artifacts: [],
+  displayPopups: true,
+  movable: {
+    setPos: null,
+    getPos: null
+  }
 };
 
 export default ArtifactMap;
