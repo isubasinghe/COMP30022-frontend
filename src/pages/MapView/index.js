@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import ArtifactMap from '../../components/map';
+import Loadable from 'react-loadable';
 import Spinner from '../../components/spinner';
 import Error from '../../components/error';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
+
+const ArtifactMap = Loadable({
+  loader: () => import('../../components/map'),
+  loading: Spinner
+});
 
 function MapView({
   match: {

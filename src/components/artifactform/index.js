@@ -2,9 +2,14 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Form } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
+import Spinner from '../spinner';
+import Loadable from 'react-loadable';
 import styled from './index.module.scss';
-import ArtifactMap from '../map';
 
+const ArtifactMap = Loadable({
+  loader: () => import('../map'),
+  loading: Spinner
+});
 function ArtifactForm({
   title,
   buttonName,
