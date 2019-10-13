@@ -50,14 +50,6 @@ body {
   background-clip: unset;
 }
 
-a:hover {
-  text-decoration: none;
-}
-
-a:focus {
-  outline: none;
-}
-
 .hover-link:hover {
   opacity: 0.8;
 }
