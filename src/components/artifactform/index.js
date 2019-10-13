@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Form } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
@@ -27,6 +27,7 @@ function ArtifactForm({
   const [showMap, setShowMap] = useState(false);
   const [newLat, setLat] = useState(lat || 0);
   const [newLon, setLon] = useState(lon || 0);
+  const [coords, setCoords] = useState([]);
 
   const setLatLon = (lat, lon) => {
     setLat(lat);
@@ -36,6 +37,17 @@ function ArtifactForm({
   const getLatLon = () => {
     return [newLat, newLon];
   };
+
+  useEffect(() => {
+    const showPosition = position => {
+      setCoords([position.coords.latitude, position.coords.longitude]);
+      setLatLon(position.coords.latitude, position.coords.longitude);
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  }, []);
 
   return (
     <Modal
@@ -101,6 +113,8 @@ function ArtifactForm({
               <div className={styled['map']}>
                 {showMap ? (
                   <ArtifactMap
+                    addMode
+                    currCoords={coords}
                     className={styled['map-component']}
                     movable={{ setPos: setLatLon, getPos: getLatLon }}
                   />
