@@ -2,12 +2,12 @@ body {
   height: 100%;
   width: 100%;
   position: absolute;
-  background: #1a535c;
+  background: #1a535c !important;
 }
 
 .App {
   text-align: center;
-  background: #1a535c;
+  background: #1a535c !important;
 }
 
 .App-logo {
