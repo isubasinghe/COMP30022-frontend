@@ -3,13 +3,13 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { withAuthenticator } from 'aws-amplify-react';
 import { Auth, I18n } from 'aws-amplify';
 import Loadable from 'react-loadable';
+import Loading from './components/spinner';
 import AppErrorBoundary from './AppErrorBoundary';
 import AirNavBar from './components/navbar';
 import Home from './pages/Home';
 import { getRegisters } from './utils/register';
 import AuthTheme from './AuthTheme';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 I18n.setLanguage('en');
@@ -21,10 +21,6 @@ const authScreenLabels = {
 };
 
 I18n.putVocabularies(authScreenLabels);
-
-function Loading() {
-  return <div></div>;
-}
 
 const MapView = Loadable({
   loader: () => import('./pages/MapView'),

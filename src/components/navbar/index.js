@@ -90,7 +90,7 @@ function AirLoomNavbar({ addRegister, registers, history }) {
         <Nav>
           <NavDropdown
             className={`${styled['text-modifier']}`}
-            title={registerDisplay}
+            title={registerDisplay.toUpperCase()}
             id="basic-nav-dropdown"
             alignRight
           >

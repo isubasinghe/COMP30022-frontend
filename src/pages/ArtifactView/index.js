@@ -3,14 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Media } from 'react-bootstrap';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import Loadable from 'react-loadable';
 import Spinner from '../../components/spinner';
 import Error from '../../components/error';
 import PhotoForm from '../../components/photoform';
 import DeleteModal from '../../components/deletemodal';
-import ArtifactMap from '../../components/map';
 import UpdateArtifactForm from '../../components/updateartifactform';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
+
+const ArtifactMap = Loadable({
+  loader: () => import('../../components/map'),
+  loading: Spinner
+});
 
 function ArtifactView({
   match: {

@@ -1,30 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import ArtifactMap from '../../components/map';
+import Loadable from 'react-loadable';
 import Spinner from '../../components/spinner';
 import Error from '../../components/error';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
-function MapView(props) {
+const ArtifactMap = Loadable({
+  loader: () => import('../../components/map'),
+  loading: Spinner
+});
+
+function MapView({
+  match: {
+    params: { registerId }
+  }
+}) {
   const [artifacts, setArtifacts] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [errorState, setErrorState] = useState(false);
-  const { registerId } = props.match.params;
   // TODO: write a hook to replicate useEffect authenticated fetch
   useEffect(() => {
     if (registerId !== null) {
       authFetchRequest(`https://api.airloom.xyz/api/v1/register/all/${registerId}`, {})
         .then(data => {
           const mapData = Object.values(data);
-          for (let i = 0; i < mapData.length; i++) {
-            mapData[i].lat = parseFloat(mapData[i].lat);
-            mapData[i].lon = parseFloat(mapData[i].lon);
-          }
           setArtifacts(mapData);
           setHasLoaded(true);
         })
-        .catch(err => {
+        .catch(() => {
           setErrorState(true);
           setHasLoaded(true);
         });
