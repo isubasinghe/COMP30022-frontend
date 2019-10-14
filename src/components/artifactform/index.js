@@ -101,6 +101,7 @@ function ArtifactForm({
               <div className={styled['map']}>
                 {showMap ? (
                   <ArtifactMap
+                    draggable
                     className={styled['map-component']}
                     movable={{ setPos: setLatLon, getPos: getLatLon }}
                   />
