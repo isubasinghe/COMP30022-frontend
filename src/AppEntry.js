@@ -90,7 +90,7 @@ export default withAuthenticator(App, {
     hiddenDefaults: ['phone_number', 'email'],
     signUpFields: [
       { label: 'Name', key: 'name', required: true, type: 'string', displayOrder: 1 },
-      { label: 'Username', key: 'username', required: true, displayOrder: 2, type: 'string' },
+      { label: 'Email', key: 'username', required: true, displayOrder: 2, type: 'string' },
       { label: 'Password', key: 'password', required: true, displayOrder: 3, type: 'password' }
     ]
   },
