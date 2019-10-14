@@ -21,7 +21,13 @@ L.Icon.Default.mergeOptions({
 const MAP_URL = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
 const MAP_ATTRIBUTION = '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors';
 
-const ArtifactMap = ({ className, artifacts, displayPopups, movable: { setPos, getPos } }) => {
+const ArtifactMap = ({
+  draggable,
+  className,
+  artifacts,
+  displayPopups,
+  movable: { setPos, getPos }
+}) => {
   const [bounds, setBounds] = useState(new L.latLngBounds([[-60, -120], [60, 120]]));
 
   useEffect(() => {
@@ -43,28 +49,31 @@ const ArtifactMap = ({ className, artifacts, displayPopups, movable: { setPos, g
     }
   }, [artifacts]);
 
-  return artifacts.length ? (
-    <Map className={className} bounds={bounds} boundsOptions={{ padding: [10, 10] }}>
-      <TileLayer url={MAP_URL} attribution={MAP_ATTRIBUTION} />
-      {artifacts.map(({ artifact_id, register_id, lat, lon, name, description }) => {
-        return (
-          <Marker key={artifact_id} position={[lat, lon]}>
-            {displayPopups ? (
-              <Popup className={styled['pop-up']}>
-                <Link to={`/artifact/${register_id}/${artifact_id}/`}>
-                  <b className={styled['text-modifier']}>{name}</b>
-                  <br />
-                  <p className={styled['text-modifier']}>{description}</p>
-                </Link>
-              </Popup>
-            ) : (
-              <></>
-            )}
-          </Marker>
-        );
-      })}
-    </Map>
-  ) : (
+  if (!draggable) {
+    return (
+      <Map className={className} bounds={bounds} boundsOptions={{ padding: [10, 10] }}>
+        <TileLayer url={MAP_URL} attribution={MAP_ATTRIBUTION} />
+        {artifacts.map(({ artifact_id, register_id, lat, lon, name, description }) => {
+          return (
+            <Marker key={artifact_id} position={[lat, lon]}>
+              {displayPopups ? (
+                <Popup className={styled['pop-up']}>
+                  <Link to={`/artifact/${register_id}/${artifact_id}/`}>
+                    <b className={styled['text-modifier']}>{name}</b>
+                    <br />
+                    <p className={styled['text-modifier']}>{description}</p>
+                  </Link>
+                </Popup>
+              ) : (
+                <></>
+              )}
+            </Marker>
+          );
+        })}
+      </Map>
+    );
+  }
+  return (
     <Map className={className} center={[0.0, 0.0]} zoom={0}>
       <TileLayer url={MAP_URL} attribution={MAP_ATTRIBUTION} />
       <Marker
@@ -95,7 +104,8 @@ ArtifactMap.propTypes = {
   movable: PropTypes.shape({
     setPos: PropTypes.func,
     getPos: PropTypes.func
-  })
+  }),
+  draggable: PropTypes.bool
 };
 
 ArtifactMap.defaultProps = {
@@ -104,7 +114,8 @@ ArtifactMap.defaultProps = {
   movable: {
     setPos: null,
     getPos: null
-  }
+  },
+  draggable: false
 };
 
 export default ArtifactMap;
