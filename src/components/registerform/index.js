@@ -20,7 +20,7 @@ function RegisterForm({ addRegister, showModal, setShowModal }) {
       body: JSON.stringify(data)
     })
       .then(() => {
-        addRegister(data);
+        addRegister({ ...data, is_admin: true });
         setShowModal(false);
       })
       .catch(() => {});
