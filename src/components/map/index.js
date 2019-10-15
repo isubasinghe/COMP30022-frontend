@@ -22,12 +22,11 @@ const MAP_URL = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
 const MAP_ATTRIBUTION = '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors';
 
 const ArtifactMap = ({
-  addMode,
+  draggable,
   className,
   artifacts,
   displayPopups,
-  movable: { setPos, getPos },
-  currCoords
+  movable: { setPos, getPos }
 }) => {
   const [bounds, setBounds] = useState(new L.latLngBounds([[-60, -120], [60, 120]]));
 
@@ -50,7 +49,7 @@ const ArtifactMap = ({
     }
   }, [artifacts]);
 
-  if (!addMode) {
+  if (!draggable) {
     return (
       <Map className={className} bounds={bounds} boundsOptions={{ padding: [10, 10] }}>
         <TileLayer url={MAP_URL} attribution={MAP_ATTRIBUTION} />
@@ -74,9 +73,8 @@ const ArtifactMap = ({
       </Map>
     );
   }
-
   return (
-    <Map className={className} center={currCoords} zoom={10}>
+    <Map className={className} center={[0.0, 0.0]} zoom={0}>
       <TileLayer url={MAP_URL} attribution={MAP_ATTRIBUTION} />
       <Marker
         position={getPos()}
@@ -107,8 +105,7 @@ ArtifactMap.propTypes = {
     setPos: PropTypes.func,
     getPos: PropTypes.func
   }),
-  currCoords: PropTypes.arrayOf(PropTypes.number),
-  addMode: PropTypes.bool
+  draggable: PropTypes.bool
 };
 
 ArtifactMap.defaultProps = {
@@ -118,8 +115,7 @@ ArtifactMap.defaultProps = {
     setPos: null,
     getPos: null
   },
-  currCoords: [],
-  addMode: false
+  draggable: false
 };
 
 export default ArtifactMap;
