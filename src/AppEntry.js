@@ -50,7 +50,7 @@ function App() {
     setRegisters(newRegisters);
   };
 
-  useEffect(() => {
+  const fetchRegisters = () => {
     Auth.currentAuthenticatedUser({
       bypassCache: false
     })
@@ -61,6 +61,10 @@ function App() {
         setRegisters(registersFetched);
       })
       .catch(() => {});
+  };
+
+  useEffect(() => {
+    fetchRegisters();
   }, []);
 
   const sortedRegisters = registers.sort((a, b) => {
@@ -73,7 +77,7 @@ function App() {
     <div className="App">
       <AppErrorBoundary>
         <BrowserRouter>
-          <AirNavBar registers={sortedRegisters} addRegister={addRegister} />
+          <AirNavBar refetch={fetchRegisters} registers={sortedRegisters} />
           <Route exact path="/" component={Home} />
           <Route path="/map/:registerId" component={MapView} />
           <Route path="/list/:registerId" component={ListView} />
