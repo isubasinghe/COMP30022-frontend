@@ -20,7 +20,7 @@ const SELECT_REGISTER = 'SELECT REGISTER';
 const KEY_IS_ADMIN = 'AIRLOOMNAVBAR_IS_ADMIN';
 const IS_ADMIN = false;
 
-function AirLoomNavbar({ addRegister, registers, history }) {
+function AirLoomNavbar({ refetch, registers, history }) {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showArtifactModal, setShowArtifactModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
@@ -124,7 +124,7 @@ function AirLoomNavbar({ addRegister, registers, history }) {
         </Nav.Link>
       </Navbar.Collapse>
       <RegisterForm
-        addRegister={addRegister}
+        refetch={refetch}
         showModal={showRegisterModal}
         setShowModal={setShowRegisterModal}
       />
@@ -143,7 +143,7 @@ function AirLoomNavbar({ addRegister, registers, history }) {
 }
 
 AirLoomNavbar.propTypes = {
-  addRegister: PropTypes.func.isRequired,
+  refetch: PropTypes.func.isRequired,
   registers: PropTypes.arrayOf(
     PropTypes.shape(
       PropTypes.number.isRequired,

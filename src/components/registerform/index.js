@@ -4,7 +4,7 @@ import { Modal, Form } from 'react-bootstrap';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 import styled from './index.module.scss';
 
-function RegisterForm({ addRegister, showModal, setShowModal }) {
+function RegisterForm({ refetch, showModal, setShowModal }) {
   let nameRef = useRef();
 
   const createNewRegister = registerName => {
@@ -20,7 +20,8 @@ function RegisterForm({ addRegister, showModal, setShowModal }) {
       body: JSON.stringify(data)
     })
       .then(() => {
-        addRegister({ ...data, is_admin: true });
+        refetch();
+        // addRegister({ ...data, is_admin: true });
         setShowModal(false);
       })
       .catch(() => {});
@@ -66,7 +67,7 @@ function RegisterForm({ addRegister, showModal, setShowModal }) {
 }
 
 RegisterForm.propTypes = {
-  addRegister: PropTypes.func.isRequired,
+  refetch: PropTypes.func.isRequired,
   showModal: PropTypes.bool.isRequired,
   setShowModal: PropTypes.func.isRequired
 };
