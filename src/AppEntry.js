@@ -44,11 +44,11 @@ const ArtifactView = Loadable({
 
 function App() {
   const [registers, setRegisters] = useState([]);
-  const addRegister = register => {
-    const newRegisters = registers;
-    newRegisters.push(register);
-    setRegisters(newRegisters);
-  };
+  // const addRegister = register => {
+  //   const newRegisters = registers;
+  //   newRegisters.push(register);
+  //   setRegisters(newRegisters);
+  // };
 
   const fetchRegisters = () => {
     Auth.currentAuthenticatedUser({
