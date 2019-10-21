@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import * as Sentry from '@sentry/browser';
 
+const styledButton = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+
 class AppErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +30,11 @@ class AppErrorBoundary extends Component {
     if (this.state.hasError) {
       // render fallback UI
       return (
-        <button onClick={() => Sentry.showReportDialog({ eventId: this.state.eventId })}>
+        <button
+          type="button"
+          styles={styledButton}
+          onClick={() => Sentry.showReportDialog({ eventId: this.state.eventId })}
+        >
           Report feedback
         </button>
       );
