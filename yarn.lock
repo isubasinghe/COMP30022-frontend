@@ -1028,10 +1028,17 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-typescript" "^7.6.0"
 
-"@babel/runtime@7.6.0", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5":
+"@babel/runtime@7.6.0":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.0.tgz#4fc1d642a9fd0299754e8b5de62c631cf5568205"
   integrity sha512-89eSBLJsxNxOERC0Op4vd+0Bqm6wRMqMbFtV3i0/fbaWw/mJ8Q3eBvgX0G4SyrOOLCtbu98HspF8o09MRT+KzQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.3.tgz#935122c74c73d2240cafd32ddb5fc2a6cd35cf1f"
+  integrity sha512-kq6anf9JGjW8Nt5rYfEuGRaEAaH1mkv3Bbu6rYvLOpPh/RusSJXuKPEAoZ7L7gybZkchE8+NV5g9vKF4AGAtsA==
   dependencies:
     regenerator-runtime "^0.13.2"
 
@@ -10848,12 +10855,12 @@ react-is@^16.10.2, react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.10.2.tgz#984120fd4d16800e9a738208ab1fba422d23b5ab"
   integrity sha512-INBT1QEgtcCCgvccr5/86CfD71fw9EPmDxgiJX4I2Ddr6ZsV6iFXsuby+qWJPtmNuMY0zByTsG4468P7nHuNWA==
 
-react-leaflet@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-2.4.0.tgz#9cef74e14aeeb094bfe662b46de1682623c090ea"
-  integrity sha512-ex9MAz2cUAmdUucsjv180OYszdqxHIyEwzWAuMOOuxE7yUmRscxZKR5h0f+vG4shR+SekZYUBk0+gCv8apRADQ==
+react-leaflet@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-leaflet/-/react-leaflet-2.5.0.tgz#834cc9fdf9385e2b30e90e6d71533e2f961d93f7"
+  integrity sha512-G7GPnXtiJIyTQg77RKzrPq2vnv4lsDz1/XHu5P8+eAAZILngVHzcYCG81G39Hcc0UL8Pqspk8b86OauDGqy0OA==
   dependencies:
-    "@babel/runtime" "^7.4.5"
+    "@babel/runtime" "^7.6.3"
     fast-deep-equal "^2.0.1"
     hoist-non-react-statics "^3.3.0"
     warning "^4.0.3"
