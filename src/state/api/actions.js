@@ -1,7 +1,0 @@
-export const API_REQUEST = '[api] API REQUEST';
-
-export const apiRequest = (method, url, body, onSuccess, onError) => ({
-  type: API_REQUEST,
-  payload: body,
-  meta: { method, url, onSuccess, onError }
-});

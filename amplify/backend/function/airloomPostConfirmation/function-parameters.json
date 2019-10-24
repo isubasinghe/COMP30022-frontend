@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "custom"
+    ],
+    "parentResource": "airloom",
+    "functionName": "airloomPostConfirmation",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "PostConfirmation.json.ejs",
+    "roleName": "airloomPostConfirmation",
+    "skipEdit": true,
+    "resourceName": "airloomPostConfirmation"
+}

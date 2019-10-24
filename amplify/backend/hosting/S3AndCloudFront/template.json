@@ -125,6 +125,11 @@
             ],
             "Properties": {
                 "DistributionConfig": {
+                    "Aliases": ["airloom.xyz", "www.airloom.xyz"],
+                    "ViewerCertificate": {
+                        "AcmCertificateArn": "arn:aws:acm:us-east-1:111110792792:certificate/e32b44f8-1551-4448-8e58-dd10b4bcffe4",
+                        "SslSupportMethod": "sni-only"
+                    },
                     "Origins": [
                         {
                             "DomainName": {

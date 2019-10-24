@@ -1,0 +1,42 @@
+.banner-top {
+  width: 100vw;
+  height: 25vh;
+  background-image: url(../../assets/home/background1.svg);
+  background-repeat: repeat-x;
+  background-position: center top;
+}
+
+.banner-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 25vh;
+  background-image: url(../../assets/home/background2.svg);
+  background-repeat: repeat-x;
+  background-position: bottom center;
+}
+
+.title {
+  color: #1a535c;
+  font-family: impact;
+  text-align: center;
+  margin-top: 7%;
+  font-size: 70px;
+}
+
+.container {
+  width: 100%;
+  height: calc(100% - 70px);
+  top:70px;
+  position: absolute;
+  text-align: center;
+  background-color: #f7fff7;
+}
+
+.description {
+  color: #1a535c;
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 24px;
+  margin-top: -1vh;
+}

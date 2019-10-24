@@ -1,0 +1,112 @@
+.name {
+  text-align: left;
+  color: #f7fff7;
+  font-family: impact;
+  font-size: 2.5em;
+  padding: 2% 10%;
+}
+
+.artifact-container {
+  background-color: #f7fff7;
+  border-width: thick;
+  border-style: dashed;
+  border-color: #707070;
+  border-radius: 50px;
+  left: 5%;
+  top: 25%;
+  width: 90%;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+
+.title {
+  text-align: left;
+  padding: 10px 0px 15px;
+  color: #1a535c;
+  font-family: impact;
+  font-size: 2em;
+}
+
+.data {
+  text-align: left;
+  padding: 15px;
+  min-width: 90%;
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #1a535c;
+  background-color: white;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 15px;
+}
+
+.map {
+  padding: 15px;
+  min-width: 90%;
+  height: 250px;
+  color: #1a535c;
+  background-color: white;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 15px;
+}
+
+.map-component {
+  padding: 15px;
+  height: 220px;
+  width: 100%;
+  border-radius: 15px
+}
+
+.photo-container {
+  height: 100%;
+  width: 100%;
+}
+
+.photo {
+  background-color: white;
+  box-shadow: 5px 5px 5px gray;
+  border-radius: 15px;
+  padding: 15px;
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #1a535c;
+  margin: auto;
+  vertical-align: middle;
+  max-width: 95%;
+  max-height: 95%;
+  height: auto;
+  width: auto;
+  object-fit: cover;
+}
+
+.button {
+  vertical-align: bottom;
+  text-align: center;
+  height: 50px;
+  min-width: 28%;
+  border-radius: 15px;
+  font-family: impact;
+  font-size: 20px;
+  color: white;
+  text-transform: uppercase;
+  box-shadow: 5px 5px 5px gray;
+  margin-top: 25px;
+  margin-left: 2%;
+  margin-right: 2%;
+
+  &-red {
+    @extend .button;
+    background-color: #ff6b6b;
+  }
+  &-grey {
+    @extend .button;
+    background-color: #1a535c;
+  }
+  &-teal {
+    @extend .button;
+    background-color: #4ecdc4;
+  }
+
+  @media only screen and (max-width: 512px) {
+    width: 100%;
+  }
+}

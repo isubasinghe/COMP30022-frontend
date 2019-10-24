@@ -1,5 +1,13 @@
+body {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: #1a535c !important;
+}
+
 .App {
   text-align: center;
+  background: #1a535c !important;
 }
 
 .App-logo {
@@ -31,3 +39,27 @@
     transform: rotate(360deg);
   }
 }
+
+/* Start global overrides */
+
+.modal-content {
+  background-color: #f7fff7 !important;
+  border-radius: 25px !important;
+  padding: 5px !important;
+  color: none !important;
+  background-clip: unset;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+a:focus {
+  outline: none !important;
+}
+
+.hover-link:hover {
+  opacity: 0.8;
+}
+
+/* End of global overrides */
