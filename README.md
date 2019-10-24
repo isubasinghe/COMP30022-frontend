@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8baa32e6-ea4b-41f2-a59c-1e11bd4de1d1/deploy-status)](https://app.netlify.com/sites/airloom-prod/deploys) [![Build Status](https://travis-ci.com/isubasinghe/COMP30022-frontend.svg?token=jaHDhXwcqnNXuEFx51gu&branch=dev)](https://travis-ci.com/isubasinghe/COMP30022-frontend)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8baa32e6-ea4b-41f2-a59c-1e11bd4de1d1/deploy-status)](https://app.netlify.com/sites/airloom-prod/deploys) [![Build Status](https://travis-ci.com/isubasinghe/COMP30022-frontend.svg?token=jaHDhXwcqnNXuEFx51gu&branch=dev)](https://travis-ci.com/isubasinghe/COMP30022-frontend) ![Uptime](https://img.shields.io/uptimerobot/ratio/7/m783678391-ac3c367464429d2a8fb73210)
 
 # This project is a heirloom register for the capstone project for COMP30022
 
