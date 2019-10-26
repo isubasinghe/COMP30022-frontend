@@ -72,4 +72,4 @@ RegisterForm.propTypes = {
   setShowModal: PropTypes.func.isRequired
 };
 
-export default RegisterForm;
+export default React.memo(RegisterForm);
