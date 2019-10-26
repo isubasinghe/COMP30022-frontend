@@ -105,4 +105,4 @@ Settings.propTypes = {
   setShowModal: PropTypes.func.isRequired
 };
 
-export default Settings;
+export default React.memo(Settings);

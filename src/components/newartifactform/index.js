@@ -40,4 +40,4 @@ NewArtifactForm.propTypes = {
   setShowModal: PropTypes.func.isRequired
 };
 
-export default NewArtifactForm;
+export default React.memo(NewArtifactForm);
