@@ -40,6 +40,9 @@ function AirLoomNavbar({ refetch, registers, history }) {
   };
 
   const logout = () => {
+    localStorage.removeItem(KEY_SELECT_REGISTER);
+    localStorage.removeItem(KEY_DISPLAY_REGISTER);
+    localStorage.removeItem(KEY_IS_ADMIN);
     Auth.signOut();
   };
   const styledLink = `${styled['text-modifier']} hover-link`;
