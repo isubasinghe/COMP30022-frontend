@@ -177,4 +177,20 @@ ArtifactForm.defaultProps = {
   }
 };
 
-export default withRouter(ArtifactForm);
+const areEqual = (prevProps, nextProps) => {
+  const check = [
+    'title',
+    'buttonName',
+    'showModal',
+    'setShowModal',
+    'request',
+    'history',
+    'artifactData'
+  ];
+  return !check.some(keyText => {
+    return prevProps[keyText] !== nextProps[keyText];
+  });
+};
+
+const MemoisedArtifactForm = React.memo(ArtifactForm, areEqual);
+export default withRouter(MemoisedArtifactForm);
