@@ -35,7 +35,7 @@ function ArtifactView({
   useEffect(() => {
     if (registerId !== null && artifactId !== null) {
       authFetchRequest(
-        `https://api.airloom.xyz/api/v1/register/artifact/${registerId}/${artifactId}`,
+        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/artifact/${registerId}/${artifactId}`,
         {}
       )
         .then(data => {
@@ -69,7 +69,7 @@ function ArtifactView({
       artifact_id: artifactId
     };
 
-    authFetchRequest(`https://api.airloom.xyz/api/v1/artifact/del/`, {
+    authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/artifact/del/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

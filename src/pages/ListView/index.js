@@ -14,7 +14,10 @@ function ListView(props) {
   // TODO: write a hook to replicate useEffect authenticated fetch
   useEffect(() => {
     if (registerId !== null) {
-      authFetchRequest(`https://api.airloom.xyz/api/v1/register/all/${registerId}`, {})
+      authFetchRequest(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/all/${registerId}`,
+        {}
+      )
         .then(data => {
           const artifactData = Object.values(data).sort((a, b) => {
             const { name: aName } = a;

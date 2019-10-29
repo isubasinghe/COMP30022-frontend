@@ -17,11 +17,11 @@ function PhotoForm({ artifactId, registerId, showModal, setShowModal, history })
       formData.append('registerId', registerId);
       formData.append('artifactId', artifactId);
       formData.append('photo', file);
-      return authFetchRequest('https://api.airloom.xyz/api/v1/artifact/addphoto/', {
+      return authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/artifact/addphoto`, {
         method: 'POST',
         body: formData
       }).then(result => {
-        console.log(result);
+        return result;
       });
     });
 

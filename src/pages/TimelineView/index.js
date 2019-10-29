@@ -11,7 +11,7 @@ function TimelineView(props) {
   const [errorState, setErrorState] = useState(false);
   const { registerId } = props.match.params;
   useEffect(() => {
-    authFetchRequest(`https://api.airloom.xyz/api/v1/register/all/${registerId}`, {})
+    authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/all/${registerId}`, {})
       .then(data => {
         const mapData = Object.values(data);
         for (let i = 0; i < mapData.length; i++) {
