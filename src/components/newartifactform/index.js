@@ -10,7 +10,7 @@ function NewArtifactForm({ registerId, showModal, setShowModal }) {
       ...artifact
     };
 
-    return authFetchRequest('https://api.airloom.xyz/api/v1/artifact/add', {
+    return authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/artifact/add`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -11,7 +11,7 @@ function UpdateArtifactForm({ registerId, artifactId, showModal, setShowModal, a
       ...artifact
     };
 
-    return authFetchRequest('https://api.airloom.xyz/api/v1/artifact/update', {
+    return authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/artifact/update`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
