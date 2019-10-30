@@ -35,17 +35,12 @@ const ArtifactMap = ({
       case 0:
         setBounds(new L.latLngBounds([[-60, -120], [60, 120]]));
         break;
-      case 1:
-        setBounds(new L.latLng([artifacts[0].lat, artifacts[0].lon]).toBounds(1500000));
-        break;
       default:
-        setBounds(
-          new L.featureGroup(
-            artifacts.map(({ lat, lon }) => {
-              return L.marker([lat, lon]);
-            })
-          ).getBounds()
-        );
+        let newBounds = new L.latLngBounds();
+        artifacts.forEach(({ lat, lon }) => {
+          newBounds = newBounds.extend(new L.latLng([lat, lon]).toBounds(1500000));
+        });
+        setBounds(newBounds);
     }
   }, [artifacts]);
 
