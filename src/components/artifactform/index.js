@@ -133,7 +133,7 @@ function ArtifactForm({
               description: descRef.value,
               date: dateRef.value,
               lat: newLat,
-              lon: newLon
+              lon: ((((newLon + 180) % 360) + 360) % 360) - 180
             }).then(() => {
               history.go(0);
             });
