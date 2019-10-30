@@ -12,7 +12,7 @@ function RegisterForm({ refetch, showModal, setShowModal }) {
       name: registerName
     };
 
-    authFetchRequest('https://api.airloom.xyz/api/v1/register/addregister', {
+    authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/addregister`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

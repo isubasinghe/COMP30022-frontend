@@ -7,7 +7,7 @@ export const addMember = (registerId, email, isAdmin) => {
     is_admin: isAdmin
   };
 
-  return authFetchRequest('https://api.airloom.xyz/api/v1/register/addmember', {
+  return authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/addmember`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export const delMember = (registerId, email) => {
     email
   };
 
-  return authFetchRequest('https://api.airloom.xyz/api/v1/register/delmember', {
+  return authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/delmember`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ export const updateMember = (registerId, email, isAdmin) => {
     is_admin: isAdmin
   };
 
-  return authFetchRequest('https://api.airloom.xyz/api/v1/register/updatemember', {
+  return authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/updatemember`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

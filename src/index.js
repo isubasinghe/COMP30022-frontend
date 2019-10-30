@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 
 Auth.configure(awsconfig);
 
-Sentry.init({ dsn: 'https://0813d6b162694237800a791622f2b442@sentry.io/1525953' });
+Sentry.init({ dsn: process.env.REACT_APP_SENTRY_ENDPOINT });
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -1,10 +1,12 @@
 import authFetchRequest from '../auth/cognitoFetchRequest';
 
 export const getRegisters = () => {
-  return authFetchRequest('https://api.airloom.xyz/api/v1/register/', {}).then(res => {
-    const results = Object.values(res);
-    return results;
-  });
+  return authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/`, {}).then(
+    res => {
+      const results = Object.values(res);
+      return results;
+    }
+  );
 };
 
 export const getDefaultRegister = () => {
