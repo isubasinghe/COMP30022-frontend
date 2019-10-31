@@ -4,6 +4,7 @@ import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 import { useLocalStorage } from 'react-use';
+import { motion } from 'framer-motion';
 import RegisterForm from '../registerform';
 import NewArtifactForm from '../newartifactform';
 import Settings from '../settings';
@@ -46,6 +47,9 @@ function AirLoomNavbar({ refetch, registers, history }) {
     Auth.signOut();
   };
   const styledLink = `${styled['text-modifier']} hover-link`;
+
+  const showLinks = hasRegisters && selectedRegister ? 1 : 0;
+  const showAdminUI = isAdmin ? 1 : 0;
   return (
     <Navbar className={styled['navbar-main']} expand="lg">
       <Navbar.Brand className={`${styled['home-nav-link']} hover-link`} onClick={redirect('')}>
@@ -54,42 +58,42 @@ function AirLoomNavbar({ refetch, registers, history }) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          {hasRegisters && selectedRegister && (
-            <>
-              <Nav.Link className={styledLink} onClick={redirect(`/list/${registerSelect}`)}>
-                LIST
-              </Nav.Link>
-              <Nav.Link className={styledLink} onClick={redirect(`/map/${registerSelect}`)}>
-                MAP
-              </Nav.Link>
-              <Nav.Link className={styledLink} onClick={redirect(`/timeline/${registerSelect}`)}>
-                TIMELINE
-              </Nav.Link>
-            </>
-          )}
+          <motion.div
+            animate={{ opacity: showLinks }}
+            style={{ display: 'flex', flexDirection: 'row' }}
+          >
+            <Nav.Link className={styledLink} onClick={redirect(`/list/${registerSelect}`)}>
+              LIST
+            </Nav.Link>
+            <Nav.Link className={styledLink} onClick={redirect(`/map/${registerSelect}`)}>
+              MAP
+            </Nav.Link>
+            <Nav.Link className={styledLink} onClick={redirect(`/timeline/${registerSelect}`)}>
+              TIMELINE
+            </Nav.Link>
+          </motion.div>
         </Nav>
-        {isAdmin ? (
-          <>
-            <Nav.Link
-              className={styledLink}
-              onClick={() => {
-                setShowArtifactModal(true);
-              }}
-            >
-              ADD ARTIFACT
-            </Nav.Link>
-            <Nav.Link
-              className={styledLink}
-              onClick={() => {
-                setShowSettingsModal(true);
-              }}
-            >
-              SETTINGS
-            </Nav.Link>
-          </>
-        ) : (
-          <></>
-        )}
+        <motion.div
+          animate={{ opacity: showAdminUI }}
+          style={{ display: 'flex', flexDirection: 'row' }}
+        >
+          <Nav.Link
+            className={styledLink}
+            onClick={() => {
+              setShowArtifactModal(true);
+            }}
+          >
+            ADD ARTIFACT
+          </Nav.Link>
+          <Nav.Link
+            className={styledLink}
+            onClick={() => {
+              setShowSettingsModal(true);
+            }}
+          >
+            SETTINGS
+          </Nav.Link>
+        </motion.div>
         <Nav>
           <NavDropdown
             className={`${styled['text-modifier']}`}

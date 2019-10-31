@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import Spinner from '../../components/spinner';
 import Error from '../../components/error';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
@@ -52,13 +53,15 @@ function ListView(props) {
               key={`link-${artifact.artifact_id}`}
               to={`/artifact/${registerId}/${artifact.artifact_id}/`}
             >
-              <div
+              <motion.div
+                whileHover={{ scale: 1.015 }}
+                whileTap={{ scale: 0.99 }}
                 key={artifact.artifact_id}
                 id={`artifact-${artifact.artifact_id}`}
                 className={styled['item-container']}
               >
                 {artifact.name}{' '}
-              </div>
+              </motion.div>
             </Link>
           ))
         )}
