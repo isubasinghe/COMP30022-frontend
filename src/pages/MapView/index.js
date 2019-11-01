@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Loadable from 'react-loadable';
+import useSWR from 'swr';
 import Spinner from '../../components/spinner';
 import Error from '../../components/error';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
@@ -16,31 +17,17 @@ function MapView({
     params: { registerId }
   }
 }) {
-  const [artifacts, setArtifacts] = useState([]);
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [errorState, setErrorState] = useState(false);
-  // TODO: write a hook to replicate useEffect authenticated fetch
-  useEffect(() => {
-    if (registerId !== null) {
-      authFetchRequest(
-        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/all/${registerId}`,
-        {}
-      )
-        .then(data => {
-          const mapData = Object.values(data);
-          setArtifacts(mapData);
-          setHasLoaded(true);
-        })
-        .catch(() => {
-          setErrorState(true);
-          setHasLoaded(true);
-        });
-    }
-  }, [registerId]);
-  if (!hasLoaded) {
+  const { data, error } = useSWR(
+    `${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/all/${registerId}`,
+    authFetchRequest,
+    { refreshInterval: 5000 }
+  );
+  const artifacts = !data ? [] : Object.values(data);
+
+  if (!data) {
     return <Spinner />;
   }
-  if (errorState) {
+  if (error) {
     return <Error />;
   }
   return <ArtifactMap className={styled['map-component']} artifacts={artifacts} />;

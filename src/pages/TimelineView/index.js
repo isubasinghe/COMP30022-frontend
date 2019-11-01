@@ -1,35 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import useSWR from 'swr';
 import Spinner from '../../components/spinner';
 import Error from '../../components/error';
 import ArtifactTimeline from '../../components/timeline';
 import authFetchRequest from '../../utils/auth/cognitoFetchRequest';
 
 function TimelineView(props) {
-  const [artifacts, setArtifacts] = useState([]);
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [errorState, setErrorState] = useState(false);
   const { registerId } = props.match.params;
-  useEffect(() => {
-    authFetchRequest(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/all/${registerId}`, {})
-      .then(data => {
-        const mapData = Object.values(data);
-        for (let i = 0; i < mapData.length; i++) {
-          mapData[i].lat = parseFloat(mapData[i].lat);
-          mapData[i].lon = parseFloat(mapData[i].lon);
-        }
-        setArtifacts(mapData);
-        setHasLoaded(true);
-      })
-      .catch(err => {
-        setErrorState(true);
-        setHasLoaded(true);
-      });
-  }, [registerId]);
-  if (!hasLoaded) {
+
+  const { data, error } = useSWR(
+    `${process.env.REACT_APP_API_ENDPOINT}/api/v1/register/all/${registerId}`,
+    authFetchRequest,
+    { refreshInterval: 5000 }
+  );
+
+  const artifacts = !data ? [] : Object.values(data);
+  if (!data) {
     return <Spinner />;
   }
-  if (errorState) {
+  if (error) {
     return <Error />;
   }
   return (

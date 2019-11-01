@@ -1,6 +1,6 @@
 import { Auth } from 'aws-amplify';
 
-function authFetchRequest(url, fetchOptions) {
+function authFetchRequest(url, fetchOptions = {}) {
   return Auth.currentSession()
     .then(res => {
       return res.idToken.jwtToken;
