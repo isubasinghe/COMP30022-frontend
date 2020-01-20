@@ -24,7 +24,7 @@
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "react-use": "^12.9.1",
+    "react-use": "^13.21.0",
     "react-vertical-timeline-component": "^2.4.0"
   },
   "scripts": {
