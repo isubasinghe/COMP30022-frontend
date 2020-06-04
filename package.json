@@ -9,7 +9,7 @@
     "@sentry/browser": "^5.7.1",
     "aws-amplify": "^1.1.31-preview.41",
     "aws-amplify-react": "^2.3.11-preview.54",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^4.5.0",
     "leaflet": "^1.5.1",
     "logrocket": "^1.0.3",
     "logrocket-react": "^4.0.1",
