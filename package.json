@@ -3,7 +3,7 @@
   "version": "0.8.25",
   "private": true,
   "dependencies": {
-    "@capacitor/android": "^1.2.1",
+    "@capacitor/android": "^1.4.0",
     "@capacitor/cli": "^1.2.1",
     "@capacitor/core": "^1.2.1",
     "@sentry/browser": "^5.7.1",
@@ -24,7 +24,7 @@
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "react-use": "^12.9.1",
+    "react-use": "^13.26.2",
     "react-vertical-timeline-component": "^2.4.0"
   },
   "scripts": {
