@@ -73,7 +73,7 @@
     "react-app-rewired": "^2.1.4",
     "sinon": "^7.5.0",
     "source-map-explorer": "^2.1.0",
-    "tailwindcss": "^1.5.2",
+    "tailwindcss": "^1.8.2",
     "workbox-build": "^4.3.1"
   }
 }
