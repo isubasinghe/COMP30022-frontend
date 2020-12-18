@@ -8,7 +8,7 @@
     "@capacitor/core": "^1.2.1",
     "@sentry/browser": "^5.29.1",
     "aws-amplify": "^3.3.12",
-    "aws-amplify-react": "^2.3.11-preview.54",
+    "aws-amplify-react": "^4.2.17",
     "bootstrap": "^4.3.1",
     "leaflet": "^1.5.1",
     "logrocket": "^1.0.3",
