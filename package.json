@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@capacitor/android": "^1.4.0",
-    "@capacitor/cli": "^1.2.1",
+    "@capacitor/cli": "^2.4.6",
     "@capacitor/core": "^1.2.1",
     "@sentry/browser": "^5.29.1",
     "aws-amplify": "^3.3.12",
