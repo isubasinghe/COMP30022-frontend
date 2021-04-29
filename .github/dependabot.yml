@@ -1,0 +1,124 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "19:00"
+  open-pull-requests-limit: 99
+  target-branch: dev
+  ignore:
+  - dependency-name: "@sentry/browser"
+    versions:
+    - 6.0.3
+    - 6.0.4
+    - 6.1.0
+    - 6.2.0
+    - 6.2.1
+    - 6.2.2
+    - 6.2.3
+    - 6.2.4
+    - 6.2.5
+    - 6.3.0
+    - 6.3.1
+    - 6.3.3
+  - dependency-name: logrocket
+    versions:
+    - 1.0.14
+    - 1.0.15
+    - 1.0.16
+  - dependency-name: eslint-config-prettier
+    versions:
+    - 7.2.0
+    - 8.0.0
+    - 8.1.0
+    - 8.2.0
+  - dependency-name: react-use
+    versions:
+    - 15.3.8
+    - 17.1.0
+    - 17.1.1
+    - 17.2.0
+    - 17.2.1
+    - 17.2.3
+  - dependency-name: aws-amplify
+    versions:
+    - 3.3.15
+    - 3.3.16
+    - 3.3.17
+    - 3.3.18
+    - 3.3.19
+    - 3.3.20
+    - 3.3.21
+    - 3.3.22
+    - 3.3.23
+    - 3.3.24
+    - 3.3.25
+    - 3.3.26
+  - dependency-name: aws-amplify-react
+    versions:
+    - 4.2.19
+    - 4.2.20
+    - 4.2.21
+    - 4.2.22
+    - 4.2.23
+    - 4.2.24
+    - 4.2.25
+    - 4.2.26
+    - 4.2.27
+    - 4.2.28
+    - 4.2.29
+    - 4.2.30
+  - dependency-name: eslint-plugin-react
+    versions:
+    - 7.22.0
+    - 7.23.0
+    - 7.23.1
+  - dependency-name: sinon
+    versions:
+    - 10.0.0
+    - 9.2.4
+  - dependency-name: workbox-build
+    versions:
+    - 6.0.2
+    - 6.1.0
+    - 6.1.1
+    - 6.1.2
+  - dependency-name: react-dropzone
+    versions:
+    - 11.2.4
+    - 11.3.0
+    - 11.3.1
+  - dependency-name: chai
+    versions:
+    - 4.3.0
+    - 4.3.1
+    - 4.3.3
+  - dependency-name: react-scripts
+    versions:
+    - 4.0.1
+    - 4.0.2
+  - dependency-name: purgecss-webpack-plugin
+    versions:
+    - 4.0.0
+    - 4.0.2
+  - dependency-name: "@capacitor/cli"
+    versions:
+    - 2.4.6
+  - dependency-name: react-bootstrap
+    versions:
+    - 1.4.3
+    - 1.5.0
+    - 1.5.1
+  - dependency-name: eslint-plugin-prettier
+    versions:
+    - 3.3.1
+  - dependency-name: react
+    versions:
+    - 16.14.0
+  - dependency-name: tailwindcss
+    versions:
+    - 2.0.2
+  - dependency-name: elliptic
+    versions:
+    - 6.5.3
