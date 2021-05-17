@@ -6,7 +6,7 @@
     "@capacitor/android": "^1.4.0",
     "@capacitor/cli": "^1.2.1",
     "@capacitor/core": "^1.2.1",
-    "@sentry/browser": "^5.29.1",
+    "@sentry/browser": "^6.4.0",
     "aws-amplify": "^3.3.12",
     "aws-amplify-react": "^2.3.11-preview.54",
     "bootstrap": "^4.3.1",
