@@ -25,7 +25,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-use": "^13.26.2",
-    "react-vertical-timeline-component": "^2.4.0"
+    "react-vertical-timeline-component": "^2.4.0",
+    "@snyk/protect": "latest"
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
@@ -35,7 +36,9 @@
     "build": "npm run build:css && react-app-rewired build && npm run build-sw",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
-    "build-sw": "node ./src/swconfig/sw-build.js"
+    "build-sw": "node ./src/swconfig/sw-build.js",
+    "prepare": "yarn run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -75,5 +78,6 @@
     "source-map-explorer": "^2.1.0",
     "tailwindcss": "^1.5.2",
     "workbox-build": "^4.3.1"
-  }
+  },
+  "snyk": true
 }
